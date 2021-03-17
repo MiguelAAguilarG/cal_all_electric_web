@@ -2,12 +2,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>calcelectric-web</title>
+    <title>All electric</title>
     <link rel="stylesheet" href="style.css">
     <meta name="author" content="Miguel Ángel Aguilar García">
     <script src="app.js" defer></script>
 </head>
+
 <body>
-    
+    <header>All electric</header>
+
+    <div class="box-settings" id="form0">
+        <label for="decimals">Decimals (in results): </label>
+        <input type="number" min="1" max="2" step="1" value="2" name="decimals" id="decimals" class="data">
+    </div>
+
+    <div class="box-container">
+        <form id="form1">
+            <div class="box-data">
+                <label for="system" class="text-right">1&#981/3&#981</label>
+                <select name="list-system" id="list-system" class="data">
+                    <option value="single">Monofásico</option> 
+                    <option value="three">Trifásico</option>
+                </select>
+                <span></span>
+            </div>
+
+            <div class="box-data">
+                <label for="voltage" class="text-right">V</label>
+                <input type="number" min="0" value="120" step="1" name="voltage" id="voltage" class="data">
+                <span>[V]</span>
+            </div>
+
+            <div class="box-data">
+                <span class="text-right">Cond/Fase</span>
+                <input type="number" min="1" value="1" step="1" name="conductorsPerPhase" id="conductorsPerPhase" class="data">
+            </div>
+        </form>
+    </div>
+
+    <br>
+
+    <div class="box-container">
+        <form id="form2">
+            <div class="box-data">
+                <label for="current" class="text-right">I</label>
+                <input type="number" min="0.5" value="16" name="current" id="current" class="data">
+                <span>[A]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="realPower" class="text-right">P</label>
+                <input type="number" min="0.5" value="1000" name="realPower" id="realPower" class="data">
+                <span>[W]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="apparentPower" class="text-right">S</label>
+                <input type="number" min="0.5" value="1000" name="apparentPower" id="apparentPower" class="data">
+                <span>[VA]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="pf" class="text-right">FP</label>
+                <input type="number" min="0" max="1" value="0.9" name="pf" id="pf" class="data">
+                <span></span>
+            </div>
+        </form>
+    </div>
+
+    <br>
+
+    <div class="box-container">
+        <form id="form3">
+            <div class="box-data">
+                <label for="Lmax" class="text-right">Lmax</label>
+                <input type="number" min="0.5" value="30" name="Lmax" id="Lmax" class="data">
+                <span>[m]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="Imax" class="text-right">Imax</label>
+                <input type="number" min="0.5" value="25" name="Imax" id="Imax" class="data">
+                <span>[A]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="lenght" class="text-right">L</label>
+                <input type="number" min="0.5" value="30" name="lenght" id="lenght" class="data">
+                <span>[m]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="voltageDropPercent" class="text-right">%e</label>
+                <input type="number" min="0.01" max="100" value="3" name="voltageDropPercent" id="voltageDropPercent" class="data">
+                <span>[%]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="voltageDropVolts" class="text-right">e</label>
+                <input type="number" min="0.5" value="5" name="voltageDropVolts" id="voltageDropVolts" class="data">
+                <span>[V]</span>
+            </div>
+        </form>
+    </div>
+
+    <br>
+
+    <div class="box-container">
+        <form id="form3">
+            <div class="box-data">
+                <label for="Lmax" class="text-right">Lmax</label>
+                <input type="number" min="0.5" value="30" name="Lmax" id="Lmax" class="data">
+                <span>[m]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="Imax" class="text-right">Imax</label>
+                <input type="number" min="0.5" value="25" name="Imax" id="Imax" class="data">
+                <span>[A]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="lenght" class="text-right">L</label>
+                <input type="number" min="0.5" value="30" name="lenght" id="lenght" class="data">
+                <span>[m]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="voltageDropPercent" class="text-right">%e</label>
+                <input type="number" min="0.01" max="100" value="3" name="voltageDropPercent" id="voltageDropPercent" class="data">
+                <span>[%]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="voltageDropVolts" class="text-right">e</label>
+                <input type="number" min="0.5" value="5" name="voltageDropVolts" id="voltageDropVolts" class="data">
+                <span>[V]</span>
+            </div>
+        </form>
+    </div>
+
+<div class="box-wrap">
+    <ul class="nota">
+        <li class="nota_sinBullets">Bibliografía</li>
+        <ul>
+            <li><a href="https://miguelangelaguilargarcia.blogspot.com/2019/06/nec-handbook-2017.html" target="_blank">NEC Handbook 2017</a></li>
+        </ul>
+        <ul>
+            <li><a href="https://miguelangelaguilargarcia.blogspot.com/2020/11/illustrated-guide-to-national.html" target="_blank">Illustrated Guide to the National Electrical Code. Based on the 2014 National Electrical Code. 6ed</a></li>
+        </ul>
+    </ul>
+</div>
+
 </body>
+
+<footer>
+    <p class="text-center-footer"><a href="https://github.com/MiguelAAguilarG" target="_blank">Código</a></p>
+    <p id="Miblog"><a href="https://miguelangelaguilargarcia.blogspot.com/2020/04/herramientas-para-calculos-electricos.html" target="_blank">Más herramientas (cálculos eléctricos)</a></p>
+    <p id="autor" > By Miguel Ángel Aguilar García</p>
+</footer>
 </html>
