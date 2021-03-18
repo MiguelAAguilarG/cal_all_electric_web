@@ -49,6 +49,12 @@
             </div>
 
             <div class="box-data">
+                <label for="currentPerConductor" class="text-right">I/cond</label>
+                <input type="number" name="currentPerConductor" id="currentPerConductor" class="result" disabled>
+                <span>[A]</span>
+            </div>
+
+            <div class="box-data">
                 <label for="ContinuousLoad" class="text-right">C.Cont</label>
                 <input type="number" value="1" name="ContinuousLoad" id="ContinuousLoad" class="result" disabled>
                 <span>I*1.25</span>
@@ -61,16 +67,24 @@
             </div>
 
             <div class="box-data">
+                <label for="pf" class="text-right">FP</label>
+                <input type="number" min="0" max="1" value="0.9" name="pf" id="pf" class="data">
+                <span> </span>
+            </div>
+
+            <div class="box-data">
                 <label for="apparentPower" class="text-right">S</label>
-                <input type="number" min="0.5" value="1000" name="apparentPower" id="apparentPower" class="data">
+                <input type="number" min="0.5" value="1000" name="apparentPower" id="apparentPower" class="result" disabled>
                 <span>[VA]</span>
             </div>
 
             <div class="box-data">
-                <label for="pf" class="text-right">FP</label>
-                <input type="number" min="0" max="1" value="0.9" name="pf" id="pf" class="data">
-                <span></span>
+                <label for="reactivePower" class="text-right">Q</label>
+                <input type="number" min="0.5" value="1000" name="reactivePower" id="reactivePower" class="result" disabled>
+                <span>[VAR]</span>
             </div>
+
+
         </form>
     </div>
 
@@ -89,8 +103,8 @@
             </div>
 
             <div class="box-data">
-                <label for="lenght" class="text-right">L</label>
-                <input type="number" min="0.5" value="30" name="lenght" id="lenght" class="data">
+                <label for="length" class="text-right">L</label>
+                <input type="number" min="0.5" value="30" name="length" id="length" class="data">
                 <span>[m]</span>
             </div>
 

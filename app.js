@@ -17,9 +17,79 @@ document.getElementById("form1").addEventListener("change", calc_main);
 document.getElementById("form2").addEventListener("change", calc_main);
 document.getElementById("form3").addEventListener("change", calc_main);
 document.getElementById("form4").addEventListener("change", calc_main);
-document.getElementById("form5").addEventListener("change", calc_main);
 document.getElementById("formA").addEventListener("change", calc_main);
 document.getElementById("formB").addEventListener("change", calc_main);
+
+//document.getElementById("current").addEventListener("change", calc_NO_current);
+//document.getElementById("realPower").addEventListener("change", calc_NO_realPower);
+//document.getElementById("apparentPower").addEventListener("change", calc_NO_apparentPower);
+//document.getElementById("pf").addEventListener("change", calc_NO_pf);
+
+function currentFun(system, powerReal, pf) {
+
+    let current;
+    if (system === "single"){
+        current = powerReal/(voltage*pf)
+    }
+    else if (system === 'three') {
+        current = powerReal/(Math.sqrt(3)*voltage*pf);
+    }
+
+    return current;
+}
+
+function powerApparent(parameter) {
+
+    let powerApparent = parameter.powerReal/parameter.pf;
+
+    return powerApparent;
+}
+
+function powerReal(parameter) {
+
+    let powerReal = parameter.powerApparent*parameter.pf;
+
+    return powerReal;
+}
+
+function realPowerFun(system, powerReal, pf) {
+
+    let current;
+    if (system === "single"){
+        current = powerReal/(voltage*pf)
+    }
+    else if (system === 'three') {
+        current = powerReal/(Math.sqrt(3)*voltage*pf);
+    }
+
+    return current;
+}
+
+function apparentPower(system, powerReal, pf) {
+
+    let current;
+    if (system === "single"){
+        current = powerReal/(voltage*pf)
+    }
+    else if (system === 'three') {
+        current = powerReal/(Math.sqrt(3)*voltage*pf);
+    }
+
+    return current;
+}
+
+function pf(system, powerReal, pf) {
+
+    let current;
+    if (system === "single"){
+        current = powerReal/(voltage*pf)
+    }
+    else if (system === 'three') {
+        current = powerReal/(Math.sqrt(3)*voltage*pf);
+    }
+
+    return current;
+}
 
 function calc_main() {
     console.log("cambio");
@@ -37,7 +107,7 @@ function calc_main() {
     var apparentPower = Number.parseFloat(document.getElementById("apparentPower").value);
     var pf = Number.parseFloat(document.getElementById("pf").value);
     /*form3 */
-    var lenght = Number.parseFloat(document.getElementById("lenght").value);
+    var length = Number.parseFloat(document.getElementById("length").value);
     var voltageDropPercent = Number.parseFloat(document.getElementById("realPower").value);
     var voltageDropVolts = Number.parseFloat(document.getElementById("apparentPower").value);
     /*form4 */
@@ -49,55 +119,57 @@ function calc_main() {
     var conductorsPerConduit = Number.parseInt(document.getElementById("conductorsPerConduit").value);
 
     /*computation */
-    var current = current(numAWGTotal);
-    console.log(returnfunCheckbox);
+    //var current = current(numAWGTotal);
+    var currentPerConductor = currentPerConductorFun(current, conductorsPerPhase);
 
+    var factorTemperature = factorTemperatureFun(Tinsulation, Tambient);
+    var factorGrouping = factorGroupingFun(tableFactorGrouping, conductorsPerConduit);
+    var factorAdjustment = factorAdjustmentFun(factorTemperature, factorGrouping);
+
+    var TableAmpacity = seacherTableAmpacityFun(Tinsulation, conductorMaterial);
+    
+    var AmpacityIndex = AmpacityIndexFun(TableAmpacity, currentPerConductor, 1);
+    var AmpacityContinuousLoadIndex = AmpacityIndexFun(TableAmpacity, currentPerConductor*1.25, 1);
+    var AmpacityFactorTemperatureIndex = AmpacityIndexFun(TableAmpacity, currentPerConductor, factorTemperature);
+    var AmpacityFactorGroupingIndex = AmpacityIndexFun(TableAmpacity, currentPerConductor, factorGrouping);
+    var AmpacityFactorAdjustmentIndex = AmpacityIndexFun(TableAmpacity, currentPerConductor, factorAdjustment);
+
+    var Ampacity = TableAmpacity[AmpacityIndex];
+    var AmpacityContinuousLoad = TableAmpacity[AmpacityContinuousLoadIndex];
+    var AmpacityFactorTemperature = TableAmpacity[AmpacityFactorTemperatureIndex]*factorTemperature;
+    var AmpacityFactorGrouping = TableAmpacity[AmpacityFactorGroupingIndex]*factorGrouping;
+    var AmpacityFactorAdjustment = TableAmpacity[AmpacityFactorAdjustmentIndex]*factorAdjustment;
+
+    var gaugeAmpacity = AWG[AmpacityIndex];
+    var gaugeAmpacityContinuousLoad = AWG[AmpacityContinuousLoadIndex];
+    var gaugeAmpacityFactorTemperature = AWG[AmpacityFactorTemperatureIndex];
+    var gaugeAmpacityFactorGrouping = AWG[AmpacityFactorGroupingIndex];
+    var gaugeAmpacityFactorAdjustment = AWG[AmpacityFactorAdjustmentIndex];
+    
     /*results */
-    let e = 0;
-    for(let ii = 18; ii >= 6; ii = ii-2) {
+    document.getElementById("ContinuousLoad").value = current*1.25.toFixed(decimals);
+    document.getElementById("currentPerConductor").value = currentPerConductor.toFixed(decimals);
 
-        document.getElementById("numAWG" + String(ii)).innerHTML = numAWGTotal[e];
+    document.getElementById("factorTemperature").value = factorTemperature.toFixed(decimals);
+    document.getElementById("factorGrouping").value = factorGrouping;
+    document.getElementById("factorAdjustment").value = factorAdjustment.toFixed(decimals);
 
-        document.getElementById("inAWG" + String(ii) + "Total").innerHTML = inAWGTotal[e].toFixed(decimals);
-        document.getElementById("cmAWG" + String(ii) + "Total").innerHTML = cmAWGTotal[e].toFixed(decimals);
+    document.getElementById("Ampacity").value = Ampacity.toFixed(decimals);
+    document.getElementById("AmpacityContinuousLoad").value = AmpacityContinuousLoad.toFixed(decimals);
+    document.getElementById("AmpacityFactorTemperature").value = AmpacityFactorTemperature.toFixed(decimals);
+    document.getElementById("AmpacityFactorGrouping").value = AmpacityFactorGrouping.toFixed(decimals);
+    document.getElementById("AmpacityFactorAdjustment").value = AmpacityFactorAdjustment.toFixed(decimals);
 
-        document.getElementById("inResult").innerHTML = inTotal.toFixed(decimals);
-        document.getElementById("cmResult").innerHTML = cmTotal.toFixed(decimals);
-        e++;
-    }
+    document.getElementById("gaugeAmpacity").value = gaugeAmpacity;
+    document.getElementById("gaugeAmpacityContinuousLoad").value = gaugeAmpacityContinuousLoad;
+    document.getElementById("gaugeAmpacityFactorTemperature").value = gaugeAmpacityFactorTemperature;
+    document.getElementById("gaugeAmpacityFactorGrouping").value = gaugeAmpacityFactorGrouping;
+    document.getElementById("gaugeAmpacityFactorAdjustment").value = gaugeAmpacityFactorAdjustment;
+    
+
 }
 
-function funNum() {
-    var numAWG = [];
-    for(let i = 1; i <= 9; i++) {
-
-        numAWG.push([])
-        for(let ii = 18; ii >= 6; ii = ii-2) {
-            numAWG[i-1].push(Number.parseInt(document.getElementById("item" + String(i) + "AWG" + String(ii)).value));
-        }
-    }
-
-    numAWG.push([])
-    for(let ii = 18; ii >= 6; ii = ii-2) {
-        numAWG[9].push(Number.parseInt(document.getElementById("itemDeviceAWG" + String(ii)).value));
-    }
-    console.log(numAWG);
-
-    var numAWGTotal = [];
-    for(let ii = 0; ii < 7; ii++) {
-
-        numAWGTotal.push(0);
-        for(let i = 0; i < 10; i++) {
-            numAWGTotal[ii] = numAWGTotal[ii] + numAWG[i][ii];
-        }
-    }
-    console.log(numAWGTotal);
-
-    return [numAWG, numAWGTotal];
-}
-
-
-function current(system, powerReal, pf) {
+function currentFun(system, powerReal, pf) {
 
     let current;
     if (system === "single"){
@@ -110,29 +182,97 @@ function current(system, powerReal, pf) {
     return current;
 }
 
-function RTemp(R, Tinsulation) {
+function currentPerConductorFun(current, conductorsPerPhase) {
+
+    return currentPerConductor = current/conductorsPerPhase;
+}
+
+function RTempFun(R, Tinsulation) {
 
     let RTemp = R*(1 + 0.0039*(Tinsulation - 75));
 
     return RTemp;
 }
 
-function Ze(RTemp, XL, pf) {
+function ZeFun(RTemp, XL, pf) {
 
     let Ze = (RTemp*pf + XL*Math.sin(Math.acos(pf)))/1000;
 
     return RTemp;
 }
 
-function voltageDropPercent(system, Ze, lenght, current, voltage, conductorsPerPhase) {
+function voltageDropPercentFun(system, Ze, length, current, voltage, conductorsPerPhase) {
 
     let voltageDropPercent;
     if (system === "single"){
-        voltageDropPercent = 2*Ze*lenght*current*100/(voltage*conductorsPerPhase);
+        voltageDropPercent = 2*Ze*length*current*100/(voltage*conductorsPerPhase);
     }
     else if (system === 'three') {
-        voltageDropPercent = Math.sqrt(3)*Ze*lenght*current*100/(voltage*conductorsPerPhase);
+        voltageDropPercent = Math.sqrt(3)*Ze*length*current*100/(voltage*conductorsPerPhase);
     }
 
     return voltageDropPercent;
 }
+
+function factorTemperatureFun(Tinsulation, Tambient) {
+
+    let factorTemperature = Math.sqrt((Tinsulation - Tambient)/(Tinsulation - 30));
+
+    return factorTemperature;
+}
+
+function factorGroupingFun(tableFactorGrouping, conductorsPerConduit) {
+
+    for (const property in tableFactorGrouping) {
+        if (property >= conductorsPerConduit) {
+            return factorGrouping = tableFactorGrouping[property];
+        } else {
+            
+        }
+    }
+}
+
+function factorAdjustmentFun(factorTemperature, factorGrouping) {
+
+    return factorAdjustment = factorTemperature *factorGrouping;
+}
+
+function seacherTableAmpacityFun(Tinsulation, conductorMaterial) {
+
+    if (conductorMaterial === "Cu") {
+        if (Tinsulation === 60) {
+            return cooper60;
+        } else if (Tinsulation === 75) {
+            return cooper75;
+        } else if (Tinsulation === 90) {
+            return cooper90;
+        } else{
+    
+        }
+        
+    } else if (conductorMaterial === "Al") {
+        if (Tinsulation === 60) {
+            return aluminium60;
+        } else if (Tinsulation === 75) {
+            return aluminium75;
+        } else if (Tinsulation === 90) {
+            return aluminium90;
+        } else{
+    
+        }
+    } else{
+
+    }
+}
+
+function AmpacityIndexFun(TableAmpacity, current, factorAmpacity) {
+
+    for (let index = 0; index < TableAmpacity.length; index++) {
+        if (current <= TableAmpacity[index]*factorAmpacity) {
+            return index;
+        } else {
+            
+        }  
+    }
+}
+    
