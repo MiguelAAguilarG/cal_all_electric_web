@@ -5,7 +5,7 @@
 }
 
 body{
-    max-width: 36.5em;
+    max-width: 20em;
     margin-left: auto;
     margin-right: auto;
 
@@ -15,11 +15,12 @@ header{
     margin: 0 auto;
     font-size: x-large;
     text-align: center;
-    padding: 5px;
+    padding: 1px;
 }
 
 footer{
     padding: 10px;
+    text-align: center;
 }
 
 span{
@@ -31,12 +32,6 @@ span{
     border: solid 1px;
     padding: 1px;
     padding-left: 4px;
-    padding-right: 2px;
-}
-
-.result-small{
-    font-size: small;
-    padding-left: 2px;
     padding-right: 2px;
 }
 
@@ -52,13 +47,7 @@ span{
     display: flex;
     justify-content: center;
     border: solid 2px;
-    margin: 0 auto;
-}
-
-.box-wrap{
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
+    margin: 0 auto 5 auto;
 }
 
 .box-settings{
@@ -70,31 +59,29 @@ span{
     padding: 2px;
 }
 
-.box-data, .box-result, .box-data-checkbox, .box-data-AWG, .box-result-volume{
+.box-data, .box-result, .box-result-label{
     display: grid;
     grid-column: 1 / -1;
     padding: 2px;
     margin: 2px;
 }
 
-.box-data, .box-result{
-    grid-template-columns: minmax(5em, 5em) minmax(5em, 5em) minmax(5em, 5em);
+.box-result-label{
+    padding: 0px;
+    margin: 0px;
 }
 
-.box-data-checkbox{
-    grid-template-columns: minmax(14em, 14em) minmax(2em, 2em) minmax(2em, 2em) minmax(2.5em, 2.5em) minmax(2.5em, 2.5em) minmax(2.5em, 2.5em) minmax(2.5em, 2.5em) minmax(2.5em, 2.5em) minmax(2.5em, 2.5em) minmax(2.5em, 2.5em);
+.box-data{
+    grid-template-columns: minmax(6em, 6em) minmax(5em, 5em) minmax(5em, 5em);
 }
 
-.box-data-AWG{
-    grid-template-columns: minmax(16em, 16em) minmax(2em, 2em) minmax(17.5em, 17.5em);
-}
-
-.box-result-volume{
-    grid-template-columns: minmax(16em, 16em) minmax(2em, 2em) minmax(17.5em, 17.5em);
+.box-result, .box-result-label{
+    grid-template-columns: minmax(3.5em, 3.5em) minmax(5em, 5em) minmax(3em, 3em) minmax(4em, 4em) minmax(3em, 3em);
 }
 
 .label-center{
     display: flex;
+    border: solid 0px;
     justify-content: center;
     align-items: center;
     text-align: center;
