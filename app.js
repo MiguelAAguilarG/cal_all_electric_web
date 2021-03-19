@@ -47,39 +47,9 @@ function calc_main() {
     var voltage = Number.parseFloat(document.getElementById("voltage").value);
     var conductorsPerPhase = Number.parseInt(document.getElementById("conductorsPerPhase").value);
     /*form2 */
+    var current = Number.parseFloat(document.getElementById("current").value);
+    var realPower = Number.parseFloat(document.getElementById("realPower").value);
     var pf = Number.parseFloat(document.getElementById("pf").value);
-
-    /**optionLoadArray **/
-    var optionLoadArray = document.getElementsByName("optionLoad");
-              
-    for(i = 0; i < optionLoadArray.length; i++) { 
-        if(optionLoadArray[i].checked) {
-            var optionLoad = optionLoadArray[i].value;
-            break;
-        }
-    }
-
-    document.getElementById("realPower").className = "data";
-    document.getElementById("current").className = "data";
-    if (optionLoad === "optionLoadcurrent") {
-        var current = Number.parseFloat(document.getElementById("current").value);
-
-        var realPower = realPowerFun(system, voltage, current, pf);
-
-        document.getElementById("realPower").className = "result";
-
-    } else if (optionLoad === "optionLoadrealPower") {
-        var realPower = Number.parseFloat(document.getElementById("realPower").value);
-
-        var current = currentFun(system, voltage, realPower, pf);
-
-        document.getElementById("current").className = "result";
-
-    } else {
-        
-    }
-    /**optionLoadArray **/
-
     /*form3 */
     var length = Number.parseFloat(document.getElementById("length").value);
     var voltageDropPercent = Number.parseFloat(document.getElementById("voltageDropPercent").value);
@@ -92,28 +62,25 @@ function calc_main() {
     /*formA */
     var conductorsPerConduit = Number.parseInt(document.getElementById("conductorsPerConduit").value);
 
-
     let flag = 0;
     if (voltage <= 0 ) {
         voltage = 0.5;
         flag = 1;
-    } else if (realPower <= 0) {
+    } if (current <= 0) {
         current = 0.5;
         flag = 1;
-    } else if (realPower <= 0) {
+    } if (realPower <= 0) {
         realPower = 0.5;
         flag = 1;
-    } else if (length <= 0 ) {
+    } if (length <= 0 ) {
         length = 0.5;
         flag = 1;
-    } else if (voltageDropPercent <= 0 ) {
+    } if (voltageDropPercent <= 0 ) {
         voltageDropPercent = 0.1;
         flag = 1;
-    } else if (voltageDropVolts  <= 0) {
+    } if (voltageDropVolts  <= 0) {
         voltageDropVolts = 0.1;
         flag = 1;
-    } else {
-        
     }
     
     if ( flag === 1 ) {
@@ -121,11 +88,43 @@ function calc_main() {
         document.getElementById("current").value = current.toFixed(decimals);
         document.getElementById("realPower").value = realPower.toFixed(decimals);
         document.getElementById("length").value = length.toFixed(decimals);
-        document.getElementById("voltageDropPercent").value = voltageDropPercent.toFixed(decimals);
-        document.getElementById("voltageDropVolts").value = voltageDropVolts.toFixed(decimals);
+        document.getElementById("voltageDropPercent").value = voltageDropPercent.toFixed(decimals+2);
+        document.getElementById("voltageDropVolts").value = voltageDropVolts.toFixed(decimals+2);
     } else {
         
     }
+
+    /**optionLoadArray **/
+    var optionLoadArray = document.getElementsByName("optionLoad");
+            
+    for(i = 0; i < optionLoadArray.length; i++) { 
+        if(optionLoadArray[i].checked) {
+            var optionLoad = optionLoadArray[i].value;
+            break;
+        }
+    }
+
+    document.getElementById("realPower").className = "data";
+    document.getElementById("current").className = "data";
+    if (optionLoad === "optionLoadcurrent") {
+        current = Number.parseFloat(document.getElementById("current").value);
+
+        realPower = realPowerFun(system, voltage, current, pf);
+
+        document.getElementById("realPower").className = "result";
+
+    } else if (optionLoad === "optionLoadrealPower") {
+        realPower = Number.parseFloat(document.getElementById("realPower").value);
+
+        current = currentFun(system, voltage, realPower, pf);
+
+        document.getElementById("current").className = "result";
+
+    } else {
+        
+    }
+    /**optionLoadArray **/
+
     /**optionvoltageDropArray **/
     var optionvoltageDropArray = document.getElementsByName("optionvoltageDrop");
         
@@ -202,8 +201,8 @@ function calc_main() {
 
     var currentPerConductor = currentPerConductorFun(current, conductorsPerPhase);
 
-    var apparentPower = apparentPowerFun(realPower, pf);
-    var reactivePower = reactivePowerFun(realPower, pf);
+    var apparentPower = apparentPowerFun(system, voltage, current, pf);
+    var reactivePower = reactivePowerFun(system, voltage, current, pf);
 
     var factorTemperature = factorTemperatureFun(Tinsulation, Tambient);
     var factorGrouping = factorGroupingFun(tableFactorGrouping, conductorsPerConduit);
@@ -317,14 +316,30 @@ function realPowerFun(system, voltage, current, pf) {
     return realPower;
 }
 
-function apparentPowerFun(realPower, pf) {
+function apparentPowerFun(system, voltage, current, pf) {
 
-    return apparentPower = realPower/pf;
+    let apparentPower;
+    if (system === "single"){
+        apparentPower = current*voltage;
+    }
+    else if (system === 'three') {
+        apparentPower = current*Math.sqrt(3)*voltage;
+    }
+
+    return apparentPower;
 }
 
-function reactivePowerFun(realPower, pf) {
+function reactivePowerFun(system, voltage, current, pf) {
 
-    return apparentPower = realPower*Math.tan(Math.acos(pf));
+    let reactivePower;
+    if (system === "single"){
+        reactivePower = current*voltage*Math.sin(Math.acos(pf));
+    }
+    else if (system === 'three') {
+        reactivePower = current*Math.sqrt(3)*voltage*Math.sin(Math.acos(pf));
+    }
+
+    return reactivePower;
 }
 
 function currentPerConductorFun(current, conductorsPerPhase) {
