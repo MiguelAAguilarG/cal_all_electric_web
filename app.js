@@ -23,9 +23,9 @@ const RCuPVC = [10.2, 6.6, 3.9, 2.56, 1.61, 1.02, 0.82, 0.62, 0.49, 0.39, 0.33, 
 const RCuAl = [10.2, 6.6, 3.9, 2.56, 1.61, 1.02, 0.82, 0.66, 0.52, 0.43, 0.33, 0.269, 0.22, 0.187, 0.161, 0.141, 0.125, 0.105, 0.092, 0.079, 0.062];
 const RCuFe = [10.2, 6.6, 3.9, 2.56, 1.61, 1.02, 0.82, 0.66, 0.52, 0.39, 0.33, 0.259, 0.207, 0.177, 0.148, 0.128, 0.115, 0.095, 0.082, 0.069, 0.059];
 
-const RAlPVC = [0.0, 0.0, 0.0, 0.0, 2.66, 1.67, 1.31, 1.05, 0.82, 0.66, 0.52, 0.43, 0.33, 0.279, 0.233, 0.2, 0.177, 0.141, 0.118, 0.095, 0.075];
-const RAlAl = [0.0, 0.0, 0.0, 0.0, 2.66, 1.67, 1.31, 1.05, 0.85, 0.69, 0.52, 0.43, 0.36, 0.295, 0.249, 0.217, 0.194, 0.157, 0.135, 0.112, 0.089];
-const RAlFe = [0.0, 0.0, 0.0, 0.0, 2.66, 1.67, 1.31, 1.05, 0.82, 0.66, 0.52, 0.43, 0.33, 0.282, 0.236, 0.207, 0.18, 0.148, 0.125, 0.102, 0.082];
+const RAlPVC = [0.0, 10.5, 6.6, 4.3, 2.66, 1.67, 1.31, 1.05, 0.82, 0.66, 0.52, 0.43, 0.33, 0.279, 0.233, 0.2, 0.177, 0.141, 0.118, 0.095, 0.075];
+const RAlAl = [0.0, 10.5, 6.6, 4.3, 2.66, 1.67, 1.31, 1.05, 0.85, 0.69, 0.52, 0.43, 0.36, 0.295, 0.249, 0.217, 0.194, 0.157, 0.135, 0.112, 0.089];
+const RAlFe = [0.0, 10.5, 6.6, 4.3, 2.66, 1.67, 1.31, 1.05, 0.82, 0.66, 0.52, 0.43, 0.33, 0.282, 0.236, 0.207, 0.18, 0.148, 0.125, 0.102, 0.082];
 
 window.addEventListener("DOMContentLoaded", calc_main, false);
 document.getElementById("form0").addEventListener("change", calc_main);
@@ -92,6 +92,40 @@ function calc_main() {
     /*formA */
     var conductorsPerConduit = Number.parseInt(document.getElementById("conductorsPerConduit").value);
 
+
+    let flag = 0;
+    if (voltage <= 0 ) {
+        voltage = 0.5;
+        flag = 1;
+    } else if (realPower <= 0) {
+        current = 0.5;
+        flag = 1;
+    } else if (realPower <= 0) {
+        realPower = 0.5;
+        flag = 1;
+    } else if (length <= 0 ) {
+        length = 0.5;
+        flag = 1;
+    } else if (voltageDropPercent <= 0 ) {
+        voltageDropPercent = 0.1;
+        flag = 1;
+    } else if (voltageDropVolts  <= 0) {
+        voltageDropVolts = 0.1;
+        flag = 1;
+    } else {
+        
+    }
+    
+    if ( flag === 1 ) {
+        document.getElementById("voltage").value = voltage.toFixed(decimals);
+        document.getElementById("current").value = current.toFixed(decimals);
+        document.getElementById("realPower").value = realPower.toFixed(decimals);
+        document.getElementById("length").value = length.toFixed(decimals);
+        document.getElementById("voltageDropPercent").value = voltageDropPercent.toFixed(decimals);
+        document.getElementById("voltageDropVolts").value = voltageDropVolts.toFixed(decimals);
+    } else {
+        
+    }
     /**optionvoltageDropArray **/
     var optionvoltageDropArray = document.getElementsByName("optionvoltageDrop");
         
@@ -121,9 +155,13 @@ function calc_main() {
     
             Ze = ZeFun(RTemp, XL, pf);
             voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current, voltage, conductorsPerPhase);
-            if (voltageDropPercentResult <= voltageDropPercent) {
+            if (conductorMaterial === "Al" && index === 0) {
+                continue;
+            } else if (voltageDropPercentResult <= voltageDropPercent) {
                 var voltageDropIndex = index;
                 break;
+            } else {
+                
             }
 
         }
@@ -142,9 +180,13 @@ function calc_main() {
     
             Ze = ZeFun(RTemp, XL, pf);
             voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current, voltage, conductorsPerPhase);
-            if (voltageDropPercentResult <= voltageDropPercent) {
+            if (conductorMaterial === "Al" && index === 0) {
+                continue;
+            } else if (voltageDropPercentResult <= voltageDropPercent) {
                 var voltageDropIndex = index;
                 break;
+            } else {
+                
             }
 
         }
@@ -155,23 +197,6 @@ function calc_main() {
         
     }
     /**optionvoltageDropArray **/
-    if (voltage <= 0  || current  <= 0  || realPower <= 0  || length <= 0  || voltageDropPercent <= 0  || voltageDropVolts  <= 0  ) {
-        voltage = 0.5;
-        current = 0.5;
-        realPower = 0.5;
-        length = 0.5;
-        voltageDropPercent = 0.1;
-        voltageDropVolts = 0.1;
-
-        document.getElementById("voltage").value = voltage.toFixed(decimals);
-        document.getElementById("current").value = current.toFixed(decimals);
-        document.getElementById("realPower").value = realPower.toFixed(decimals);
-        document.getElementById("length").value = length.toFixed(decimals);
-        document.getElementById("voltageDropPercent").value = voltageDropPercent.toFixed(decimals);
-        document.getElementById("voltageDropVolts").value = voltageDropVolts.toFixed(decimals);
-    } else {
-        
-    }
 
     /*computation */
 
@@ -213,7 +238,7 @@ function calc_main() {
     var AmpacityVoltageDrop = AmpacityArray[voltageDropIndex];
     var sizeAmpacityVoltageDrop = AWG[voltageDropIndex];
     var mm2AmpacityVoltageDrop = mm2[voltageDropIndex];
-    console.log(sizeAmpacity);
+
     /*results */
     document.getElementById("current").value = current.toFixed(decimals);
     document.getElementById("ContinuousLoad").value = (current*1.25).toFixed(decimals);
