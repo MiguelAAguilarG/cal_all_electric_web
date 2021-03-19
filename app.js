@@ -223,9 +223,9 @@ function calc_main() {
     document.getElementById("apparentPower").value = apparentPower.toFixed(decimals);
     document.getElementById("reactivePower").value = reactivePower.toFixed(decimals);
 
-    document.getElementById("factorTemperature").value = factorTemperature.toFixed(decimals);
+    document.getElementById("factorTemperature").value = factorTemperature.toFixed(decimals+2);
     document.getElementById("factorGrouping").value = factorGrouping;
-    document.getElementById("factorAdjustment").value = factorAdjustment.toFixed(decimals);
+    document.getElementById("factorAdjustment").value = factorAdjustment.toFixed(decimals+2);
 
     /** Ampacity **/
     document.getElementById("Ampacity").value = Ampacity.toFixed(decimals);
@@ -248,11 +248,11 @@ function calc_main() {
     /** Ampacity **/
 
     /** VoltageDrop **/
-    document.getElementById("voltageDropVolts").value = voltageDropVolts.toFixed(decimals);
-    document.getElementById("voltageDropPercent").value = voltageDropPercent.toFixed(decimals);
+    document.getElementById("voltageDropVolts").value = voltageDropVolts.toFixed(decimals+2);
+    document.getElementById("voltageDropPercent").value = voltageDropPercent.toFixed(decimals+2);
 
-    document.getElementById("voltageDropPercentResult").value = voltageDropPercentResult.toFixed(decimals);
-    document.getElementById("voltageDropVoltsResult").value = voltageDropVoltsResult.toFixed(decimals);
+    document.getElementById("voltageDropPercentResult").value = voltageDropPercentResult.toFixed(decimals+2);
+    document.getElementById("voltageDropVoltsResult").value = voltageDropVoltsResult.toFixed(decimals+2);
 
     var AmpacityVoltageDrop = AmpacityArray[voltageDropIndex];
     var sizeAmpacityVoltageDrop = AWG[voltageDropIndex];
