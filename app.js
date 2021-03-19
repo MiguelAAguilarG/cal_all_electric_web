@@ -155,7 +155,6 @@ function calc_main() {
         
     }
     /**optionvoltageDropArray **/
-    console.log(Ze);
     if (voltage <= 0  || current  <= 0  || realPower <= 0  || length <= 0  || voltageDropPercent <= 0  || voltageDropVolts  <= 0  ) {
         voltage = 0.5;
         current = 0.5;
@@ -214,7 +213,7 @@ function calc_main() {
     var AmpacityVoltageDrop = AmpacityArray[voltageDropIndex];
     var sizeAmpacityVoltageDrop = AWG[voltageDropIndex];
     var mm2AmpacityVoltageDrop = mm2[voltageDropIndex];
-    
+    console.log(sizeAmpacity);
     /*results */
     document.getElementById("current").value = current.toFixed(decimals);
     document.getElementById("ContinuousLoad").value = (current*1.25).toFixed(decimals);
