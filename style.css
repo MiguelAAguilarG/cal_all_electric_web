@@ -28,11 +28,6 @@ span{
     padding: 0px 0px 0px 1px;
 }
 
-input[type="number"]:disabled {
-    color: #000000;
-    background-color: aliceblue;
-}
-
 .data, .result, .result-small, .label, .label-center, .data-fake{
     border: solid 1px;
     padding: 1px;
@@ -45,7 +40,8 @@ input[type="number"]:disabled {
 }
 
 .result, .result-small{
-    background-color: aliceblue;
+    background-color: #a6d5ff;
+    pointer-events: none;
 }
 
 .box-container{
