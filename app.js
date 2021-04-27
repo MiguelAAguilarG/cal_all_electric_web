@@ -72,13 +72,16 @@ function calc_main() {
     } if (realPower <= 0) {
         realPower = 0.5;
         flag = 1;
+    } if (pf < 0 || pf > 1) {
+        pf = 0.9;
+        flag = 1;
     } if (length <= 0 ) {
         length = 0.5;
         flag = 1;
-    } if (voltageDropPercent <= 0 ) {
+    } if (voltageDropPercent <= 0  || voltageDropPercent > 100) {
         voltageDropPercent = 0.1;
         flag = 1;
-    } if (voltageDropVolts  <= 0) {
+    } if (voltageDropVolts  <= 0  || voltageDropPercent > 100) {
         voltageDropVolts = 0.1;
         flag = 1;
     }
@@ -87,6 +90,7 @@ function calc_main() {
         document.getElementById("voltage").value = voltage.toFixed(decimals);
         document.getElementById("current").value = current.toFixed(decimals);
         document.getElementById("realPower").value = realPower.toFixed(decimals);
+        document.getElementById("pf").value = pf.toFixed(decimals+2);
         document.getElementById("length").value = length.toFixed(decimals);
         document.getElementById("voltageDropPercent").value = voltageDropPercent.toFixed(decimals+2);
         document.getElementById("voltageDropVolts").value = voltageDropVolts.toFixed(decimals+2);
@@ -284,6 +288,8 @@ function calc_main() {
     document.getElementById("AmpacityVoltageDrop").value = AmpacityVoltageDrop;
     document.getElementById("sizeAmpacityVoltageDrop").value = sizeAmpacityVoltageDrop;
     document.getElementById("mm2AmpacityVoltageDrop").value = mm2AmpacityVoltageDrop;
+
+    document.getElementById("mm2AmpacityVoltageDropRatio").value = (mm2AmpacityVoltageDrop/mm2Ampacity).toFixed(decimals+2);
 
     document.getElementById("Lmax").value = (length*voltageDropPercent/voltageDropPercentResult).toFixed(decimals);
     document.getElementById("Imax").value = (current*voltageDropPercent/voltageDropPercentResult).toFixed(decimals);
