@@ -228,6 +228,8 @@ function calc_main() {
         }
     }
 
+    var cmilIsc = mm2Tocmil(mm2[IscIndex]);
+
     var conductorIsc = conductorIscFun(conductorMaterial, temperature2, temperature1, timeIsc, cmilIsc)/1000;
     /**optionIsc **/
 
