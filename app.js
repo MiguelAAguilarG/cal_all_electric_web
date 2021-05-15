@@ -89,11 +89,11 @@ function calc_main() {
     } if (voltageDropPercent <= 0  || voltageDropPercent > 100) {
         voltageDropPercent = 0.1;
         flag = 1;
-    } if (voltageDropVolts  <= 0  || voltageDropPercent > voltage) {
+    } if (voltageDropVolts  <= 0  || voltageDropVolts > voltage) {
         voltageDropVolts = 0.1;
         flag = 1;
     } if (Isc <= 0) {
-        Isc = 0.001;
+        Isc = 1;
         flag = 1;
     } if (timeIsc <= 0) {
         timeIsc = 0.001;
@@ -108,7 +108,7 @@ function calc_main() {
         document.getElementById("length").value = length.toFixed(decimals);
         document.getElementById("voltageDropPercent").value = voltageDropPercent.toFixed(decimals+2);
         document.getElementById("voltageDropVolts").value = voltageDropVolts.toFixed(decimals+2);
-        document.getElementById("Isc").value = Isc.toFixed(decimals);
+        document.getElementById("Isc").value = (Isc/1000).toFixed(decimals);
         document.getElementById("timeIsc").value = timeIsc.toFixed(decimals+3);
     } else {
         
