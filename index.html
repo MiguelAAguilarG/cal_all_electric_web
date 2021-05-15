@@ -290,6 +290,45 @@
         </form>
     </div>
 
+    <div class="box-container">
+        <form id="form6">
+            <div class="box-data">
+                <label for="conductorIsc" class="text-right">conductor Isc</label>
+                <input type="number" value="1" name="conductorIsc" id="conductorIsc" class="result" >
+                <span>[kA]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="Isc" class="text-right">Isc</label>
+                <input type="number" value="10" name="Isc" id="Isc" class="data" >
+                <span>[kA]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="timeIsc" class="text-right">time Isc</label>
+                <input type="number" min="0" value="0.5" name="timeIsc" id="timeIsc" class="data">
+                <span>[s]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="temperature1" class="text-right">T1</label>
+                <input type="number" value="60" name="temperature1" id="temperature1" class="data">
+                <span>[°C]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="temperature2" class="text-right">T2</label>
+                <select name="temperature2" id="temperature2" class="data">
+                    <option value="200" >paper, rubber, varnished cloth, T2 = 200</option>
+                    <option selected value="150">thermoplastic, T2 = 150</option>
+                    <option value="250">cross-linked polyethylene, T2 = 250</option>
+                    <option value="250">ethylene propylene rubber, T2 = 250</option>
+                </select>
+                <span>[°C]</span>
+            </div>
+        </form>
+    </div>
+
 </body>
 
 <footer>
