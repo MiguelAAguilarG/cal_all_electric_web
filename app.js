@@ -1,5 +1,7 @@
 const AWG =  ['14', '12', '10', '8', '6', '4', '3', '2', '1', '1/0', '2/0', '3/0', '4/0', '250', '300', '350', '400', '500', '600', '700', '750', '800', '900', '1000', '1250', '1500', '1750', '2000'];
 const mm2 = [2.08, 3.31, 5.26, 8.37, 13.3, 21.2, 26.7, 33.6, 42.4, 53.49, 67.43, 85.01, 107.2, 127, 152.0, 177, 203, 253, 304, 355, 380, 405, 456, 507, 633, 700, 887, 1013];
+const cal = [2.08, 3.31, 5.26, 8.37, 13.3, 21.2, 26.7, 33.6, 42.4, 53.49, 67.43, 85.01, 107.2, 127, 152.0, 177, 203, 253, 304, 355, 380, 405, 456, 507, 633, 700, 887, 1013];
+
 
 const tableFactorGrouping = {3:1, 6:0.8, 9:0.7, 20:0.5, 30:0.45, 40:0.4, 50:0.35};
 
@@ -35,6 +37,7 @@ document.getElementById("form3").addEventListener("change", calc_main);
 document.getElementById("form4").addEventListener("change", calc_main);
 document.getElementById("formA").addEventListener("change", calc_main);
 document.getElementById("formB").addEventListener("change", calc_main);
+document.getElementById("form6").addEventListener("change", calc_main);
 
 function calc_main() {
     console.log("cambio");
@@ -61,6 +64,11 @@ function calc_main() {
     var racewayMaterial = document.getElementById("racewayMaterial").value;
     /*formA */
     var conductorsPerConduit = Number.parseInt(document.getElementById("conductorsPerConduit").value);
+    /*form6 */
+    var Isc = Number.parseFloat(document.getElementById("Isc").value)*1000;
+    var timeIsc = Number.parseFloat(document.getElementById("timeIsc").value);
+    var temperature1 = Number.parseFloat(document.getElementById("temperature1").value);
+    var temperature2 = Number.parseInt(document.getElementById("temperature2").value);
 
     let flag = 0;
     if (voltage <= 0 ) {
@@ -81,8 +89,14 @@ function calc_main() {
     } if (voltageDropPercent <= 0  || voltageDropPercent > 100) {
         voltageDropPercent = 0.1;
         flag = 1;
-    } if (voltageDropVolts  <= 0  || voltageDropPercent > 100) {
+    } if (voltageDropVolts  <= 0  || voltageDropPercent > voltage) {
         voltageDropVolts = 0.1;
+        flag = 1;
+    } if (Isc <= 0) {
+        Isc = 0.001;
+        flag = 1;
+    } if (timeIsc <= 0) {
+        timeIsc = 0.001;
         flag = 1;
     }
     
@@ -94,6 +108,8 @@ function calc_main() {
         document.getElementById("length").value = length.toFixed(decimals);
         document.getElementById("voltageDropPercent").value = voltageDropPercent.toFixed(decimals+2);
         document.getElementById("voltageDropVolts").value = voltageDropVolts.toFixed(decimals+2);
+        document.getElementById("Isc").value = Isc.toFixed(decimals);
+        document.getElementById("timeIsc").value = timeIsc.toFixed(decimals+3);
     } else {
         
     }
@@ -201,6 +217,25 @@ function calc_main() {
     }
     /**optionvoltageDropArray **/
 
+    /**optionIsc **/
+    var AreaCircularMilIsc = AreaCircularMilIscFun(conductorMaterial, temperature2, temperature1, Isc, timeIsc);
+    var mm2Isc = cmilToMm2(AreaCircularMilIsc);
+
+    for (let index = 0; index < mm2.length; index++) {
+        if (mm2Isc <= mm2[index]) {
+            var IscIndex = index;
+            break;
+        }
+    }
+
+    var cmilIsc = mm2Tocmil(mm2[IscIndex]);
+    console.log(cmilIsc);
+    console.log(13.3/(0.25*Math.PI*25.4*25.4e-6));
+    
+
+    var conductorIsc = conductorIscFun(conductorMaterial, temperature2, temperature1, timeIsc, cmilIsc)/1000;
+    /**optionIsc **/
+
     /*computation */
 
     var currentPerConductor = currentPerConductorFun(current, conductorsPerPhase);
@@ -241,6 +276,10 @@ function calc_main() {
     var AmpacityVoltageDrop = AmpacityArray[voltageDropIndex];
     var sizeAmpacityVoltageDrop = AWG[voltageDropIndex];
     var mm2AmpacityVoltageDrop = mm2[voltageDropIndex];
+
+    var AmpacityShortCircuit = AmpacityArray[IscIndex];
+    var sizeAmpacityShortCircuit = AWG[IscIndex];
+    var mm2AmpacityShortCircuit = mm2[IscIndex];
 
     /*results */
     document.getElementById("current").value = current.toFixed(decimals);
@@ -294,6 +333,17 @@ function calc_main() {
     document.getElementById("Lmax").value = (length*voltageDropPercent/voltageDropPercentResult).toFixed(decimals);
     document.getElementById("Imax").value = (current*voltageDropPercent/voltageDropPercentResult).toFixed(decimals);
     /** VoltageDrop **/
+
+    /** Isc **/
+    document.getElementById("conductorIsc").value = conductorIsc.toFixed(decimals+3);
+
+    document.getElementById("AmpacityShortCircuit").value = AmpacityShortCircuit;
+    document.getElementById("sizeAmpacityShortCircuit").value = sizeAmpacityShortCircuit;
+    document.getElementById("mm2AmpacityShortCircuit").value = mm2AmpacityShortCircuit;
+
+    document.getElementById("mm2AmpacityShortCircuitRatio").value = (mm2AmpacityShortCircuit/mm2Ampacity).toFixed(decimals+2);
+    /** Isc **/
+
 }
 
 function currentFun(system, voltage, realPower, pf) {
@@ -505,5 +555,39 @@ function voltageDropIndexFun(AmpacityArray, current, factorAmpacity) {
             
         }  
     }
+}
+
+function conductorIscFun(conductorMaterial, temperature2, temperature1, timeIsc, AreaCircularMil) {
+    if (conductorMaterial == "Cu") {
+        var conductorIsc = AreaCircularMil*Math.sqrt(0.0297*Math.log10((temperature2+234)/(temperature1+234))/timeIsc);
+    }
+    else if (conductorMaterial == "Al") {
+        var conductorIsc = AreaCircularMil*Math.sqrt(0.0125*Math.log10((temperature2+228)/(temperature1+228))/timeIsc);
+    } else {
+        alert("Error_conductorIsc");
+    }
+
+    return conductorIsc
+}
+
+function AreaCircularMilIscFun(conductorMaterial, temperature2, temperature1, Isc, timeIsc) {
+    if (conductorMaterial == "Cu") {
+        var AreaCircularMil = Isc*Math.sqrt(timeIsc/(0.0297*Math.log10((temperature2+234)/(temperature1+234))));
+    }
+    else if (conductorMaterial == "Al") {
+        var AreaCircularMil = Isc*Math.sqrt(timeIsc/(0.0125*Math.log10((temperature2+228)/(temperature1+228))));
+    } else {
+        alert("Error_AreaCircularMil");
+    }
+
+    return AreaCircularMil
+}
+
+function cmilToMm2(cmil) {
+    return cmil*0.25*Math.PI*25.4*25.4e-6
+}
+
+function mm2Tocmil(mm2) {
+    return mm2/(0.25*Math.PI*25.4*25.4e-6)
 }
     
