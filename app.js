@@ -412,92 +412,31 @@ function calc_main() {
     /**optionIsc **/
 
     /**optionvoltageDropArrayCustom **/
-    var optionvoltageDropArray = document.getElementsByName("optionvoltageDrop");
-    
-    for(i = 0; i < optionvoltageDropArray.length; i++) { 
-        if(optionvoltageDropArray[i].checked) {
-            var optionvoltageDrop = optionvoltageDropArray[i].value;
-            break;
-        }
-    }
+    var indexCustom = 4;
 
-    document.getElementById("voltageDropPercent").className = "data";
-    document.getElementById("voltageDropVolts").className = "data";
-    var RArray = seacherTableRFun(racewayMaterial, conductorMaterial);
-    var XArray = seacherTableXFun(racewayMaterial, conductorMaterial);
+    var RTempCustom;
+    var XLCustom;
+    var ZeCustom;
+    var voltageDropPercentResultCustom;
+    var voltageDropVoltsResultCustom;
 
-    var RTemp;
-    var XL;
-    var Ze;
-    var voltageDropPercentResult;
-    var voltageDropVoltsResult;
-    if (optionvoltageDrop === "optionvoltageDropPercent") {
-        var voltageDropPercent = Number.parseFloat(document.getElementById("voltageDropPercent").value);
+    RTempCustom = RTempFun(RArray[indexCustom], Tinsulation);
+    XLCustom = XArray[indexCustom];
 
-        for (let index = 0; index < RArray.length; index++) {
-            RTemp = RTempFun(RArray[index], Tinsulation);
-            XL = XArray[index];
-    
-            Ze = ZeFun(RTemp, XL, pf);
-            voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current, voltage, conductorsPerPhase);
-            if (conductorMaterial === "Al" && index === 0) {
-                continue;
-            } else if (voltageDropPercentResult <= voltageDropPercent) {
-                var voltageDropIndex = index;
-                break;
-            } else {
-                
-            }
+    ZeCustom = ZeFun(RTempCustom, XLCustom, pf);
+    voltageDropPercentResultCustom = voltageDropPercentFun(system, ZeCustom, length, current, voltage, conductorsPerPhase);
 
-        }
-
-        voltageDropVolts = voltageDropPercent*voltage/100;
-        voltageDropVoltsResult = voltageDropPercentResult*voltage/100;
-        document.getElementById("voltageDropVolts").className = "result";
-
-    } else if (optionvoltageDrop === "optionvoltageDropVolts") {
-        var voltageDropVolts = Number.parseFloat(document.getElementById("voltageDropVolts").value);
-
-        voltageDropPercent = voltageDropVolts/voltage*100;
-        for (let index = 0; index < RArray.length; index++) {
-            RTemp = RTempFun(RArray[index], Tinsulation);
-            XL = XArray[index];
-    
-            Ze = ZeFun(RTemp, XL, pf);
-            voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current, voltage, conductorsPerPhase);
-            if (conductorMaterial === "Al" && index === 0) {
-                continue;
-            } else if (voltageDropPercentResult <= voltageDropPercent) {
-                var voltageDropIndex = index;
-                break;
-            } else {
-                
-            }
-
-        }
-        voltageDropVoltsResult = voltageDropPercentResult*voltage/100;
-        document.getElementById("voltageDropPercent").className = "result";
-
-    } else {
-        
-    }
+    voltageDropVoltsResultCustom = voltageDropPercentResultCustom*voltage/100;
     /**optionvoltageDropArrayCustom **/
 
     /**optionIscCustom **/
-    var AreaCircularMilIsc = AreaCircularMilIscFun(conductorMaterial, temperature2, temperature1, Isc, timeIsc);
-    var mm2Isc = cmilToMm2(AreaCircularMilIsc);
 
-    for (let index = 0; index < mm2.length; index++) {
-        if (mm2Isc <= mm2[index]) {
-            var IscIndex = index;
-            break;
-        }
-    }
+    var cmilIscCustom = mm2Tocmil(mm2[indexCustom]);
 
-    var cmilIsc = mm2Tocmil(mm2[IscIndex]);
-
-    var conductorIsc = conductorIscFun(conductorMaterial, temperature2, temperature1, timeIsc, cmilIsc)/1000;
+    var conductorIscCustom = conductorIscFun(conductorMaterial, temperature2, temperature1, timeIsc, cmilIscCustom)/1000;
     /**optionIscCustom **/
+
+    console.log(voltageDropPercentResultCustom, voltageDropVoltsResultCustom, conductorIscCustom)
 
     /*computation */
 
@@ -606,6 +545,34 @@ function calc_main() {
 
     document.getElementById("mm2AmpacityShortCircuitRatio").value = (mm2AmpacityShortCircuit/mm2Ampacity).toFixed(decimals+2);
     /** Isc **/
+
+    /** VoltageDropCustom **/
+    document.getElementById("voltageDropPercentResultCustom").value = voltageDropPercentResultCustom.toFixed(decimals+2);
+    document.getElementById("voltageDropVoltsResultCustom").value = voltageDropVoltsResultCustom.toFixed(decimals+2);
+
+    /**var AmpacityVoltageDrop = AmpacityArray[voltageDropIndex];
+    var sizeAmpacityVoltageDrop = AWG[voltageDropIndex];
+    var mm2AmpacityVoltageDrop = mm2[voltageDropIndex];
+
+    document.getElementById("AmpacityVoltageDrop").value = AmpacityVoltageDrop;
+    document.getElementById("sizeAmpacityVoltageDrop").value = sizeAmpacityVoltageDrop;
+    document.getElementById("mm2AmpacityVoltageDrop").value = mm2AmpacityVoltageDrop;
+
+    document.getElementById("mm2AmpacityVoltageDropRatio").value = (mm2AmpacityVoltageDrop/mm2Ampacity).toFixed(decimals+2);
+
+    document.getElementById("Lmax").value = (length*voltageDropPercent/voltageDropPercentResult).toFixed(decimals);
+    document.getElementById("Imax").value = (current*voltageDropPercent/voltageDropPercentResult).toFixed(decimals);
+    /** VoltageDropCustom **/
+
+    /** IscCustom **/
+    document.getElementById("conductorIscCustom").value = conductorIscCustom.toFixed(decimals+3);
+
+    /**document.getElementById("AmpacityShortCircuit").value = AmpacityShortCircuit;
+    document.getElementById("sizeAmpacityShortCircuit").value = sizeAmpacityShortCircuit;
+    document.getElementById("mm2AmpacityShortCircuit").value = mm2AmpacityShortCircuit;
+
+    document.getElementById("mm2AmpacityShortCircuitRatio").value = (mm2AmpacityShortCircuit/mm2Ampacity).toFixed(decimals+2); **/
+    /** IscCustom **/
 
 }
 
