@@ -44,7 +44,7 @@ span{
     pointer-events: none;
 }
 
-.box-container{
+.box-container, .box-container-custom{
     display: flex;
     justify-content: center;
     border: solid 2px;
@@ -60,7 +60,7 @@ span{
     padding: 2px;
 }
 
-.box-data, .box-result, .box-result-label{
+.box-data, .box-result, .box-result-label, .box-data-custom{
     display: grid;
     grid-column: 1 / -1;
     padding: 2px;
@@ -72,7 +72,7 @@ span{
     margin: 0px;
 }
 
-.box-data{
+.box-data, .box-data-custom{
     grid-template-columns: minmax(8.5em, 8.5em) minmax(5em, 5em) minmax(3em, 3em) minmax(2em, 2em);
 }
 
@@ -101,6 +101,6 @@ span{
     margin: 1px;
 }
 
-#formCustom{
+.box-container-custom, .box-data-custom{
     background-color: lightsteelblue;
 }

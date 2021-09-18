@@ -37,6 +37,42 @@
                 <span class="text-right">Cond/Phase</span>
                 <input type="number" min="1" value="1" step="1" name="conductorsPerPhase" id="conductorsPerPhase" class="data">
             </div>
+
+            <div class="box-data" id="box-data-listCalibreCustom">
+                <span class="text-right">Gauge</span>
+                <select name="listCalibreCustom" id="listCalibreCustom" class="data">
+                    <option value="-1" selected >AUTO </option>
+                    <option value="0">14</option>
+                    <option value="1">12</option>
+                    <option value="2">10</option>
+                    <option value="3">8</option>
+                    <option value="4">6</option>
+                    <option value="5">4</option>
+                    <option value="6">3</option>
+                    <option value="7">2</option>
+                    <option value="8">1</option>
+                    <option value="9">1/0</option>
+                    <option value="10">2/0</option>
+                    <option value="11">3/0</option>
+                    <option value="12">4/0</option>
+                    <option value="13">250</option>
+                    <option value="14">300</option>
+                    <option value="15">350</option>
+                    <option value="16">400</option>
+                    <option value="17">500</option>
+                    <option value="18">600</option>
+                    <option value="19">700</option>
+                    <option value="20">750</option>
+                    <option value="21">800</option>
+                    <option value="22">900</option>
+                    <option value="23">1000</option>
+                    <option value="24">1250</option>
+                    <option value="25">1500</option>
+                    <option value="26">1570</option>
+                    <option value="27">2000</option>
+                </select>
+            </div>
+
         </form>
     </div>
 
@@ -85,7 +121,6 @@
                 <input type="number" value="1000" name="reactivePower" id="reactivePower" class="result" >
                 <span>[VAR]</span>
             </div>
-
 
         </form>
     </div>
@@ -223,6 +258,114 @@
         </form>
     </div>
 
+    
+    <div class="box-container-custom">
+        <form id="formCustom">
+            <div class="box-data">
+                <label for="voltageDropPercentResultCustom" class="text-right">=%e</label>
+                <input type="number" min="0" step="0.5" max="100" value="3" name="voltageDropPercentResultCustom" id="voltageDropPercentResultCustom" class="result">
+                <span>[%]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="voltageDropVoltsResultCustom" class="text-right">=e</label>
+                <input type="number" min="0" step="1" value="5" name="voltageDropVoltsResultCustom" id="voltageDropVoltsResultCustom" class="result">
+                <span>[V]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="conductorIscCustom" class="text-right">conductor Isc</label>
+                <input type="number" value="1" name="conductorIscCustom" id="conductorIscCustom" class="result" >
+                <span>[kA]</span>
+            </div>
+        </form>
+    </div>
+
+    <div class="box-container-custom">
+        <form id="formBCustom">
+            <div class="box-result-label">
+                <label class="label-center"></label>
+                <label class="label-center">Ampacity</label>
+                <label class="label-center">#</label>
+                <label class="label-center">mm<sup>2</label>
+                <label class="label-center"></label>
+            </div>
+
+            <div class="box-result">
+                <label class="text-right">I</label>
+                <input type="number" value="1" name="AmpacityCustom" id="AmpacityCustom" class="result" >
+                <input type="text" value="1" name="sizeAmpacityCustom" id="sizeAmpacityCustom" class="result" >
+                <input type="number" value="1" name="mm2AmpacityCustom" id="mm2AmpacityCustom" class="result" >
+                <span></span>
+            </div>
+
+            <div class="box-result">
+                <label class="text-right">Icont</label>
+                <input type="number" value="1" name="AmpacityContinuousLoadCustom" id="AmpacityContinuousLoadCustom" class="result" >
+                <input type="text" value="1" name="sizeAmpacityContinuousLoadCustom" id="sizeAmpacityContinuousLoadCustom" class="result" >
+                <input type="number" value="1" name="mm2AmpacityContinuousLoadCustom" id="mm2AmpacityContinuousLoadCustom" class="result" >
+                <span></span>
+            </div>
+
+            <div class="box-result-label">
+                <label class="label-center"></label>
+                <label class="label-center">Ampacity</label>
+                <label class="label-center">#</label>
+                <label class="label-center">mm<sup>2</label>
+                <label class="label-center">#/#I</label>
+            </div>
+
+            <div class="box-result">
+                <label class="text-right">e%</label>
+                <input type="number" value="1" name="AmpacityVoltageDropCustom" id="AmpacityVoltageDropCustom" class="result" >
+                <input type="text" value="1" name="sizeAmpacityVoltageDropCustom" id="sizeAmpacityVoltageDropCustom" class="result" >
+                <input type="number" value="1" name="mm2AmpacityVoltageDropCustom" id="mm2AmpacityVoltageDropCustom" class="result" >
+                <input type="number" value="1" name="mm2AmpacityVoltageDropRatioCustom" id="mm2AmpacityVoltageDropRatioCustom" class="result" >
+            </div>
+
+            <div class="box-result">
+                <label class="text-right">Isc</label>
+                <input type="number" value="1" name="AmpacityShortCircuitCustom" id="AmpacityShortCircuitCustom" class="result" >
+                <input type="text" value="1" name="sizeAmpacityShortCircuitCustom" id="sizeAmpacityShortCircuitCustom" class="result" >
+                <input type="number" value="1" name="mm2AmpacityShortCircuitCustom" id="mm2AmpacityShortCircuitCustom" class="result" >
+                <input type="number" value="1" name="mm2AmpacityShortCircuitRatioCustom" id="mm2AmpacityShortCircuitRatioCustom" class="result" >
+            </div>
+
+            <div class="box-result-label">
+                <label class="label-center"></label>
+                <label class="label-center">Ampacity</label>
+                <label class="label-center">#</label>
+                <label class="label-center">mm<sup>2</label>
+                <span></span>
+            </div>
+
+            <div class="box-result">
+                <label class="text-right">FT</label>
+                <input type="number" value="1" name="AmpacityFactorTemperatureCustom" id="AmpacityFactorTemperatureCustom" class="result" >
+                <input type="text" value="1" name="sizeAmpacityFactorTemperatureCustom" id="sizeAmpacityFactorTemperatureCustom" class="result" >
+                <input type="number" value="1" name="mm2AmpacityFactorTemperatureCustom" id="mm2AmpacityFactorTemperatureCustom" class="result" >
+                <span></span>
+            </div>
+
+            <div class="box-result">
+                <label class="text-right">FG</label>
+                <input type="number" value="1" name="AmpacityFactorGroupingCustom" id="AmpacityFactorGroupingCustom" class="result" >
+                <input type="text" value="1" name="sizeAmpacityFactorGroupingCustom" id="sizeAmpacityFactorGroupingCustom" class="result" >
+                <input type="number" value="1" name="mm2AmpacityFactorGroupingCustom" id="mm2AmpacityFactorGroupingCustom" class="result" >
+                <span></span>
+            </div>
+
+            <div class="box-result">
+                <label class="text-right">FT*FG</label>
+                <input type="number" value="1" name="AmpacityFactorAdjustmentCustom" id="AmpacityFactorAdjustmentCustom" class="result" >
+                <input type="text" value="1" name="sizeAmpacityFactorAdjustmentCustom" id="sizeAmpacityFactorAdjustmentCustom" class="result" >
+                <input type="number" value="1" name="mm2AmpacityFactorAdjustmentCustom" id="mm2AmpacityFactorAdjustmentCustom" class="result" >
+                <span></span>
+            </div>
+
+        </form>
+    </div>
+
     <div class="box-container">
         <form id="form4">
             <div class="box-data">
@@ -326,113 +469,6 @@
                 </select>
                 <span>[°C]</span>
             </div>
-        </form>
-    </div>
-
-    <div class="box-container">
-        <form id="formCustom">
-            <div class="box-data">
-                <label for="voltageDropPercentResultCustom" class="text-right">=%e</label>
-                <input type="number" min="0" step="0.5" max="100" value="3" name="voltageDropPercentResultCustom" id="voltageDropPercentResultCustom" class="result">
-                <span>[%]</span>
-            </div>
-
-            <div class="box-data">
-                <label for="voltageDropVoltsResultCustom" class="text-right">=e</label>
-                <input type="number" min="0" step="1" value="5" name="voltageDropVoltsResultCustom" id="voltageDropVoltsResultCustom" class="result">
-                <span>[V]</span>
-            </div>
-
-            <div class="box-data">
-                <label for="conductorIscCustom" class="text-right">conductor Isc</label>
-                <input type="number" value="1" name="conductorIscCustom" id="conductorIscCustom" class="result" >
-                <span>[kA]</span>
-            </div>
-        </form>
-    </div>
-
-    <div class="box-container">
-        <form id="formBCustom">
-            <div class="box-result-label">
-                <label class="label-center"></label>
-                <label class="label-center">Ampacity</label>
-                <label class="label-center">#</label>
-                <label class="label-center">mm<sup>2</label>
-                <label class="label-center"></label>
-            </div>
-
-            <div class="box-result">
-                <label class="text-right">I</label>
-                <input type="number" value="1" name="Ampacity" id="Ampacity" class="result" >
-                <input type="text" value="1" name="sizeAmpacity" id="sizeAmpacity" class="result" >
-                <input type="number" value="1" name="mm2Ampacity" id="mm2Ampacity" class="result" >
-                <span></span>
-            </div>
-
-            <div class="box-result">
-                <label class="text-right">Icont</label>
-                <input type="number" value="1" name="AmpacityContinuousLoad" id="AmpacityContinuousLoad" class="result" >
-                <input type="text" value="1" name="sizeAmpacityContinuousLoad" id="sizeAmpacityContinuousLoad" class="result" >
-                <input type="number" value="1" name="mm2AmpacityContinuousLoad" id="mm2AmpacityContinuousLoad" class="result" >
-                <span></span>
-            </div>
-
-            <div class="box-result-label">
-                <label class="label-center"></label>
-                <label class="label-center">Ampacity</label>
-                <label class="label-center">#</label>
-                <label class="label-center">mm<sup>2</label>
-                <label class="label-center">#/#I</label>
-            </div>
-
-            <div class="box-result">
-                <label class="text-right">e%</label>
-                <input type="number" value="1" name="AmpacityVoltageDrop" id="AmpacityVoltageDrop" class="result" >
-                <input type="text" value="1" name="sizeAmpacityVoltageDrop" id="sizeAmpacityVoltageDrop" class="result" >
-                <input type="number" value="1" name="mm2AmpacityVoltageDrop" id="mm2AmpacityVoltageDrop" class="result" >
-                <input type="number" value="1" name="mm2AmpacityVoltageDropRatio" id="mm2AmpacityVoltageDropRatio" class="result" >
-            </div>
-
-            <div class="box-result">
-                <label class="text-right">Isc</label>
-                <input type="number" value="1" name="AmpacityShortCircuit" id="AmpacityShortCircuit" class="result" >
-                <input type="text" value="1" name="sizeAmpacityShortCircuit" id="sizeAmpacityShortCircuit" class="result" >
-                <input type="number" value="1" name="mm2AmpacityShortCircuit" id="mm2AmpacityShortCircuit" class="result" >
-                <input type="number" value="1" name="mm2AmpacityShortCircuitRatio" id="mm2AmpacityShortCircuitRatio" class="result" >
-            </div>
-
-            <div class="box-result-label">
-                <label class="label-center"></label>
-                <label class="label-center">Ampacity</label>
-                <label class="label-center">#</label>
-                <label class="label-center">mm<sup>2</label>
-                <span></span>
-            </div>
-
-            <div class="box-result">
-                <label class="text-right">FT</label>
-                <input type="number" value="1" name="AmpacityFactorTemperature" id="AmpacityFactorTemperature" class="result" >
-                <input type="text" value="1" name="sizeAmpacityFactorTemperature" id="sizeAmpacityFactorTemperature" class="result" >
-                <input type="number" value="1" name="mm2AmpacityFactorTemperature" id="mm2AmpacityFactorTemperature" class="result" >
-                <span></span>
-            </div>
-
-            <div class="box-result">
-                <label class="text-right">FG</label>
-                <input type="number" value="1" name="AmpacityFactorGrouping" id="AmpacityFactorGrouping" class="result" >
-                <input type="text" value="1" name="sizeAmpacityFactorGrouping" id="sizeAmpacityFactorGrouping" class="result" >
-                <input type="number" value="1" name="mm2AmpacityFactorGrouping" id="mm2AmpacityFactorGrouping" class="result" >
-                <span></span>
-            </div>
-
-            <div class="box-result">
-                <label class="text-right">FT*FG</label>
-                <input type="number" value="1" name="AmpacityFactorAdjustment" id="AmpacityFactorAdjustment" class="result" >
-                <input type="text" value="1" name="sizeAmpacityFactorAdjustment" id="sizeAmpacityFactorAdjustment" class="result" >
-                <input type="number" value="1" name="mm2AmpacityFactorAdjustment" id="mm2AmpacityFactorAdjustment" class="result" >
-                <span></span>
-            </div>
-
         </form>
     </div>
 

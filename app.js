@@ -36,7 +36,6 @@ document.getElementById("form2").addEventListener("change", calc_main);
 document.getElementById("form3").addEventListener("change", calc_main);
 document.getElementById("form4").addEventListener("change", calc_main);
 document.getElementById("formA").addEventListener("change", calc_main);
-document.getElementById("formB").addEventListener("change", calc_main);
 document.getElementById("form6").addEventListener("change", calc_main);
 
 function calc_main() {
@@ -49,6 +48,8 @@ function calc_main() {
     var system = document.getElementById("system").value;
     var voltage = Number.parseFloat(document.getElementById("voltage").value);
     var conductorsPerPhase = Number.parseInt(document.getElementById("conductorsPerPhase").value);
+    var IndexCalibreCustom = Number.parseInt(document.getElementById("listCalibreCustom").value);
+
     /*form2 */
     var current = Number.parseFloat(document.getElementById("current").value);
     var realPower = Number.parseFloat(document.getElementById("realPower").value);
@@ -412,7 +413,17 @@ function calc_main() {
     /**optionIsc **/
 
     /**optionvoltageDropArrayCustom **/
-    var indexCustom = 4;
+    if (IndexCalibreCustom === -1) {
+        IndexCalibreCustom = 0;
+        document.getElementById("box-data-listCalibreCustom").className = "box-data";
+    } else {
+        document.getElementById("box-data-listCalibreCustom").className = "box-data-custom";
+    }
+
+    var indexCustom = IndexCalibreCustom;
+    /**optionvoltageDropArrayCustom **/
+
+    /**optionvoltageDropArrayCustom **/
 
     var RTempCustom;
     var XLCustom;
@@ -483,6 +494,34 @@ function calc_main() {
     var sizeAmpacityShortCircuit = AWG[IscIndex];
     var mm2AmpacityShortCircuit = mm2[IscIndex];
 
+    /*custom*/
+    var AmpacityCustom = AmpacityArray[indexCustom];
+    var AmpacityContinuousLoadCustom = AmpacityArray[indexCustom];
+    var AmpacityFactorTemperatureCustom = AmpacityArray[indexCustom]*factorTemperature;
+    var AmpacityFactorGroupingCustom = AmpacityArray[indexCustom]*factorGrouping;
+    var AmpacityFactorAdjustmentCustom = AmpacityArray[indexCustom]*factorAdjustment;
+
+    var sizeAmpacityCustom = AWG[indexCustom];
+    var sizeAmpacityContinuousLoadCustom = AWG[indexCustom];
+    var sizeAmpacityFactorTemperatureCustom = AWG[indexCustom];
+    var sizeAmpacityFactorGroupingCustom = AWG[indexCustom];
+    var sizeAmpacityFactorAdjustmentCustom = AWG[indexCustom];
+
+    var mm2AmpacityCustom = mm2[indexCustom];
+    var mm2AmpacityContinuousLoadCustom = mm2[indexCustom];
+    var mm2AmpacityFactorTemperatureCustom = mm2[indexCustom];
+    var mm2AmpacityFactorGroupingCustom = mm2[indexCustom];
+    var mm2AmpacityFactorAdjustmentCustom = mm2[indexCustom];
+
+    var AmpacityVoltageDropCustom = AmpacityArray[indexCustom];
+    var sizeAmpacityVoltageDropCustom = AWG[indexCustom];
+    var mm2AmpacityVoltageDropCustom = mm2[indexCustom];
+
+    var AmpacityShortCircuitCustom = AmpacityArray[indexCustom];
+    var sizeAmpacityShortCircuitCustom = AWG[indexCustom];
+    var mm2AmpacityShortCircuitCustom = mm2[indexCustom];
+    /*custom*/
+
     /*results */
     document.getElementById("current").value = current.toFixed(decimals);
     document.getElementById("ContinuousLoad").value = (current*1.25).toFixed(decimals);
@@ -546,32 +585,49 @@ function calc_main() {
     document.getElementById("mm2AmpacityShortCircuitRatio").value = (mm2AmpacityShortCircuit/mm2Ampacity).toFixed(decimals+2);
     /** Isc **/
 
+    /** AmpacityCustom **/
+    document.getElementById("AmpacityCustom").value = AmpacityCustom.toFixed(decimals);
+    document.getElementById("AmpacityContinuousLoadCustom").value = AmpacityContinuousLoadCustom.toFixed(decimals);
+    document.getElementById("AmpacityFactorTemperatureCustom").value = AmpacityFactorTemperatureCustom.toFixed(decimals);
+    document.getElementById("AmpacityFactorGroupingCustom").value = AmpacityFactorGroupingCustom.toFixed(decimals);
+    document.getElementById("AmpacityFactorAdjustmentCustom").value = AmpacityFactorAdjustmentCustom.toFixed(decimals);
+
+    document.getElementById("sizeAmpacityCustom").value = sizeAmpacityCustom;
+    document.getElementById("sizeAmpacityContinuousLoadCustom").value = sizeAmpacityContinuousLoadCustom;
+    document.getElementById("sizeAmpacityFactorTemperatureCustom").value = sizeAmpacityFactorTemperatureCustom;
+    document.getElementById("sizeAmpacityFactorGroupingCustom").value = sizeAmpacityFactorGroupingCustom;
+    document.getElementById("sizeAmpacityFactorAdjustmentCustom").value = sizeAmpacityFactorAdjustmentCustom;
+
+    document.getElementById("mm2AmpacityCustom").value = mm2AmpacityCustom;
+    document.getElementById("mm2AmpacityContinuousLoadCustom").value = mm2AmpacityContinuousLoadCustom;
+    document.getElementById("mm2AmpacityFactorTemperatureCustom").value = mm2AmpacityFactorTemperatureCustom;
+    document.getElementById("mm2AmpacityFactorGroupingCustom").value = mm2AmpacityFactorGroupingCustom;
+    document.getElementById("mm2AmpacityFactorAdjustmentCustom").value = mm2AmpacityFactorAdjustmentCustom;
+    /** AmpacityCustom **/
+
     /** VoltageDropCustom **/
     document.getElementById("voltageDropPercentResultCustom").value = voltageDropPercentResultCustom.toFixed(decimals+2);
     document.getElementById("voltageDropVoltsResultCustom").value = voltageDropVoltsResultCustom.toFixed(decimals+2);
 
-    /**var AmpacityVoltageDrop = AmpacityArray[voltageDropIndex];
-    var sizeAmpacityVoltageDrop = AWG[voltageDropIndex];
-    var mm2AmpacityVoltageDrop = mm2[voltageDropIndex];
+    var AmpacityVoltageDropCustom = AmpacityArray[indexCustom];
+    var sizeAmpacityVoltageDropCustom = AWG[indexCustom];
+    var mm2AmpacityVoltageDropCustom = mm2[indexCustom];
 
-    document.getElementById("AmpacityVoltageDrop").value = AmpacityVoltageDrop;
-    document.getElementById("sizeAmpacityVoltageDrop").value = sizeAmpacityVoltageDrop;
-    document.getElementById("mm2AmpacityVoltageDrop").value = mm2AmpacityVoltageDrop;
+    document.getElementById("AmpacityVoltageDropCustom").value = AmpacityVoltageDropCustom;
+    document.getElementById("sizeAmpacityVoltageDropCustom").value = sizeAmpacityVoltageDropCustom;
+    document.getElementById("mm2AmpacityVoltageDropCustom").value = mm2AmpacityVoltageDropCustom;
 
-    document.getElementById("mm2AmpacityVoltageDropRatio").value = (mm2AmpacityVoltageDrop/mm2Ampacity).toFixed(decimals+2);
-
-    document.getElementById("Lmax").value = (length*voltageDropPercent/voltageDropPercentResult).toFixed(decimals);
-    document.getElementById("Imax").value = (current*voltageDropPercent/voltageDropPercentResult).toFixed(decimals);
+    document.getElementById("mm2AmpacityVoltageDropRatioCustom").value = (mm2AmpacityVoltageDropCustom/mm2Ampacity).toFixed(decimals+2);
     /** VoltageDropCustom **/
 
     /** IscCustom **/
     document.getElementById("conductorIscCustom").value = conductorIscCustom.toFixed(decimals+3);
 
-    /**document.getElementById("AmpacityShortCircuit").value = AmpacityShortCircuit;
-    document.getElementById("sizeAmpacityShortCircuit").value = sizeAmpacityShortCircuit;
-    document.getElementById("mm2AmpacityShortCircuit").value = mm2AmpacityShortCircuit;
+    document.getElementById("AmpacityShortCircuitCustom").value = AmpacityShortCircuitCustom;
+    document.getElementById("sizeAmpacityShortCircuitCustom").value = sizeAmpacityShortCircuitCustom;
+    document.getElementById("mm2AmpacityShortCircuitCustom").value = mm2AmpacityShortCircuitCustom;
 
-    document.getElementById("mm2AmpacityShortCircuitRatio").value = (mm2AmpacityShortCircuit/mm2Ampacity).toFixed(decimals+2); **/
+    document.getElementById("mm2AmpacityShortCircuitRatioCustom").value = (mm2AmpacityShortCircuitCustom/mm2Ampacity).toFixed(decimals+2);
     /** IscCustom **/
 
 }
