@@ -9,25 +9,25 @@ const cooper60 = [15, 20, 30, 40, 55, 70, 85, 90, 110, 125, 145, 165, 195, 215, 
 const cooper75 = [20, 25, 35, 50, 65, 85, 100, 115, 130, 150, 175, 200, 230, 255, 285, 310, 335, 380, 420, 460, 475, 490, 520, 545, 590, 625, 650, 665];
 const cooper90 = [25, 30, 40, 55, 75, 95, 115, 130, 145, 170, 195, 225, 260, 290, 320, 350, 380, 430, 475, 520, 535, 555, 585, 615, 665, 705, 735, 750];
 
-const aluminium60 = [0, 15, 25, 35, 40, 55, 65, 75, 85, 100, 115, 130, 150, 170, 195, 210, 225, 260, 285, 315, 320, 330, 355, 375, 405, 435, 455, 470];
-const aluminium75 = [0, 20, 30, 49, 50, 65, 75, 90, 100, 120, 135, 155, 180, 205, 230, 250, 270, 310, 340, 375, 385, 395, 425, 445, 485, 520, 545, 560];
-const aluminium90 = [0, 25, 35, 45, 55, 75, 85, 100, 115, 135, 150, 175, 205, 230, 260, 280, 305, 350, 385, 425, 435, 445, 480, 500, 545, 585, 615, 630];
+const aluminium60 = [NaN, 15, 25, 35, 40, 55, 65, 75, 85, 100, 115, 130, 150, 170, 195, 210, 225, 260, 285, 315, 320, 330, 355, 375, 405, 435, 455, 470];
+const aluminium75 = [NaN, 20, 30, 49, 50, 65, 75, 90, 100, 120, 135, 155, 180, 205, 230, 250, 270, 310, 340, 375, 385, 395, 425, 445, 485, 520, 545, 560];
+const aluminium90 = [NaN, 25, 35, 45, 55, 75, 85, 100, 115, 135, 150, 175, 205, 230, 260, 280, 305, 350, 385, 425, 435, 445, 480, 500, 545, 585, 615, 630];
 
-const XCuPVC = [0.19, 0.177, 0.164, 0.171, 0.167, 0.157, 0.154, 0.148, 0.151, 0.144, 0.141, 0.138, 0.135, 0.135, 0.135, 0.131, 0.131, 0.128, 0.128, 0.125, 0.121];
-const XCuAl = [0.19, 0.177, 0.164, 0.171, 0.167, 0.157, 0.154, 0.148, 0.151, 0.144, 0.141, 0.138, 0.135, 0.135, 0.135, 0.131, 0.131, 0.128, 0.128, 0.125, 0.121];
-const XCuFe = [0.24, 0.223, 0.207, 0.213, 0.21, 0.197, 0.194, 0.187, 0.187, 0.18, 0.177, 0.171, 0.167, 0.171, 0.167, 0.164, 0.161, 0.157, 0.157, 0.157, 0.151];
+const XCuPVC = [0.19, 0.177, 0.164, 0.171, 0.167, 0.157, 0.154, 0.148, 0.151, 0.144, 0.141, 0.138, 0.135, 0.135, 0.135, 0.131, 0.131, 0.128, 0.128, NaN, 0.125, NaN, NaN, 0.121, NaN, NaN, NaN, NaN];
+const XCuAl = [0.19, 0.177, 0.164, 0.171, 0.167, 0.157, 0.154, 0.148, 0.151, 0.144, 0.141, 0.138, 0.135, 0.135, 0.135, 0.131, 0.131, 0.128, 0.128, NaN, 0.125, NaN, NaN, 0.121, NaN, NaN, NaN, NaN];
+const XCuFe = [0.24, 0.223, 0.207, 0.213, 0.21, 0.197, 0.194, 0.187, 0.187, 0.18, 0.177, 0.171, 0.167, 0.171, 0.167, 0.164, 0.161, 0.157, 0.157, NaN, 0.157, NaN, NaN, 0.151, NaN, NaN, NaN, NaN];
 
-const XAlPVC = [0.19, 0.177, 0.164, 0.171, 0.167, 0.157, 0.154, 0.148, 0.151, 0.144, 0.141, 0.138, 0.135, 0.135, 0.135, 0.131, 0.131, 0.128, 0.128, 0.125, 0.121];
-const XAlAl = [0.19, 0.177, 0.164, 0.171, 0.167, 0.157, 0.154, 0.148, 0.151, 0.144, 0.141, 0.138, 0.135, 0.135, 0.135, 0.131, 0.131, 0.128, 0.128, 0.125, 0.121];
-const XAlFe = [0.24, 0.223, 0.207, 0.213, 0.21, 0.197, 0.194, 0.187, 0.187, 0.18, 0.177, 0.171, 0.167, 0.171, 0.167, 0.164, 0.161, 0.157, 0.157, 0.157, 0.151];
+const XAlPVC = [0.19, 0.177, 0.164, 0.171, 0.167, 0.157, 0.154, 0.148, 0.151, 0.144, 0.141, 0.138, 0.135, 0.135, 0.135, 0.131, 0.131, 0.128, 0.128, NaN, 0.125, NaN, NaN, 0.121, NaN, NaN, NaN, NaN];
+const XAlAl = [0.19, 0.177, 0.164, 0.171, 0.167, 0.157, 0.154, 0.148, 0.151, 0.144, 0.141, 0.138, 0.135, 0.135, 0.135, 0.131, 0.131, 0.128, 0.128, NaN, 0.125, NaN, NaN, 0.121, NaN, NaN, NaN, NaN];
+const XAlFe = [0.24, 0.223, 0.207, 0.213, 0.21, 0.197, 0.194, 0.187, 0.187, 0.18, 0.177, 0.171, 0.167, 0.171, 0.167, 0.164, 0.161, 0.157, 0.157, NaN, 0.157, NaN, NaN, 0.151, NaN, NaN, NaN, NaN];
 
-const RCuPVC = [10.2, 6.6, 3.9, 2.56, 1.61, 1.02, 0.82, 0.62, 0.49, 0.39, 0.33, 0.253, 0.203, 0.171, 0.144, 0.125, 0.108, 0.089, 0.075, 0.062, 0.049];
-const RCuAl = [10.2, 6.6, 3.9, 2.56, 1.61, 1.02, 0.82, 0.66, 0.52, 0.43, 0.33, 0.269, 0.22, 0.187, 0.161, 0.141, 0.125, 0.105, 0.092, 0.079, 0.062];
-const RCuFe = [10.2, 6.6, 3.9, 2.56, 1.61, 1.02, 0.82, 0.66, 0.52, 0.39, 0.33, 0.259, 0.207, 0.177, 0.148, 0.128, 0.115, 0.095, 0.082, 0.069, 0.059];
+const RCuPVC = [10.2, 6.6, 3.9, 2.56, 1.61, 1.02, 0.82, 0.62, 0.49, 0.39, 0.33, 0.253, 0.203, 0.171, 0.144, 0.125, 0.108, 0.089, 0.075, NaN, 0.062, NaN, NaN, 0.049, NaN, NaN, NaN, NaN];
+const RCuAl = [10.2, 6.6, 3.9, 2.56, 1.61, 1.02, 0.82, 0.66, 0.52, 0.43, 0.33, 0.269, 0.22, 0.187, 0.161, 0.141, 0.125, 0.105, 0.092, NaN, 0.079, NaN, NaN, 0.062, NaN, NaN, NaN, NaN];
+const RCuFe = [10.2, 6.6, 3.9, 2.56, 1.61, 1.02, 0.82, 0.66, 0.52, 0.39, 0.33, 0.259, 0.207, 0.177, 0.148, 0.128, 0.115, 0.095, 0.082, NaN, 0.069, NaN, NaN, 0.059, NaN, NaN, NaN, NaN];
 
-const RAlPVC = [0.0, 10.5, 6.6, 4.3, 2.66, 1.67, 1.31, 1.05, 0.82, 0.66, 0.52, 0.43, 0.33, 0.279, 0.233, 0.2, 0.177, 0.141, 0.118, 0.095, 0.075];
-const RAlAl = [0.0, 10.5, 6.6, 4.3, 2.66, 1.67, 1.31, 1.05, 0.85, 0.69, 0.52, 0.43, 0.36, 0.295, 0.249, 0.217, 0.194, 0.157, 0.135, 0.112, 0.089];
-const RAlFe = [0.0, 10.5, 6.6, 4.3, 2.66, 1.67, 1.31, 1.05, 0.82, 0.66, 0.52, 0.43, 0.33, 0.282, 0.236, 0.207, 0.18, 0.148, 0.125, 0.102, 0.082];
+const RAlPVC = [0.0, 10.5, 6.6, 4.3, 2.66, 1.67, 1.31, 1.05, 0.82, 0.66, 0.52, 0.43, 0.33, 0.279, 0.233, 0.2, 0.177, 0.141, 0.118, NaN, 0.095, NaN, NaN, 0.075, NaN, NaN, NaN, NaN];
+const RAlAl = [0.0, 10.5, 6.6, 4.3, 2.66, 1.67, 1.31, 1.05, 0.85, 0.69, 0.52, 0.43, 0.36, 0.295, 0.249, 0.217, 0.194, 0.157, 0.135, NaN, 0.112, NaN, NaN, 0.089, NaN, NaN, NaN, NaN];
+const RAlFe = [0.0, 10.5, 6.6, 4.3, 2.66, 1.67, 1.31, 1.05, 0.82, 0.66, 0.52, 0.43, 0.33, 0.282, 0.236, 0.207, 0.18, 0.148, 0.125, NaN, 0.102, NaN, NaN, 0.082, NaN, NaN, NaN, NaN];
 
 window.addEventListener("DOMContentLoaded", calc_main, false);
 document.getElementById("form0").addEventListener("change", calc_main);
@@ -170,6 +170,11 @@ function calc_main() {
         var voltageDropPercent = Number.parseFloat(document.getElementById("voltageDropPercent").value);
 
         for (let index = 0; index < RArray.length; index++) {
+            if (RArray[index] === NaN || XArray[index] === NaN) {
+                break;
+            } else {
+                
+            }
             RTemp = RTempFun(RArray[index], Tinsulation);
             XL = XArray[index];
     
@@ -195,6 +200,11 @@ function calc_main() {
 
         voltageDropPercent = voltageDropVolts/voltage*100;
         for (let index = 0; index < RArray.length; index++) {
+            if (RArray[index] === NaN || XArray[index] === NaN) {
+                break;
+            } else {
+                
+            }
             RTemp = RTempFun(RArray[index], Tinsulation);
             XL = XArray[index];
     
@@ -260,6 +270,11 @@ function calc_main() {
         var voltageDropPercent = Number.parseFloat(document.getElementById("voltageDropPercent").value);
 
         for (let index = 0; index < RArray.length; index++) {
+            if (RArray[index] === NaN || XArray[index] === NaN) {
+                break;
+            } else {
+                
+            }
             RTemp = RTempFun(RArray[index], Tinsulation);
             XL = XArray[index];
     
@@ -285,6 +300,11 @@ function calc_main() {
 
         voltageDropPercent = voltageDropVolts/voltage*100;
         for (let index = 0; index < RArray.length; index++) {
+            if (RArray[index] === NaN || XArray[index] === NaN) {
+                break;
+            } else {
+                
+            }
             RTemp = RTempFun(RArray[index], Tinsulation);
             XL = XArray[index];
     
@@ -324,7 +344,7 @@ function calc_main() {
     var conductorIsc = conductorIscFun(conductorMaterial, temperature2, temperature1, timeIsc, cmilIsc)/1000;
     /**optionIsc **/
 
-        /**optionvoltageDropArray **/
+     /**optionvoltageDropArray **/
     var optionvoltageDropArray = document.getElementsByName("optionvoltageDrop");
         
     for(i = 0; i < optionvoltageDropArray.length; i++) { 
@@ -348,6 +368,11 @@ function calc_main() {
         var voltageDropPercent = Number.parseFloat(document.getElementById("voltageDropPercent").value);
 
         for (let index = 0; index < RArray.length; index++) {
+            if (RArray[index] === NaN || XArray[index] === NaN) {
+                break;
+            } else {
+                
+            }
             RTemp = RTempFun(RArray[index], Tinsulation);
             XL = XArray[index];
     
@@ -373,6 +398,11 @@ function calc_main() {
 
         voltageDropPercent = voltageDropVolts/voltage*100;
         for (let index = 0; index < RArray.length; index++) {
+            if (RArray[index] === NaN || XArray[index] === NaN) {
+                break;
+            } else {
+                
+            }
             RTemp = RTempFun(RArray[index], Tinsulation);
             XL = XArray[index];
     
@@ -416,8 +446,14 @@ function calc_main() {
     if (IndexCalibreCustom === -1) {
         IndexCalibreCustom = 0;
         document.getElementById("box-data-listCalibreCustom").className = "box-data";
+
+        document.getElementById("box-container-custom-formCustom").style.display = "none";
+        document.getElementById("box-container-custom-formBCustom").style.display = "none";
     } else {
         document.getElementById("box-data-listCalibreCustom").className = "box-data-custom";
+
+        document.getElementById("box-container-custom-formCustom").style.display = "flex";
+        document.getElementById("box-container-custom-formBCustom").style.display = "flex";
     }
 
     var indexCustom = IndexCalibreCustom;
@@ -431,13 +467,17 @@ function calc_main() {
     var voltageDropPercentResultCustom;
     var voltageDropVoltsResultCustom;
 
-    RTempCustom = RTempFun(RArray[indexCustom], Tinsulation);
-    XLCustom = XArray[indexCustom];
-
-    ZeCustom = ZeFun(RTempCustom, XLCustom, pf);
-    voltageDropPercentResultCustom = voltageDropPercentFun(system, ZeCustom, length, current, voltage, conductorsPerPhase);
-
-    voltageDropVoltsResultCustom = voltageDropPercentResultCustom*voltage/100;
+    if (RArray[indexCustom] === NaN || XArray[indexCustom] === NaN) {
+   
+    }else {
+        RTempCustom = RTempFun(RArray[indexCustom], Tinsulation);
+        XLCustom = XArray[indexCustom];
+    
+        ZeCustom = ZeFun(RTempCustom, XLCustom, pf);
+        voltageDropPercentResultCustom = voltageDropPercentFun(system, ZeCustom, length, current, voltage, conductorsPerPhase);
+    
+        voltageDropVoltsResultCustom = voltageDropPercentResultCustom*voltage/100;
+    }
     /**optionvoltageDropArrayCustom **/
 
     /**optionIscCustom **/
@@ -446,8 +486,6 @@ function calc_main() {
 
     var conductorIscCustom = conductorIscFun(conductorMaterial, temperature2, temperature1, timeIsc, cmilIscCustom)/1000;
     /**optionIscCustom **/
-
-    console.log(voltageDropPercentResultCustom, voltageDropVoltsResultCustom, conductorIscCustom)
 
     /*computation */
 
@@ -618,6 +656,9 @@ function calc_main() {
     document.getElementById("mm2AmpacityVoltageDropCustom").value = mm2AmpacityVoltageDropCustom;
 
     document.getElementById("mm2AmpacityVoltageDropRatioCustom").value = (mm2AmpacityVoltageDropCustom/mm2Ampacity).toFixed(decimals+2);
+
+    document.getElementById("LmaxCustom").value = (length*voltageDropPercent/voltageDropPercentResultCustom).toFixed(decimals);
+    document.getElementById("ImaxCustom").value = (current*voltageDropPercent/voltageDropPercentResultCustom).toFixed(decimals);
     /** VoltageDropCustom **/
 
     /** IscCustom **/

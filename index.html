@@ -39,7 +39,7 @@
             </div>
 
             <div class="box-data" id="box-data-listCalibreCustom">
-                <span class="text-right">Gauge</span>
+                <span class="text-right">Custom</span>
                 <select name="listCalibreCustom" id="listCalibreCustom" class="data">
                     <option value="-1" selected >AUTO </option>
                     <option value="0">14</option>
@@ -259,8 +259,20 @@
     </div>
 
     
-    <div class="box-container-custom">
+    <div class="box-container-custom" id="box-container-custom-formCustom">
         <form id="formCustom">
+            <div class="box-data">
+                <label for="LmaxCustom" class="text-right">Lmax</label>
+                <input type="number" min="0" value="30" name="LmaxCustom" id="LmaxCustom" class="result" >
+                <span>[m]</span>
+            </div>
+
+            <div class="box-data">
+                <label for="ImaxCustom" class="text-right">Imax</label>
+                <input type="number" min="0" value="25" name="ImaxCustom" id="ImaxCustom" class="result" >
+                <span>[A]</span>
+            </div>
+
             <div class="box-data">
                 <label for="voltageDropPercentResultCustom" class="text-right">=%e</label>
                 <input type="number" min="0" step="0.5" max="100" value="3" name="voltageDropPercentResultCustom" id="voltageDropPercentResultCustom" class="result">
@@ -281,7 +293,7 @@
         </form>
     </div>
 
-    <div class="box-container-custom">
+    <div class="box-container-custom" id="box-container-custom-formBCustom">
         <form id="formBCustom">
             <div class="box-result-label">
                 <label class="label-center"></label>
