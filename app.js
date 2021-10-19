@@ -78,6 +78,9 @@ function calc_main() {
     var timeIsc = Number.parseFloat(document.getElementById("timeIsc").value);
     var temperature1 = Number.parseFloat(document.getElementById("temperature1").value);
     var temperature2 = Number.parseInt(document.getElementById("temperature2").value);
+    /*form7 */
+    var AmpacityTABLE = document.getElementById("AmpacityTABLE").value;
+    var AmpacityFactorTABLE = Number.parseFloat(document.getElementById("AmpacityFactorTABLE").value)/100;
 
     let flag = 0;
     if (voltage <= 0 ) {
@@ -107,6 +110,9 @@ function calc_main() {
     } if (timeIsc <= 0) {
         timeIsc = 0.001;
         flag = 1;
+    } if (AmpacityFactorTABLE <= 0) {
+        AmpacityFactorTABLE = 0.1;
+        flag = 1;
     }
     
     if ( flag === 1 ) {
@@ -119,6 +125,7 @@ function calc_main() {
         document.getElementById("voltageDropVolts").value = voltageDropVolts.toFixed(decimals+2);
         document.getElementById("Isc").value = (Isc/1000).toFixed(decimals);
         document.getElementById("timeIsc").value = timeIsc.toFixed(decimals+3);
+        document.getElementById("AmpacityFactorTABLE").value = (AmpacityFactorTABLE*100).toFixed(decimals);
     } else {
         
     }
@@ -506,7 +513,11 @@ function calc_main() {
     var factorGrouping = factorGroupingFun(tableFactorGrouping, conductorsPerConduit);
     var factorAdjustment = factorAdjustmentFun(factorTemperature, factorGrouping);
 
-    var AmpacityArray = seacherAmpacityArrayFun(Tinsulation, conductorMaterial);
+    var AmpacityArray = seacherAmpacityArrayFun(AmpacityTABLE, Tinsulation, conductorMaterial);
+
+    AmpacityArray = AmpacityArray.map(Ampacity =>  AmpacityFactorTABLE*Ampacity);
+    console.log(AmpacityArray);
+    console.log(AmpacityFactorTABLE);
     
     var AmpacityIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, 1);
     var AmpacityContinuousLoadIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*1.25, 1);
@@ -788,32 +799,63 @@ function factorAdjustmentFun(factorTemperature, factorGrouping) {
     return factorAdjustment = factorTemperature*factorGrouping;
 }
 
-function seacherAmpacityArrayFun(Tinsulation, conductorMaterial) {
+function seacherAmpacityArrayFun(AmpacityTABLE, Tinsulation, conductorMaterial) {
 
-    if (conductorMaterial === "Cu") {
-        if (Tinsulation === 60) {
-            return cooper60;
-        } else if (Tinsulation === 75) {
-            return cooper75;
-        } else if (Tinsulation === 90) {
-            return cooper90;
+    if (AmpacityTABLE === "310.16") {
+        if (conductorMaterial === "Cu") {
+            if (Tinsulation === 60) {
+                return cooper60_16;
+            } else if (Tinsulation === 75) {
+                return cooper75_16;
+            } else if (Tinsulation === 90) {
+                return cooper90_16;
+            } else{
+        
+            }
+            
+        } else if (conductorMaterial === "Al") {
+            if (Tinsulation === 60) {
+                return aluminium60_16;
+            } else if (Tinsulation === 75) {
+                return aluminium75_16;
+            } else if (Tinsulation === 90) {
+                return aluminium90_16;
+            } else{
+        
+            }
         } else{
     
         }
+    } else if (AmpacityTABLE === "310.17") {
+        if (conductorMaterial === "Cu") {
+            if (Tinsulation === 60) {
+                return cooper60_17;
+            } else if (Tinsulation === 75) {
+                return cooper75_17;
+            } else if (Tinsulation === 90) {
+                return cooper90_17;
+            } else{
         
-    } else if (conductorMaterial === "Al") {
-        if (Tinsulation === 60) {
-            return aluminium60;
-        } else if (Tinsulation === 75) {
-            return aluminium75;
-        } else if (Tinsulation === 90) {
-            return aluminium90;
+            }
+            
+        } else if (conductorMaterial === "Al") {
+            if (Tinsulation === 60) {
+                return aluminium60_17;
+            } else if (Tinsulation === 75) {
+                return aluminium75_17;
+            } else if (Tinsulation === 90) {
+                return aluminium90_17;
+            } else{
+        
+            }
         } else{
     
         }
     } else{
-
+    
     }
+
+
 }
 
 function AmpacityIndexFun(AmpacityArray, current, factorAmpacity) {
