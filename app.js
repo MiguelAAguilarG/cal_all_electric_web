@@ -111,7 +111,7 @@ function calc_main() {
         timeIsc = 0.001;
         flag = 1;
     } if (AmpacityFactorTABLE <= 0) {
-        AmpacityFactorTABLE = 0.1;
+        AmpacityFactorTABLE = 0.01;
         flag = 1;
     }
     
