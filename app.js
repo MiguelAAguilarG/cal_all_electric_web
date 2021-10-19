@@ -516,8 +516,6 @@ function calc_main() {
     var AmpacityArray = seacherAmpacityArrayFun(AmpacityTABLE, Tinsulation, conductorMaterial);
 
     AmpacityArray = AmpacityArray.map(Ampacity =>  AmpacityFactorTABLE*Ampacity);
-    console.log(AmpacityArray);
-    console.log(AmpacityFactorTABLE);
     
     var AmpacityIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, 1);
     var AmpacityContinuousLoadIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*1.25, 1);
