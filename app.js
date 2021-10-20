@@ -581,8 +581,8 @@ function calc_main() {
     } else{
         
     }
-
-    var AmpacityArray = seacher(AmpacityTABLE, parameters);
+    var A = seacher(AmpacityTABLES, parameters);
+    var AmpacityArray = seacherAmpacityArrayFun(AmpacityTABLE, Tinsulation, conductorMaterial);
 
     AmpacityArray = AmpacityArray.map(Ampacity =>  AmpacityFactorTABLE*Ampacity);
     
@@ -927,10 +927,33 @@ function seacherAmpacityArrayFun(AmpacityTABLE, Tinsulation, conductorMaterial) 
 
 function seacher(AmpacityTABLES, parameters) {
 
-    for (const key in AmpacityTABLES) {
-        for (const key2 in AmpacityTABLES[key]) {
-            let tod = AmpacityTABLES[key][key2];
-            console.log(tod);
+    for (const TABLE in AmpacityTABLES) {
+        for (const element in AmpacityTABLES[TABLE]) {
+            let elementParametersDelete = ["voltage", "AmpacityVALUES"];
+
+            let elementParameters = Object.keys(AmpacityTABLES[TABLE][element]);
+            
+            for (const parameterDelete of elementParametersDelete) {
+                let parameterDeleteIndex = elementParameters.indexOf(parameterDelete);
+                elementParameters.splice(parameterDeleteIndex, 1);
+            }
+
+            let parametersLength = 0;
+            for (const parameter of elementParameters) {
+
+                if (Object.keys(parameters).indexOf(parameter) !== -1) {
+                    parametersLength ++;
+                } else {
+                    
+                }
+            }
+
+            if (parametersLength === Object.keys(parameters).length && elementParameters.length === Object.keys(parameters).length) {
+                console.log(AmpacityTABLES[TABLE][element]["AmpacityVALUES"])
+                return AmpacityTABLES[TABLE][element]["AmpacityVALUES"];
+            } else {
+
+            }
         }
     }
 
