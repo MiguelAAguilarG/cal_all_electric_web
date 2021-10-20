@@ -54,7 +54,8 @@ const AmpacityTABLES = {
             AmpacityVALUES : [NaN, 25, 35, 45, 55, 75, 85, 100, 115, 135, 150, 175, 205, 230, 260, 280, 305, 350, 385, 425, 435, 445, 480, 500, 545, 585, 615, 630]
         }
     }
-}
+};
+
 const cooper60_16 = [15, 20, 30, 40, 55, 70, 85, 95, 110, 125, 145, 165, 195, 215, 240, 260, 280, 320, 350, 385, 400, 410, 435, 455, 495, 525, 545, 555];
 const cooper75_16 = [20, 25, 35, 50, 65, 85, 100, 115, 130, 150, 175, 200, 230, 255, 285, 310, 335, 380, 420, 460, 475, 490, 520, 545, 590, 625, 650, 665];
 const cooper90_16 = [25, 30, 40, 55, 75, 95, 115, 130, 145, 170, 195, 225, 260, 290, 320, 350, 380, 430, 475, 520, 535, 555, 585, 615, 665, 705, 735, 750];
@@ -564,7 +565,24 @@ function calc_main() {
     var factorGrouping = factorGroupingFun(tableFactorGrouping, conductorsPerConduit);
     var factorAdjustment = factorAdjustmentFun(factorTemperature, factorGrouping);
 
-    var AmpacityArray = seacherAmpacityArrayFun(AmpacityTABLE, Tinsulation, conductorMaterial);
+    if (AmpacityTABLE === "310.16") {
+        var parameters = {
+            conductorMaterial: "cooper",
+            Tinsulation: 60,
+            Tambient: 30,
+            grouping: 3
+        }
+    } else if (AmpacityTABLE === "310.17") {
+        var parameters = {
+            conductorMaterial: "cooper",
+            Tinsulation: 60,
+            Tambient: 30
+        }
+    } else{
+        
+    }
+
+    var AmpacityArray = seacher(AmpacityTABLE, parameters);
 
     AmpacityArray = AmpacityArray.map(Ampacity =>  AmpacityFactorTABLE*Ampacity);
     
@@ -904,6 +922,17 @@ function seacherAmpacityArrayFun(AmpacityTABLE, Tinsulation, conductorMaterial) 
     
     }
 
+
+}
+
+function seacher(AmpacityTABLES, parameters) {
+
+    for (const key in AmpacityTABLES) {
+        for (const key2 in AmpacityTABLES[key]) {
+            let tod = AmpacityTABLES[key][key2];
+            console.log(tod);
+        }
+    }
 
 }
 
