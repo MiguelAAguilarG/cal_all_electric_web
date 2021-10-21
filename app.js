@@ -7,7 +7,7 @@ const tableFactorGrouping = {3:1, 6:0.8, 9:0.7, 20:0.5, 30:0.45, 40:0.4, 50:0.35
 const AmpacityTABLES = {
     310.16: {
         cooper60: {
-            conductorMaterial: "cooper",
+            conductorMaterial: "Cu",
             Tinsulation: 60,
             Tambient: 30,
             grouping: 3,
@@ -15,7 +15,7 @@ const AmpacityTABLES = {
             AmpacityVALUES : [15, 20, 30, 40, 55, 70, 85, 95, 110, 125, 145, 165, 195, 215, 240, 260, 280, 320, 350, 385, 400, 410, 435, 455, 495, 525, 545, 555]
         },
         cooper75: {
-            conductorMaterial: "cooper",
+            conductorMaterial: "Cu",
             Tinsulation: 75,
             Tambient: 30,
             grouping: 3,
@@ -23,35 +23,80 @@ const AmpacityTABLES = {
             AmpacityVALUES : [20, 25, 35, 50, 65, 85, 100, 115, 130, 150, 175, 200, 230, 255, 285, 310, 335, 380, 420, 460, 475, 490, 520, 545, 590, 625, 650, 665]
         },
         cooper90: {
-            conductorMaterial: "cooper",
+            conductorMaterial: "Cu",
             Tinsulation: 90,
             Tambient: 30,
             grouping: 3,
             voltage: [0, 2000],
             AmpacityVALUES : [25, 30, 40, 55, 75, 95, 115, 130, 145, 170, 195, 225, 260, 290, 320, 350, 380, 430, 475, 520, 535, 555, 585, 615, 665, 705, 735, 750]
-        }
-    },
-    310.17: {
+        },
         aluminium60: {
-            conductorMaterial: "aluminium",
+            conductorMaterial: "Al",
             Tinsulation: 60,
             Tambient: 30,
+            grouping: 3,
             voltage: [0, 2000],
             AmpacityVALUES : [NaN, 15, 25, 35, 40, 55, 65, 75, 85, 100, 115, 130, 150, 170, 195, 210, 225, 260, 285, 315, 320, 330, 355, 375, 405, 435, 455, 470]
         },
         aluminium75: {
-            conductorMaterial: "aluminium",
+            conductorMaterial: "Al",
             Tinsulation: 75,
             Tambient: 30,
+            grouping: 3,
             voltage: [0, 2000],
             AmpacityVALUES : [NaN, 20, 30, 49, 50, 65, 75, 90, 100, 120, 135, 155, 180, 205, 230, 250, 270, 310, 340, 375, 385, 395, 425, 445, 485, 520, 545, 560]
         },
         aluminium90: {
-            conductorMaterial: "aluminium",
+            conductorMaterial: "Al",
+            Tinsulation: 90,
+            Tambient: 30,
+            grouping: 3,
+            voltage: [0, 2000],
+            AmpacityVALUES : [NaN, 25, 35, 45, 55, 75, 85, 100, 115, 135, 150, 175, 205, 230, 260, 280, 305, 350, 385, 425, 435, 445, 480, 500, 545, 585, 615, 630]
+        }
+    },
+    310.17: {
+        cooper60: {
+            conductorMaterial: "Cu",
+            Tinsulation: 60,
+            Tambient: 30,
+            voltage: [0, 2000],
+            AmpacityVALUES : [25, 30, 40, 60, 80, 105, 120, 140, 165, 195, 225, 260, 300, 340, 375, 420, 455, 515, 575, 630, 655, 680, 730, 780, 890, 980, 1070, 1155]
+        },
+        cooper75: {
+            conductorMaterial: "Cu",
+            Tinsulation: 75,
+            Tambient: 30,
+            voltage: [0, 2000],
+            AmpacityVALUES : [30, 35, 60, 70, 95, 125, 145, 170, 195, 230, 265, 310, 360, 405, 445, 505, 545, 620, 690, 755, 785, 815, 870, 935, 1065, 1175, 1280, 1385]
+        },
+        cooper90: {
+            conductorMaterial: "Cu",
             Tinsulation: 90,
             Tambient: 30,
             voltage: [0, 2000],
-            AmpacityVALUES : [NaN, 25, 35, 45, 55, 75, 85, 100, 115, 135, 150, 175, 205, 230, 260, 280, 305, 350, 385, 425, 435, 445, 480, 500, 545, 585, 615, 630]
+            AmpacityVALUES : [35, 40, 55, 80, 105, 140, 165, 190, 220, 260, 300, 350, 405, 455, 500, 570, 615, 700, 780, 850, 885, 920, 980, 1055, 1200, 1325, 1445, 1560]
+        },
+        aluminium60: {
+            conductorMaterial: "Al",
+            Tinsulation: 60,
+            Tambient: 30,
+            voltage: [0, 2000],
+            AmpacityVALUES : [25, 35, 45, 60, 80, 95, 110, 130, 150, 175, 200, 235, 265, 290, 330, 355, 405, 455, 500, 515, 535, 580, 625, 710, 795, 875, 960]
+        },
+        aluminium75: {
+            conductorMaterial: "Al",
+            Tinsulation: 75,
+            Tambient: 30,
+            voltage: [0, 2000],
+            AmpacityVALUES : [30, 40, 55, 75, 100, 115, 135, 155, 180, 210, 240, 280, 315, 350, 395, 425, 485, 545, 595, 595, 620, 645, 700, 750, 855, 950, 1050, 1150]
+        },
+        aluminium90: {
+            conductorMaterial: "Al",
+            Tinsulation: 90,
+            Tambient: 30,
+            voltage: [0, 2000],
+            AmpacityVALUES : [35, 45, 60, 85, 115, 130, 150, 175, 205, 235, 270, 315, 355, 395, 445, 480, 545, 615, 670, 700, 725, 790, 845, 965, 1070, 1185, 1295]
         }
     }
 };
@@ -567,23 +612,22 @@ function calc_main() {
 
     if (AmpacityTABLE === "310.16") {
         var parameters = {
-            conductorMaterial: "cooper",
-            Tinsulation: 60,
+            conductorMaterial: conductorMaterial,
+            Tinsulation: Tinsulation,
             Tambient: 30,
             grouping: 3
         }
     } else if (AmpacityTABLE === "310.17") {
         var parameters = {
-            conductorMaterial: "cooper",
-            Tinsulation: 60,
+            conductorMaterial: conductorMaterial,
+            Tinsulation: Tinsulation,
             Tambient: 30
         }
     } else{
         
     }
-    var A = seacher(AmpacityTABLES, parameters);
-    var AmpacityArray = seacherAmpacityArrayFun(AmpacityTABLE, Tinsulation, conductorMaterial);
-
+    var AmpacityArray = seacherAmpacityArrayFun(AmpacityTABLES, parameters);
+    console.log(AmpacityArray);
     AmpacityArray = AmpacityArray.map(Ampacity =>  AmpacityFactorTABLE*Ampacity);
     
     var AmpacityIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, 1);
@@ -866,66 +910,7 @@ function factorAdjustmentFun(factorTemperature, factorGrouping) {
     return factorAdjustment = factorTemperature*factorGrouping;
 }
 
-function seacherAmpacityArrayFun(AmpacityTABLE, Tinsulation, conductorMaterial) {
-
-    if (AmpacityTABLE === "310.16") {
-        if (conductorMaterial === "Cu") {
-            if (Tinsulation === 60) {
-                return cooper60_16;
-            } else if (Tinsulation === 75) {
-                return cooper75_16;
-            } else if (Tinsulation === 90) {
-                return cooper90_16;
-            } else{
-        
-            }
-            
-        } else if (conductorMaterial === "Al") {
-            if (Tinsulation === 60) {
-                return aluminium60_16;
-            } else if (Tinsulation === 75) {
-                return aluminium75_16;
-            } else if (Tinsulation === 90) {
-                return aluminium90_16;
-            } else{
-        
-            }
-        } else{
-    
-        }
-    } else if (AmpacityTABLE === "310.17") {
-        if (conductorMaterial === "Cu") {
-            if (Tinsulation === 60) {
-                return cooper60_17;
-            } else if (Tinsulation === 75) {
-                return cooper75_17;
-            } else if (Tinsulation === 90) {
-                return cooper90_17;
-            } else{
-        
-            }
-            
-        } else if (conductorMaterial === "Al") {
-            if (Tinsulation === 60) {
-                return aluminium60_17;
-            } else if (Tinsulation === 75) {
-                return aluminium75_17;
-            } else if (Tinsulation === 90) {
-                return aluminium90_17;
-            } else{
-        
-            }
-        } else{
-    
-        }
-    } else{
-    
-    }
-
-
-}
-
-function seacher(AmpacityTABLES, parameters) {
+function seacherAmpacityArrayFun(AmpacityTABLES, parameters) {
 
     for (const TABLE in AmpacityTABLES) {
         for (const element in AmpacityTABLES[TABLE]) {
@@ -942,14 +927,17 @@ function seacher(AmpacityTABLES, parameters) {
             for (const parameter of elementParameters) {
 
                 if (Object.keys(parameters).indexOf(parameter) !== -1) {
-                    parametersLength ++;
+                    if (AmpacityTABLES[TABLE][element][parameter] === parameters[parameter]) {
+                        parametersLength ++;
+                    } else {
+                        
+                    }
                 } else {
                     
                 }
             }
 
             if (parametersLength === Object.keys(parameters).length && elementParameters.length === Object.keys(parameters).length) {
-                console.log(AmpacityTABLES[TABLE][element]["AmpacityVALUES"])
                 return AmpacityTABLES[TABLE][element]["AmpacityVALUES"];
             } else {
 
