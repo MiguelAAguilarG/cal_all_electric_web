@@ -60,7 +60,7 @@ span{
     padding: 2px;
 }
 
-.box-data, .box-result, .box-result-label, .box-data-custom, .box-data2, .box-data2-label{
+.box-data, .box-result, .box-result-label, .box-data-custom, .box-data2, .box-data2-label, .box-data-current-factors{
     display: grid;
     grid-column: 1 / -1;
     padding: 2px;
@@ -76,8 +76,14 @@ span{
     grid-template-columns: minmax(8.5em, 8.5em) minmax(5em, 5em) minmax(3em, 3em) minmax(2em, 2em);
 }
 
-.box-result, .box-result-label, .box-data2, .box-data2-label{
+.box-result, .box-result-label, .box-data2, .box-data2-label, .box-data-current-factors{
     grid-template-columns: minmax(3.5em, 3.5em) minmax(5em, 5em) minmax(3em, 3em) minmax(4em, 4em) minmax(3em, 3em);
+    border: solid 1px;
+}
+
+.box-data-current-factors{
+    grid-template-columns: minmax(3.5em, 3.5em) minmax(3em, 3em) minmax(3em, 3em) minmax(3em, 3em) minmax(3em, 3em);
+    border: solid 1px;
 }
 
 .label-center{

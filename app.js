@@ -341,7 +341,7 @@ function calc_main() {
     /**optionvoltageDropArray **/
 
     /**optionIsc **/
-    var AreaCircularMilIsc = AreaCircularMilIscFun(conductorMaterial, temperature2, temperature1, Isc, timeIsc);
+    var AreaCircularMilIsc = AreaCircularMilIscFun(conductorMaterial, temperature2, temperature1, Isc*currentFactorShortCircuit, timeIsc);
     var mm2Isc = cmilToMm2(AreaCircularMilIsc);
 
     for (let index = 0; index < mm2.length; index++) {
@@ -627,14 +627,38 @@ function calc_main() {
         
     }
     var AmpacityArray = seacherAmpacityArrayFun(AmpacityTABLES, parameters);
-    console.log(AmpacityArray);
     AmpacityArray = AmpacityArray.map(Ampacity =>  AmpacityFactorTABLE*Ampacity);
     
-    var AmpacityIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, 1);
-    var AmpacityContinuousLoadIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*1.25, 1);
-    var AmpacityFactorTemperatureIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, factorTemperature);
-    var AmpacityFactorGroupingIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, factorGrouping);
-    var AmpacityFactorAdjustmentIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, factorAdjustment);
+    var currentFactors = [2, 1];
+    var currentFactorsContinuousLoad = [1, 1];
+    var currentFactorsTemperature = [1, 1];
+    var currentFactorsGrouping = [1, 1];
+    var currentFactorsAdjustment = [1, 1];
+    var currentFactorsVoltageDrop = [1, 1];
+    var currentFactorsShortCircuit = [1, 1];
+
+    var currentFactor = resultFactor(currentFactors);
+    var currentFactorContinuousLoad = resultFactor(currentFactorsContinuousLoad);
+    var currentFactorTemperature = resultFactor(currentFactorsTemperature);
+    var currentFactorGrouping = resultFactor(currentFactorsGrouping);
+    var currentFactorAdjustment = resultFactor(currentFactorsAdjustment);
+    var currentFactorVoltageDrop = resultFactor(currentFactorsVoltageDrop);
+    var currentFactorShortCircuit = resultFactor(currentFactorsShortCircuit);
+
+    function resultFactor(currentFactors) {
+        let Factor = 1;
+        for (const factor of currentFactors) {
+            Factor = Factor*factor;
+        }
+    
+        return Factor
+    }
+
+    var AmpacityIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactor, 1);
+    var AmpacityContinuousLoadIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*1.25*currentFactorContinuousLoad, 1);
+    var AmpacityFactorTemperatureIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactorTemperature, factorTemperature);
+    var AmpacityFactorGroupingIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactorGrouping, factorGrouping);
+    var AmpacityFactorAdjustmentIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactorAdjustment, factorAdjustment);
 
     var Ampacity = AmpacityArray[AmpacityIndex];
     var AmpacityContinuousLoad = AmpacityArray[AmpacityContinuousLoadIndex];
@@ -947,10 +971,10 @@ function seacherAmpacityArrayFun(AmpacityTABLES, parameters) {
 
 }
 
-function AmpacityIndexFun(AmpacityArray, current, factorAmpacity) {
+function AmpacityIndexFun(AmpacityArray, current, Ampacityfactor) {
 
     for (let index = 0; index < AmpacityArray.length; index++) {
-        if (current <= AmpacityArray[index]*factorAmpacity) {
+        if (current <= AmpacityArray[index]*Ampacityfactor) {
             return index;
         } else {
             
@@ -1012,10 +1036,10 @@ function seacherTableRFun(racewayMaterial, conductorMaterial) {
     }
 }
 
-function voltageDropIndexFun(AmpacityArray, current, factorAmpacity) {
+function voltageDropIndexFun(AmpacityArray, current, Ampacityfactor) {
 
     for (let index = 0; index < AmpacityArray.length; index++) {
-        if (current <= AmpacityArray[index]*factorAmpacity) {
+        if (current <= AmpacityArray[index]*Ampacityfactor) {
             return index;
         } else {
             
