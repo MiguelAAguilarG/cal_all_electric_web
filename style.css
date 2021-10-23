@@ -29,7 +29,7 @@ footer{
     text-align: center;
 }
 
-.data, .result, .result-small, .label, .text-right, .text-center, .data-fake{
+.data, .result, .result-small, .text-right, .text-center, .data-fake{
     padding-left: 4px;
     padding-right: 2px;
     
@@ -37,6 +37,7 @@ footer{
 
 .data{
     background-color: #a7f1a7;
+    border: solid 1px;
     
 }
 
@@ -51,6 +52,7 @@ footer{
     justify-content: center;
     border: solid 2px;
     margin: 0 auto 5 auto;
+    border-radius: 5px;
 }
 
 .box-settings{
