@@ -5,7 +5,7 @@
 }
 
 body{
-    max-width: 21em;
+    max-width: 20em;
     margin-left: auto;
     margin-right: auto;
 
@@ -30,21 +30,20 @@ footer{
 }
 
 .data, .result, .result-small, .label, .text-right, .text-center, .data-fake{
-    border: solid 1px;
     padding-left: 4px;
     padding-right: 2px;
-    ;border: solid 1px;
+    
 }
 
 .data{
-    background-color: #a7f1a7
-    ;border: solid 1px;
+    background-color: #a7f1a7;
+    
 }
 
 .result, .result-small{
     background-color: #a6d5ff;
     pointer-events: none;
-    ;border: solid 1px;
+    border: solid 1px;
 }
 
 .box-container, .box-container-custom{
@@ -59,15 +58,16 @@ footer{
     justify-content: left;
     grid-template-columns: minmax(9em, 9em) minmax(5em, 5em);
     grid-column: 1 / -1;
+    margin: 2px;
     padding: 2px;
 }
 
 .box-data, .box-result, .box-data-custom, .box-data2, .box-data-current-factors{
     display: grid;
     grid-column: 1 / -1;
-    grid-column-gap: 5px;
     margin: 2px;
-    ;border: solid 1px;
+    padding: 2px;
+    
 }
 
 .box-data, .box-data-custom{
@@ -86,18 +86,12 @@ footer{
     display: flex;
 
     justify-content: center;
-
-    border: solid 1px;
-    margin: 1px;
 }
 
 .text-right{
     display: flex;
 
     justify-content: right;
-
-    border: solid 1px;
-    margin: 1px;
 }
 
 .text-center-footer{
