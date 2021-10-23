@@ -5,17 +5,22 @@
 }
 
 body{
-    max-width: 20em;
+    max-width: 21em;
     margin-left: auto;
     margin-right: auto;
 
 }
 
 header{
-    margin: 0 auto;
-    font-size: x-large;
+    font-size: large;
     text-align: center;
+
+    border: solid 1px;
+    margin: 0 auto;
     padding: 1px;
+    
+    background-color: #929CAE;
+    border-radius: 5px;
 }
 
 footer{
@@ -23,25 +28,23 @@ footer{
     text-align: center;
 }
 
-span{
-    margin: 0px;
-    padding: 0px 0px 0px 1px;
-}
-
-.data, .result, .result-small, .label, .label-center, .data-fake{
+.data, .result, .result-small, .label, .text-right, .text-center, .data-fake{
     border: solid 1px;
-    padding: 1px;
+    padding: 0px;
     padding-left: 4px;
     padding-right: 2px;
+    ;border: solid 1px;
 }
 
 .data{
     background-color: #a7f1a7
+    ;border: solid 1px;
 }
 
 .result, .result-small{
     background-color: #a6d5ff;
     pointer-events: none;
+    ;border: solid 1px;
 }
 
 .box-container, .box-container-custom{
@@ -56,47 +59,45 @@ span{
     justify-content: left;
     grid-template-columns: minmax(9em, 9em) minmax(5em, 5em);
     grid-column: 1 / -1;
-    margin: 2px;
+    margin: 0px;
     padding: 2px;
 }
 
-.box-data, .box-result, .box-result-label, .box-data-custom, .box-data2, .box-data2-label, .box-data-current-factors{
+.box-data, .box-result, .box-data-custom, .box-data2, .box-data-current-factors{
     display: grid;
     grid-column: 1 / -1;
-    padding: 2px;
-    margin: 2px;
-}
-
-.box-result-label, .box-data2-label{
+    grid-column-gap: 5px;
     padding: 0px;
-    margin: 0px;
+    margin: 2px;
+    ;border: solid 1px;
 }
 
 .box-data, .box-data-custom{
     grid-template-columns: minmax(8.5em, 8.5em) minmax(5em, 5em) minmax(3em, 3em) minmax(2em, 2em);
 }
 
-.box-result, .box-result-label, .box-data2, .box-data2-label, .box-data-current-factors{
+.box-result, .box-data2, .box-data-current-factors{
     grid-template-columns: minmax(3.5em, 3.5em) minmax(5em, 5em) minmax(3em, 3em) minmax(4em, 4em) minmax(3em, 3em);
-    border: solid 1px;
 }
 
 .box-data-current-factors{
     grid-template-columns: minmax(3.5em, 3.5em) minmax(3em, 3em) minmax(3em, 3em) minmax(3em, 3em) minmax(3em, 3em);
+}
+
+.text-center{
+    display: flex;
+
+    justify-content: center;
+
     border: solid 1px;
 }
 
-.label-center{
-    display: flex;
-    border: solid 0px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
 .text-right{
-    text-align: right;
-    padding: 1px;
+    display: flex;
+
+    justify-content: right;
+
+    border: solid 1px;
     margin: 1px;
 }
 
