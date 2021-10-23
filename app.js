@@ -227,6 +227,24 @@ function calc_main() {
         
     }
 
+    /**Data **/
+    var currentFactors = [1, 1];
+    var currentFactorsContinuousLoad = [1, 1];
+    var currentFactorsTemperature = [1, 1];
+    var currentFactorsGrouping = [1, 1];
+    var currentFactorsAdjustment = [1, 1];
+    var currentFactorsVoltageDrop = [1, 1];
+    var currentFactorsShortCircuit = [1, 1];
+    /**Data **/
+
+    var currentFactor = resultFactor(currentFactors);
+    var currentFactorContinuousLoad = resultFactor(currentFactorsContinuousLoad);
+    var currentFactorTemperature = resultFactor(currentFactorsTemperature);
+    var currentFactorGrouping = resultFactor(currentFactorsGrouping);
+    var currentFactorAdjustment = resultFactor(currentFactorsAdjustment);
+    var currentFactorVoltageDrop = resultFactor(currentFactorsVoltageDrop);
+    var currentFactorShortCircuit = resultFactor(currentFactorsShortCircuit);
+
     /**optionLoadArray **/
     var optionLoadArray = document.getElementsByName("optionLoad");
             
@@ -276,13 +294,13 @@ function calc_main() {
     if (optionvoltageDrop === "optionvoltageDropPercent") {
         var voltageDropPercent = Number.parseFloat(document.getElementById("voltageDropPercent").value);
 
-        var voltageDropIndex = voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, current, voltage, conductorsPerPhase, conductorMaterial, voltageDropPercent)
+        var voltageDropIndex = voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase, conductorMaterial, voltageDropPercent)
 
         var RTemp = RTempFun(RArray[voltageDropIndex], Tinsulation);
         var XL = XArray[voltageDropIndex];
 
         var Ze = ZeFun(RTemp, XL, pf);
-        var voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current, voltage, conductorsPerPhase);
+        var voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase);
 
         voltageDropVolts = voltageDropPercent*voltage/100;
         voltageDropVoltsResult = voltageDropPercentResult*voltage/100;
@@ -290,15 +308,15 @@ function calc_main() {
 
     } else if (optionvoltageDrop === "optionvoltageDropVolts") {
         var voltageDropVolts = Number.parseFloat(document.getElementById("voltageDropVolts").value);
-
         voltageDropPercent = voltageDropVolts/voltage*100;
-        var voltageDropIndex = voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, current, voltage, conductorsPerPhase, conductorMaterial, voltageDropPercent)
+
+        var voltageDropIndex = voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase, conductorMaterial, voltageDropPercent)
 
         var RTemp = RTempFun(RArray[voltageDropIndex], Tinsulation);
         var XL = XArray[voltageDropIndex];
 
         var Ze = ZeFun(RTemp, XL, pf);
-        var voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current, voltage, conductorsPerPhase);
+        var voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase);
 
         voltageDropVoltsResult = voltageDropPercentResult*voltage/100;
         document.getElementById("voltageDropPercent").className = "result";
@@ -309,7 +327,7 @@ function calc_main() {
     /**optionvoltageDropArray **/
 
     /**optionIsc **/
-    var AreaCircularMilIsc = AreaCircularMilIscFun(conductorMaterial, temperature2, temperature1, Isc, timeIsc);
+    var AreaCircularMilIsc = AreaCircularMilIscFun(conductorMaterial, temperature2, temperature1, Isc*currentFactorShortCircuit, timeIsc);
     var mm2Isc = cmilToMm2(AreaCircularMilIsc);
 
     for (let index = 0; index < mm2.length; index++) {
@@ -356,7 +374,7 @@ function calc_main() {
         XLCustom = XArray[indexCustom];
     
         ZeCustom = ZeFun(RTempCustom, XLCustom, pf);
-        voltageDropPercentResultCustom = voltageDropPercentFun(system, ZeCustom, length, current, voltage, conductorsPerPhase);
+        voltageDropPercentResultCustom = voltageDropPercentFun(system, ZeCustom, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase);
     
         voltageDropVoltsResultCustom = voltageDropPercentResultCustom*voltage/100;
     }
@@ -401,33 +419,6 @@ function calc_main() {
 
     var AmpacityArray = seacherAmpacityArrayFun(AmpacityTABLES, parameters);
     AmpacityArray = AmpacityArray.map(Ampacity =>  AmpacityFactorTABLE*Ampacity);
-    
-    /**Data **/
-    var currentFactors = [2, 1];
-    var currentFactorsContinuousLoad = [1, 1];
-    var currentFactorsTemperature = [1, 1];
-    var currentFactorsGrouping = [1, 1];
-    var currentFactorsAdjustment = [1, 1];
-    var currentFactorsVoltageDrop = [1, 1];
-    var currentFactorsShortCircuit = [1, 1];
-    /**Data **/
-
-    var currentFactor = resultFactor(currentFactors);
-    var currentFactorContinuousLoad = resultFactor(currentFactorsContinuousLoad);
-    var currentFactorTemperature = resultFactor(currentFactorsTemperature);
-    var currentFactorGrouping = resultFactor(currentFactorsGrouping);
-    var currentFactorAdjustment = resultFactor(currentFactorsAdjustment);
-    var currentFactorVoltageDrop = resultFactor(currentFactorsVoltageDrop);
-    var currentFactorShortCircuit = resultFactor(currentFactorsShortCircuit);
-
-    function resultFactor(currentFactors) {
-        let Factor = 1;
-        for (const factor of currentFactors) {
-            Factor = Factor*factor;
-        }
-    
-        return Factor
-    }
 
     var AmpacityIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactor, 1);
     var AmpacityContinuousLoadIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*1.25*currentFactorContinuousLoad, 1);
@@ -830,7 +821,7 @@ function voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, cu
 
         Ze = ZeFun(RTemp, XL, pf);
         voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current, voltage, conductorsPerPhase);
-        
+
         if (conductorMaterial === "Al" && index === 0) {
             continue;
         } else if (voltageDropPercentResult <= voltageDropPercent) {
@@ -876,4 +867,12 @@ function cmilToMm2(cmil) {
 function mm2Tocmil(mm2) {
     return mm2/(0.25*Math.PI*25.4*25.4e-6)
 }
-    
+
+function resultFactor(currentFactors) {
+    let Factor = 1;
+    for (const factor of currentFactors) {
+        Factor = Factor*factor;
+    }
+
+    return Factor
+}
