@@ -88,17 +88,22 @@ footer{
     display: flex;
 
     justify-content: center;
+    text-align: center;
 }
 
 .text-right{
     display: flex;
 
     justify-content: right;
+    text-align: right;
 }
 
 .text-center-footer{
     display: flex;
+
     justify-content: center;
+    text-align: center;
+
     padding: 1px;
     margin: 1px;
 }
