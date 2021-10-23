@@ -14,12 +14,13 @@ body{
 header{
     font-size: large;
     text-align: center;
+    color: #222222;
 
     border: solid 1px;
     margin: 0 auto;
     padding: 1px;
     
-    background-color: #929CAE;
+    background-color: #eeeeee;
     border-radius: 5px;
 }
 
@@ -30,7 +31,6 @@ footer{
 
 .data, .result, .result-small, .label, .text-right, .text-center, .data-fake{
     border: solid 1px;
-    padding: 0px;
     padding-left: 4px;
     padding-right: 2px;
     ;border: solid 1px;
@@ -59,7 +59,6 @@ footer{
     justify-content: left;
     grid-template-columns: minmax(9em, 9em) minmax(5em, 5em);
     grid-column: 1 / -1;
-    margin: 0px;
     padding: 2px;
 }
 
@@ -67,7 +66,6 @@ footer{
     display: grid;
     grid-column: 1 / -1;
     grid-column-gap: 5px;
-    padding: 0px;
     margin: 2px;
     ;border: solid 1px;
 }
@@ -90,6 +88,7 @@ footer{
     justify-content: center;
 
     border: solid 1px;
+    margin: 1px;
 }
 
 .text-right{
