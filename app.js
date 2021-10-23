@@ -380,6 +380,7 @@ function calc_main() {
     var factorGrouping = factorGroupingFun(tableFactorGrouping, conductorsPerConduit);
     var factorAdjustment = factorAdjustmentFun(factorTemperature, factorGrouping);
 
+    /**Data **/
     if (AmpacityTABLE === "310.16") {
         var parameters = {
             conductorMaterial: conductorMaterial,
@@ -396,9 +397,12 @@ function calc_main() {
     } else{
         
     }
+    /**Data **/
+
     var AmpacityArray = seacherAmpacityArrayFun(AmpacityTABLES, parameters);
     AmpacityArray = AmpacityArray.map(Ampacity =>  AmpacityFactorTABLE*Ampacity);
     
+    /**Data **/
     var currentFactors = [2, 1];
     var currentFactorsContinuousLoad = [1, 1];
     var currentFactorsTemperature = [1, 1];
@@ -406,6 +410,7 @@ function calc_main() {
     var currentFactorsAdjustment = [1, 1];
     var currentFactorsVoltageDrop = [1, 1];
     var currentFactorsShortCircuit = [1, 1];
+    /**Data **/
 
     var currentFactor = resultFactor(currentFactors);
     var currentFactorContinuousLoad = resultFactor(currentFactorsContinuousLoad);
@@ -808,22 +813,28 @@ function seacherTableRFun(racewayMaterial, conductorMaterial) {
 
 function voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, current, voltage, conductorsPerPhase, conductorMaterial, voltageDropPercent) {
 
+    let RTemp;
+    let XL;
+
+    let Ze;
+    let voltageDropPercentResult;
+
     for (let index = 0; index < RArray.length; index++) {
         if (RArray[index] === NaN || XArray[index] === NaN) {
             break;
         } else {
             
         }
-        let RTemp = RTempFun(RArray[index], Tinsulation);
-        let XL = XArray[index];
+        RTemp = RTempFun(RArray[index], Tinsulation);
+        XL = XArray[index];
 
-        let Ze = ZeFun(RTemp, XL, pf);
-        let voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current, voltage, conductorsPerPhase);
+        Ze = ZeFun(RTemp, XL, pf);
+        voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current, voltage, conductorsPerPhase);
+        
         if (conductorMaterial === "Al" && index === 0) {
             continue;
         } else if (voltageDropPercentResult <= voltageDropPercent) {
-            let voltageDropIndex = index;
-            return voltageDropIndex;
+            return index;
             //break;
         } else {
             
