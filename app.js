@@ -273,35 +273,16 @@ function calc_main() {
     var RArray = seacherTableRFun(racewayMaterial, conductorMaterial);
     var XArray = seacherTableXFun(racewayMaterial, conductorMaterial);
 
-    var RTemp;
-    var XL;
-    var Ze;
-    var voltageDropPercentResult;
-    var voltageDropVoltsResult;
     if (optionvoltageDrop === "optionvoltageDropPercent") {
         var voltageDropPercent = Number.parseFloat(document.getElementById("voltageDropPercent").value);
 
-        for (let index = 0; index < RArray.length; index++) {
-            if (RArray[index] === NaN || XArray[index] === NaN) {
-                break;
-            } else {
-                
-            }
-            RTemp = RTempFun(RArray[index], Tinsulation);
-            XL = XArray[index];
-    
-            Ze = ZeFun(RTemp, XL, pf);
-            voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current, voltage, conductorsPerPhase);
-            if (conductorMaterial === "Al" && index === 0) {
-                continue;
-            } else if (voltageDropPercentResult <= voltageDropPercent) {
-                var voltageDropIndex = index;
-                break;
-            } else {
-                
-            }
+        var voltageDropIndex = voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, current, voltage, conductorsPerPhase, conductorMaterial, voltageDropPercent)
 
-        }
+        var RTemp = RTempFun(RArray[voltageDropIndex], Tinsulation);
+        var XL = XArray[voltageDropIndex];
+
+        var Ze = ZeFun(RTemp, XL, pf);
+        var voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current, voltage, conductorsPerPhase);
 
         voltageDropVolts = voltageDropPercent*voltage/100;
         voltageDropVoltsResult = voltageDropPercentResult*voltage/100;
@@ -311,27 +292,14 @@ function calc_main() {
         var voltageDropVolts = Number.parseFloat(document.getElementById("voltageDropVolts").value);
 
         voltageDropPercent = voltageDropVolts/voltage*100;
-        for (let index = 0; index < RArray.length; index++) {
-            if (RArray[index] === NaN || XArray[index] === NaN) {
-                break;
-            } else {
-                
-            }
-            RTemp = RTempFun(RArray[index], Tinsulation);
-            XL = XArray[index];
-    
-            Ze = ZeFun(RTemp, XL, pf);
-            voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current, voltage, conductorsPerPhase);
-            if (conductorMaterial === "Al" && index === 0) {
-                continue;
-            } else if (voltageDropPercentResult <= voltageDropPercent) {
-                var voltageDropIndex = index;
-                break;
-            } else {
-                
-            }
+        var voltageDropIndex = voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, current, voltage, conductorsPerPhase, conductorMaterial, voltageDropPercent)
 
-        }
+        var RTemp = RTempFun(RArray[voltageDropIndex], Tinsulation);
+        var XL = XArray[voltageDropIndex];
+
+        var Ze = ZeFun(RTemp, XL, pf);
+        var voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current, voltage, conductorsPerPhase);
+
         voltageDropVoltsResult = voltageDropPercentResult*voltage/100;
         document.getElementById("voltageDropPercent").className = "result";
 
@@ -1036,14 +1004,29 @@ function seacherTableRFun(racewayMaterial, conductorMaterial) {
     }
 }
 
-function voltageDropIndexFun(AmpacityArray, current, Ampacityfactor) {
+function voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, current, voltage, conductorsPerPhase, conductorMaterial, voltageDropPercent) {
 
-    for (let index = 0; index < AmpacityArray.length; index++) {
-        if (current <= AmpacityArray[index]*Ampacityfactor) {
-            return index;
+    for (let index = 0; index < RArray.length; index++) {
+        if (RArray[index] === NaN || XArray[index] === NaN) {
+            break;
         } else {
             
-        }  
+        }
+        let RTemp = RTempFun(RArray[index], Tinsulation);
+        let XL = XArray[index];
+
+        let Ze = ZeFun(RTemp, XL, pf);
+        let voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current, voltage, conductorsPerPhase);
+        if (conductorMaterial === "Al" && index === 0) {
+            continue;
+        } else if (voltageDropPercentResult <= voltageDropPercent) {
+            let voltageDropIndex = index;
+            return voltageDropIndex;
+            //break;
+        } else {
+            
+        }
+
     }
 }
 
