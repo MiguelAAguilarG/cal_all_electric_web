@@ -247,23 +247,68 @@ function calc_main() {
 
     /**optionLoadArray **/
     var optionLoadArray = document.getElementsByName("optionLoad");
-            
+    
+    var optionLoadArrayChecked = [];
+    var optionLoadArrayNotChecked = [];
     for(i = 0; i < optionLoadArray.length; i++) { 
         if(optionLoadArray[i].checked) {
-            var optionLoad = optionLoadArray[i].value;
-            break;
+            optionLoadArrayChecked.push(optionLoadArray[i].value);
+        } else {
+            optionLoadArrayNotChecked.push(optionLoadArray[i].value);
         }
     }
+    console.log(optionLoadArrayChecked);
+    console.log(optionLoadArrayNotChecked);
+    if (optionLoadArrayChecked.length > 2) {
+        if (optionLoadArrayChecked.filter(optionLoad => ["optionLoadapparentPower", "optionLoadcurrent", "optionLoadpf"].indexOf(optionLoad) !== -1).length >= 3) {
+            console.log("dddddddddddddddd");
+            optionLoadArrayNotChecked.map(optionLoad => document.getElementById(optionLoad).disabled = true);
+            optionLoadArrayNotChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "result");
+            optionLoadArrayChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "data");
 
-    document.getElementById("realPower").className = "data";
+        } else {
+            optionLoadArrayNotChecked.map(optionLoad => document.getElementById(optionLoad).disabled = true);
+
+            optionLoadArrayNotChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "result");
+            optionLoadArrayChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "data");
+            return;
+        }
+
+        
+    } else if (optionLoadArrayChecked.length === 2){
+        if (optionLoadArrayChecked.filter(optionLoad => ["optionLoadapparentPower", "optionLoadcurrent"].indexOf(optionLoad) !== -1).length >= 2) {
+            console.log("ffffffffffffffffff");
+            optionLoadArrayChecked.push("optionLoadpf");
+            optionLoadArrayNotChecked.splice(optionLoadArrayNotChecked.indexOf("optionLoadpf"),1);
+            document.getElementById("optionLoadpf").checked = true;
+            document.getElementById("optionLoadpf").disabled = false;
+
+        } else {
+            
+        }
+        optionLoadArrayNotChecked.map(optionLoad => document.getElementById(optionLoad).disabled = true);
+
+        optionLoadArrayNotChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "result");
+        optionLoadArrayChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "data");
+    } else {
+        optionLoadArrayNotChecked.map(optionLoad => document.getElementById(optionLoad).disabled = false);
+        optionLoadArrayChecked.map(optionLoad => document.getElementById(optionLoad).disabled = false);
+
+        optionLoadArrayNotChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "result");
+        optionLoadArrayChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "data");
+        return;
+    }
+    console.log(optionLoadArrayNotChecked);
+    console.log(optionLoadArrayChecked);
+
+    /*document.getElementById("realPower").className = "data";
     document.getElementById("current").className = "data";
     if (optionLoad === "optionLoadcurrent") {
         current = Number.parseFloat(document.getElementById("current").value);
 
         realPower = realPowerFun(system, voltage, current, pf);
 
-        document.getElementById("realPower").className = "result";
-
+        
     } else if (optionLoad === "optionLoadrealPower") {
         realPower = Number.parseFloat(document.getElementById("realPower").value);
 
@@ -273,7 +318,236 @@ function calc_main() {
 
     } else {
         
+    }**/
+
+
+
+    var electricParameters = {
+        A: 0,
+        S: 0,
+        Q: 0,
+        P: 0,
+        I: 0
+    };
+
+    if (system === "single") {
+        var phases = 1;
+    } else if (system === "three") {
+        var phases = 3;
+    } else {
+
     }
+    var V = voltage;
+
+    var Vars = [];
+    for (let index = 0; index < optionLoadArrayChecked.length; index++) {
+        const optionLoad = optionLoadArrayChecked[index];
+
+        if (optionLoad === "optionLoadcurrent") {
+            current = Number.parseFloat(document.getElementById("current").value);
+    
+            electricParameters["I"] = current;
+            Vars.push("I");
+
+        } else if (optionLoad === "optionLoadrealPower") {
+            realPower = Number.parseFloat(document.getElementById("realPower").value);
+    
+            electricParameters["P"] = realPower;
+            Vars.push("P");
+
+        } else if (optionLoad === "optionLoadpf") {
+            pf = Number.parseFloat(document.getElementById("pf").value);
+    
+            electricParameters["A"] = Math.acos(pf);
+            Vars.push("A");
+            
+        } else if (optionLoad === "optionLoadapparentPower") {
+            apparentPower = Number.parseFloat(document.getElementById("apparentPower").value);
+    
+            electricParameters["S"] = apparentPower;
+            Vars.push("S");
+
+        } else if (optionLoad === "optionLoadreactivePower") {
+            reactivePower = Number.parseFloat(document.getElementById("reactivePower").value);
+    
+            electricParameters["Q"] = reactivePower;
+            Vars.push("Q");
+
+        } else {
+            
+        }
+        
+    }
+
+    function searcherElectricParameters(ForKey, ForPar, phases, V, electricParameters) {
+        let A = electricParameters["A"];
+        let S = electricParameters["S"];
+        let Q = electricParameters["Q"];
+        let P = electricParameters["P"];
+        let I = electricParameters["I"];
+
+        if (ForKey === "A") {
+            if (ForPar === "PS" || ForPar === "SP") {
+                function APS(P,S) {
+                    return Math.acos(P/S)
+                };
+                return APS(P,S);
+            } else if (ForPar === "QS" || ForPar === "SQ") {
+                function AQS(Q,S) {
+                    return Math.asin(Q/S)
+                };
+                return AQS(Q,S);
+            } else if (ForPar === "QP" || ForPar === "PQ") {
+                function AQP(Q,P) {
+                    return Math.atan(Q/P)
+                };
+                return AQP(Q,P);
+            } else if (ForPar === "PI" || ForPar === "IP") {
+                function API(P,V,I,phases) {
+                    return Math.acos(P/(V*I*Math.sqrt(phases)))
+                }
+                return API(P,V,I,phases);
+            } else if (ForPar === "QI" || ForPar === "IQ") {
+                function AQI(Q,V,I,phases) {
+                    return Math.asin(Q/(V*I*Math.sqrt(phases)))
+                }
+                return AQI(Q,V,I,phases);
+            } else {
+                
+            }
+        } else if (ForKey === "S") {
+            if (ForPar === "PQ" || ForPar === "QP") {
+                function SPQ(P,Q) {
+                    return S = Math.sqrt(P*P + Q*Q)
+                };
+                return SPQ(P,Q);
+            } else if (ForPar === "PA" || ForPar === "AP") {
+                function SPA(P,A) {
+                    return P/Math.cos(A)
+                };
+                return SPA(P,A);
+            } else if (ForPar === "QA" || ForPar === "AQ") {
+                function SQA(Q,A) {
+                    return Q/Math.sin(A)
+                };
+                return SQA(Q,A);
+            }else {
+                
+            }
+        } else if (ForKey === "Q") {
+            if (ForPar === "IA" || ForPar === "AI") {
+                function QIA(I,A,V,phases) {
+                    return Q = V*I*Math.sin(A)*Math.sqrt(phases)
+                };
+                return QIA(I,A,V,phases);
+            } else {
+                
+            }
+        } else if (ForKey === "P") {
+            if (ForPar === "IA" || ForPar === "AI") {
+                function PIA(I,A,V,phases) {
+                    return P = V*I*Math.cos(A)*Math.sqrt(phases)
+                };
+                return PIA(I,A,V,phases);
+            } else if (ForPar === "AS" || ForPar === "SA") {
+                function PAS(A,S) {
+                    return S*Math.cos(A)
+                };
+                return PAS(A,S);
+            } else {
+                
+            }
+        } else if (ForKey === "I") {
+            if (ForPar === "PA" || ForPar === "AP") {
+                function IPA(P,A,V,phases) {
+                    return I = P/(V*Math.cos(A)*Math.sqrt(phases))
+                };
+                return IPA(P,A,V,phases);
+            } else {
+                
+            }
+        } else {
+            
+        }
+    }
+    
+    var Pars = ["A", "S", "Q", "P","I"];
+    var Fors = {
+        /*ForKey*/A: ["PS"/*ForPar*/, "QS", "QP", "PI", "QI"]/*ForPars*/,
+        S: ["PQ", "PA", "QA"],
+        Q: ["IA"],
+        P: ["IA", "AS"],
+        I: ["PA"]
+    };
+
+    var ForsMemsUsed = {
+        A: [[], [], [], [], []],
+        S: [[], [], []],
+        Q: [[]],
+        P: [[], []],
+        I: [[]]
+    };
+
+    var Ques = Pars.filter(Que => Vars.indexOf(Que) === -1);
+
+    var Que = Ques[0];
+    while (Ques.length > 0) {
+        let ForKey = Object.keys(Fors).find(ForKey => ForKey === Que);
+        let ForsPars = Fors[ForKey];
+
+        for (let ForsParsindex = 0; ForsParsindex < ForsPars.length; ForsParsindex++) {
+            let ForPars = ForsPars[ForsParsindex];
+
+            let ForParsInVars = ForPars.split("").filter(ForPar => Vars.indexOf(ForPar) !== -1);
+            let ForParsOutVars = ForPars.split("").filter(ForPar => Vars.indexOf(ForPar) === -1);
+            ForsMemsUsed[ForKey][ForsParsindex].push(ForParsInVars);
+            ForsMemsUsed[ForKey][ForsParsindex].push(ForParsOutVars);
+
+            if (ForParsInVars.length === 2) {
+
+                electricParameters[ForKey] = searcherElectricParameters(ForKey, ForParsInVars[0] + ForParsInVars[1], phases, V, electricParameters);
+                Vars.push(ForKey);
+                console.log(ForKey);
+                console.log(JSON.stringify(electricParameters[ForKey]));
+
+                ForsMemsUsed = {
+                    A: [[], [], [], [], []],
+                    S: [[], [], []],
+                    Q: [[]],
+                    P: [[], []],
+                    I: [[]]
+                };
+                Ques = Ques.filter(Que => ForKey !== Que);
+                Que = Ques[0];
+                console.log(Ques);
+                console.log(Que);
+                if (Ques.length <= 0) {
+                    break;
+                } else {
+                    
+                }
+            } else if (ForParsInVars.length === 1) {
+                if (ForsMemsUsed[ForKey][ForsParsindex][2]) {
+                    break;
+                } else {
+                    ForsMemsUsed[ForKey][ForsParsindex].push(ForPars);
+                    Que = ForsMemsUsed[ForKey][ForsParsindex][1][0];
+                }
+            } else {
+                
+            }
+            
+        }
+
+    }
+
+    current = electricParameters["I"];
+    realPower = electricParameters["P"];
+    pf = Math.cos(electricParameters["A"]);
+    apparentPower = electricParameters["S"];
+    reactivePower = electricParameters["Q"];
+
+    console.log(JSON.stringify(electricParameters));
     /**optionLoadArray **/
 
     /**optionvoltageDropArray **/
@@ -288,8 +562,8 @@ function calc_main() {
 
     document.getElementById("voltageDropPercent").className = "data";
     document.getElementById("voltageDropVolts").className = "data";
-    var RArray = seacherTableRFun(racewayMaterial, conductorMaterial);
-    var XArray = seacherTableXFun(racewayMaterial, conductorMaterial);
+    var RArray = searcherTableRFun(racewayMaterial, conductorMaterial);
+    var XArray = searcherTableXFun(racewayMaterial, conductorMaterial);
 
     if (optionvoltageDrop === "optionvoltageDropPercent") {
         var voltageDropPercent = Number.parseFloat(document.getElementById("voltageDropPercent").value);
@@ -391,8 +665,8 @@ function calc_main() {
 
     var currentPerConductor = currentPerConductorFun(current, conductorsPerPhase);
 
-    var apparentPower = apparentPowerFun(system, voltage, current, pf);
-    var reactivePower = reactivePowerFun(system, voltage, current, pf);
+    /*var apparentPower = apparentPowerFun(system, voltage, current, pf);
+    var reactivePower = reactivePowerFun(system, voltage, current, pf);*/
 
     var factorTemperature = factorTemperatureFun(Tinsulation, Tambient);
     var factorGrouping = factorGroupingFun(tableFactorGrouping, conductorsPerConduit);
@@ -417,7 +691,7 @@ function calc_main() {
     }
     /**Data **/
 
-    var AmpacityArray = seacherAmpacityArrayFun(AmpacityTABLES, parameters);
+    var AmpacityArray = searcherAmpacityArrayFun(AmpacityTABLES, parameters);
     AmpacityArray = AmpacityArray.map(Ampacity =>  AmpacityFactorTABLE*Ampacity);
 
     var AmpacityIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactor, 1);
@@ -482,11 +756,23 @@ function calc_main() {
 
     /*results */
     document.getElementById("current").value = current.toFixed(decimals);
-    document.getElementById("ContinuousLoad").value = (current*1.25).toFixed(decimals);
-    document.getElementById("currentPerConductor").value = currentPerConductor.toFixed(decimals);
+    document.getElementById("pf").value = pf.toFixed(decimals+2);
     document.getElementById("realPower").value = realPower.toFixed(decimals);
     document.getElementById("apparentPower").value = apparentPower.toFixed(decimals);
     document.getElementById("reactivePower").value = reactivePower.toFixed(decimals);
+
+    var LoadArray = [current, pf, realPower, apparentPower, reactivePower];
+    var LoadArrayId = ["current", "pf", "realPower", "apparentPower", "reactivePower"];
+
+    for(i = 0; i < LoadArrayId.length; i++) { 
+        if (document.getElementById(LoadArrayId[i]).className === "result") {
+            document.getElementById(LoadArrayId[i]).value = LoadArray[i].toFixed(decimals+2);
+        } else {
+        }
+    }
+    
+    document.getElementById("ContinuousLoad").value = (current*1.25).toFixed(decimals);
+    document.getElementById("currentPerConductor").value = currentPerConductor.toFixed(decimals);
 
     document.getElementById("factorTemperature").value = factorTemperature.toFixed(decimals+2);
     document.getElementById("factorGrouping").value = factorGrouping;
@@ -700,7 +986,7 @@ function factorAdjustmentFun(factorTemperature, factorGrouping) {
     return factorAdjustment = factorTemperature*factorGrouping;
 }
 
-function seacherAmpacityArrayFun(AmpacityTABLES, parameters) {
+function searcherAmpacityArrayFun(AmpacityTABLES, parameters) {
 
     for (const TABLE in AmpacityTABLES) {
         for (const element in AmpacityTABLES[TABLE]) {
@@ -748,7 +1034,7 @@ function AmpacityIndexFun(AmpacityArray, current, Ampacityfactor) {
     }
 }
 
-function seacherTableXFun(racewayMaterial, conductorMaterial) {
+function searcherTableXFun(racewayMaterial, conductorMaterial) {
     if (conductorMaterial === "Cu") {
         if (racewayMaterial === "PVC") {
             return XCuPVC;
@@ -775,7 +1061,7 @@ function seacherTableXFun(racewayMaterial, conductorMaterial) {
     }
 }
 
-function seacherTableRFun(racewayMaterial, conductorMaterial) {
+function searcherTableRFun(racewayMaterial, conductorMaterial) {
     if (conductorMaterial === "Cu") {
         if (racewayMaterial === "PVC") {
             return RCuPVC;

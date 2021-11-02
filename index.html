@@ -80,9 +80,9 @@
         <form id="form2">
             <div class="box-data">
                 <label for="current" class="text-right">I</label>
-                <input type="number" min="0" value="16" name="current" id="current" class="data">
+                <input type="number" min="0" value="16" step="1" name="current" id="current" class="data">
                 <span>[A]</span>
-                <input type="radio" id="optionLoadcurrent" name="optionLoad" value="optionLoadcurrent" checked>
+                <input type="checkbox" id="optionLoadcurrent" name="optionLoad" value="optionLoadcurrent" checked>
             </div>
 
             <div class="box-data">
@@ -101,25 +101,28 @@
                 <label for="realPower" class="text-right">P</label>
                 <input type="number" min="0" step="10" value="1000" name="realPower" id="realPower" class="data">
                 <span>[W]</span>
-                <input type="radio" id="optionLoadrealPower" name="optionLoad" value="optionLoadrealPower">
+                <input type="checkbox" id="optionLoadrealPower" name="optionLoad" value="optionLoadrealPower">
             </div>
 
             <div class="box-data">
                 <label for="pf" class="text-right">FP</label>
-                <input type="number" min="0" max="1" step="0.1" value="0.9" name="pf" id="pf" class="data">
+                <input type="number" min="0" max="1" step="0.1" value="0.90" name="pf" id="pf" class="data">
                 <span> </span>
+                <input type="checkbox" id="optionLoadpf" name="optionLoad" value="optionLoadpf" checked>
             </div>
 
             <div class="box-data">
                 <label for="apparentPower" class="text-right">S</label>
-                <input type="number" value="1000" name="apparentPower" id="apparentPower" class="result" >
+                <input type="number" min="0" step="10" value="1000" name="apparentPower" id="apparentPower" class="result" >
                 <span>[VA]</span>
+                <input type="checkbox" id="optionLoadapparentPower" name="optionLoad" value="optionLoadapparentPower">
             </div>
 
             <div class="box-data">
                 <label for="reactivePower" class="text-right">Q</label>
-                <input type="number" value="1000" name="reactivePower" id="reactivePower" class="result" >
+                <input type="number" min="0" step="10" value="1000" name="reactivePower" id="reactivePower" class="result" >
                 <span>[VAR]</span>
+                <input type="checkbox" id="optionLoadreactivePower" name="optionLoad" value="optionLoadreactivePower">
             </div>
 
         </form>

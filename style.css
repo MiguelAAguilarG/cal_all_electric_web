@@ -92,7 +92,7 @@ footer{
 }
 
 .text-right{
-    display: flex;
+    display: flex; 
 
     justify-content: flex-end;
     text-align: right;
