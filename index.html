@@ -30,7 +30,7 @@
             <div class="box-data">
                 <label for="voltage" class="text-right">V</label>
                 <input type="number" min="0" value="120" step="1" name="voltage" id="voltage" class="data">
-                <span>[V]</span>
+                <span class="text-left">[V]</span>
             </div>
 
             <div class="box-data">
@@ -81,26 +81,26 @@
             <div class="box-data">
                 <label for="current" class="text-right">I</label>
                 <input type="number" min="0" value="16" step="1" name="current" id="current" class="data">
-                <span>[A]</span>
+                <span class="text-left">[A]</span>
                 <input type="checkbox" id="optionLoadcurrent" name="optionLoad" value="optionLoadcurrent" checked>
             </div>
 
             <div class="box-data">
                 <label for="currentPerConductor" class="text-right">I/cond</label>
-                <input type="number" value="16" name="currentPerConductor" id="currentPerConductor" class="result" >
-                <span>[A]</span>
+                <input type="number" value="16" name="currentPerConductor" id="currentPerConductor" class="result">
+                <span class="text-left">[A]</span>
             </div>
 
             <div class="box-data">
                 <label for="ContinuousLoad" class="text-right">Icont</label>
-                <input type="number" value="16" name="ContinuousLoad" id="ContinuousLoad" class="result" >
-                <span>I*1.25</span>
+                <input type="number" value="16" name="ContinuousLoad" id="ContinuousLoad" class="result">
+                <span class="text-left">I*1.25</span>
             </div>
 
             <div class="box-data">
                 <label for="realPower" class="text-right">P</label>
                 <input type="number" min="0" step="10" value="1000" name="realPower" id="realPower" class="data">
-                <span>[W]</span>
+                <span class="text-left">[W]</span>
                 <input type="checkbox" id="optionLoadrealPower" name="optionLoad" value="optionLoadrealPower">
             </div>
 
@@ -114,14 +114,14 @@
             <div class="box-data">
                 <label for="apparentPower" class="text-right">S</label>
                 <input type="number" min="0" step="10" value="1000" name="apparentPower" id="apparentPower" class="result" >
-                <span>[VA]</span>
+                <span class="text-left">[VA]</span>
                 <input type="checkbox" id="optionLoadapparentPower" name="optionLoad" value="optionLoadapparentPower">
             </div>
 
             <div class="box-data">
                 <label for="reactivePower" class="text-right">Q</label>
                 <input type="number" min="0" step="10" value="1000" name="reactivePower" id="reactivePower" class="result" >
-                <span>[VAR]</span>
+                <span class="text-left">[VAR]</span>
                 <input type="checkbox" id="optionLoadreactivePower" name="optionLoad" value="optionLoadreactivePower">
             </div>
 
@@ -133,45 +133,45 @@
             <div class="box-data">
                 <label for="Lmax" class="text-right">Lmax</label>
                 <input type="number" min="0" value="30" name="Lmax" id="Lmax" class="result" >
-                <span>[m]</span>
+                <span class="text-left">[m]</span>
             </div>
 
             <div class="box-data">
                 <label for="Imax" class="text-right">Imax</label>
                 <input type="number" min="0" value="25" name="Imax" id="Imax" class="result" >
-                <span>[A]</span>
+                <span class="text-left">[A]</span>
             </div>
 
             <div class="box-data">
                 <label for="length" class="text-right">L</label>
                 <input type="number" min="0" step="5" value="30" name="length" id="length" class="data">
-                <span>[m]</span>
+                <span class="text-left">[m]</span>
             </div>
 
             <div class="box-data">
                 <label for="voltageDropPercent" class="text-right">%e</label>
                 <input type="number" min="0" step="0.5" max="100" value="3" name="voltageDropPercent" id="voltageDropPercent" class="data">
-                <span>[%]</span>
+                <span class="text-left">[%]</span>
                 <input type="radio" id="optionvoltageDropPercent" name="optionvoltageDrop" value="optionvoltageDropPercent" checked>
             </div>
 
             <div class="box-data">
                 <label for="voltageDropVolts" class="text-right">e</label>
                 <input type="number" min="0" step="1" value="5" name="voltageDropVolts" id="voltageDropVolts" class="data">
-                <span>[V]</span>
+                <span class="text-left">[V]</span>
                 <input type="radio" id="optionvoltageDropVolts" name="optionvoltageDrop" value="optionvoltageDropVolts">
             </div>
 
             <div class="box-data">
                 <label for="voltageDropPercentResult" class="text-right">=%e</label>
                 <input type="number" min="0" step="0.5" max="100" value="3" name="voltageDropPercentResult" id="voltageDropPercentResult" class="result">
-                <span>[%]</span>
+                <span class="text-left">[%]</span>
             </div>
 
             <div class="box-data">
                 <label for="voltageDropVoltsResult" class="text-right">=e</label>
                 <input type="number" min="0" step="1" value="5" name="voltageDropVoltsResult" id="voltageDropVoltsResult" class="result">
-                <span>[V]</span>
+                <span class="text-left">[V]</span>
             </div>
         </form>
     </div>
@@ -267,31 +267,31 @@
             <div class="box-data">
                 <label for="LmaxCustom" class="text-right">Lmax</label>
                 <input type="number" min="0" value="30" name="LmaxCustom" id="LmaxCustom" class="result" >
-                <span>[m]</span>
+                <span class="text-left">[m]</span>
             </div>
 
             <div class="box-data">
                 <label for="ImaxCustom" class="text-right">Imax</label>
                 <input type="number" min="0" value="25" name="ImaxCustom" id="ImaxCustom" class="result" >
-                <span>[A]</span>
+                <span class="text-left">[A]</span>
             </div>
 
             <div class="box-data">
                 <label for="voltageDropPercentResultCustom" class="text-right">=%e</label>
                 <input type="number" min="0" step="0.5" max="100" value="3" name="voltageDropPercentResultCustom" id="voltageDropPercentResultCustom" class="result">
-                <span>[%]</span>
+                <span class="text-left">[%]</span>
             </div>
 
             <div class="box-data">
                 <label for="voltageDropVoltsResultCustom" class="text-right">=e</label>
                 <input type="number" min="0" step="1" value="5" name="voltageDropVoltsResultCustom" id="voltageDropVoltsResultCustom" class="result">
-                <span>[V]</span>
+                <span class="text-left">[V]</span>
             </div>
 
             <div class="box-data">
                 <label for="conductorIscCustom" class="text-right">conductor Isc</label>
                 <input type="number" value="1" name="conductorIscCustom" id="conductorIscCustom" class="result" >
-                <span>[kA]</span>
+                <span class="text-left">[kA]</span>
             </div>
         </form>
     </div>
@@ -386,7 +386,7 @@
             <div class="box-data">
                 <label for="Tambient" class="text-right">Tamb</label>
                 <input type="number" value="30" name="Tambient" id="Tambient" class="data">
-                <span>[°C]</span>
+                <span class="text-left">[°C]</span>
             </div>
 
             <div class="box-data">
@@ -396,7 +396,7 @@
                     <option value="75">75</option>
                     <option value="90">90</option>
                 </select>
-                <span>[°C]</span>
+                <span class="text-left">[°C]</span>
             </div>
 
             <div class="box-data">
@@ -405,7 +405,7 @@
                     <option value="Cu">Cu</option> 
                     <option value="Al">Al</option>
                 </select>
-                <span></span>
+                <span class="text-left"></span>
             </div>
 
             <div class="box-data">
@@ -453,25 +453,25 @@
             <div class="box-data">
                 <label for="conductorIsc" class="text-right">conductor Isc</label>
                 <input type="number" value="1" name="conductorIsc" id="conductorIsc" class="result" >
-                <span>[kA]</span>
+                <span class="text-left">[kA]</span>
             </div>
 
             <div class="box-data">
                 <label for="Isc" class="text-right">Isc</label>
                 <input type="number" value="10" name="Isc" id="Isc" class="data" >
-                <span>[kA]</span>
+                <span class="text-left">[kA]</span>
             </div>
 
             <div class="box-data">
                 <label for="timeIsc" class="text-right">time Isc</label>
                 <input type="number" min="0" value="0.016" name="timeIsc" id="timeIsc" class="data">
-                <span>[s]</span>
+                <span class="text-left">[s]</span>
             </div>
 
             <div class="box-data">
                 <label for="temperature1" class="text-right">T1</label>
                 <input type="number" value="60" name="temperature1" id="temperature1" class="data">
-                <span>[°C]</span>
+                <span class="text-left">[°C]</span>
             </div>
 
             <div class="box-data">
@@ -482,7 +482,7 @@
                     <option value="250">cross-linked polyethylene, T2 = 250</option>
                     <option value="250">ethylene propylene rubber, T2 = 250</option>
                 </select>
-                <span>[°C]</span>
+                <span class="text-left">[°C]</span>
             </div>
         </form>
     </div>
@@ -503,7 +503,7 @@
                     <option value="310.17">310.17</option>
                 </select>
                 <input type="number" min="0" max="100" value="100" step="5" name="AmpacityFactor" id="AmpacityFactorTABLE" class="data">
-                <label for="AmpacityFactorTABLE">[%]</label>
+                <label for="AmpacityFactorTABLE" class="text-left">[%]</label>
             </div>
         </form>
     </div>

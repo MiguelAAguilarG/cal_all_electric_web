@@ -98,6 +98,15 @@ footer{
     text-align: right;
 }
 
+.text-left{
+    display: flex; 
+
+    justify-content: flex-start;
+    text-align: right;
+
+    padding: 2px;
+}
+
 .text-center-footer{
     display: flex;
 
