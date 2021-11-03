@@ -352,7 +352,7 @@ function calc_main() {
         
     }
     
-    let Pars = ["A", "S", "Q", "P","I"];
+    let Pars = ["A", "S", "Q", "P", "I"];
     let Fors = {
         /*ForKey*/A: ["PS"/*ForPar*/, "QS", "QP", "PI", "QI"]/*ForPars*/,
         S: ["PQ", "PA", "QA"],
@@ -388,8 +388,6 @@ function calc_main() {
 
                 electricParameters[ForKey] = searcherElectricParameters(ForKey, ForParsInVars[0] + ForParsInVars[1], phases, V, electricParameters);
                 Vars.push(ForKey);
-                console.log(ForKey);
-                console.log(JSON.stringify(electricParameters[ForKey]));
 
                 ForsMemsUsed = {
                     A: [[], [], [], [], []],
@@ -400,8 +398,6 @@ function calc_main() {
                 };
                 Ques = Ques.filter(Que => ForKey !== Que);
                 Que = Ques[0];
-                console.log(Ques);
-                console.log(Que);
                 if (Ques.length <= 0) {
                     break;
                 } else {
