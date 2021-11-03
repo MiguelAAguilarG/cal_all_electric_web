@@ -352,8 +352,8 @@ function calc_main() {
         
     }
     
-    let Pars = ["A", "S", "Q", "P", "I"];
-    let Fors = {
+    const Pars = ["A", "S", "Q", "P", "I"];
+    const Fors = {
         /*ForKey*/A: ["PS"/*ForPar*/, "QS", "QP", "PI", "QI"]/*ForPars*/,
         S: ["PQ", "PA", "QA"],
         Q: ["IA"],
@@ -361,13 +361,11 @@ function calc_main() {
         I: ["PA"]
     };
 
-    let ForsMemsUsed = {
-        A: [[], [], [], [], []],
-        S: [[], [], []],
-        Q: [[]],
-        P: [[], []],
-        I: [[]]
-    };
+    const ForsMemsUsed = JSON.parse(JSON.stringify(Fors));
+
+    for (const key in ForsMemsUsed) {
+        ForsMemsUsed[key] = ForsMemsUsed[key].map(element => element = []);
+    }
 
     let Ques = Pars.filter(Que => Vars.indexOf(Que) === -1);
 
@@ -389,13 +387,10 @@ function calc_main() {
                 electricParameters[ForKey] = searcherElectricParameters(ForKey, ForParsInVars[0] + ForParsInVars[1], phases, V, electricParameters);
                 Vars.push(ForKey);
 
-                ForsMemsUsed = {
-                    A: [[], [], [], [], []],
-                    S: [[], [], []],
-                    Q: [[]],
-                    P: [[], []],
-                    I: [[]]
-                };
+                for (const key in ForsMemsUsed) {
+                    ForsMemsUsed[key] = ForsMemsUsed[key].map(element => element = []);
+                }
+
                 Ques = Ques.filter(Que => ForKey !== Que);
                 Que = Ques[0];
                 if (Ques.length <= 0) {
@@ -429,6 +424,7 @@ function calc_main() {
     let optionvoltageDropArray = document.getElementsByName("optionvoltageDrop");
     
     let optionvoltageDrop;
+    //Array.prototype.find()
     for(i = 0; i < optionvoltageDropArray.length; i++) { 
         if(optionvoltageDropArray[i].checked) {
             optionvoltageDrop = optionvoltageDropArray[i].value;
@@ -544,7 +540,7 @@ function calc_main() {
     let factorAdjustment = factorAdjustmentFun(factorTemperature, factorGrouping);
 
     /**Data **/
-    let parameters;
+    let parameters = {};
     if (AmpacityTABLE === "310.16") {
         parameters = {
             conductorMaterial: conductorMaterial,
@@ -896,7 +892,7 @@ function searcherAmpacityArrayFun(AmpacityTABLES, parameters) {
 }
 
 function AmpacityIndexFun(AmpacityArray, current, Ampacityfactor) {
-    //findIndex()
+    //Array.prototype.findIndex()
     for (let index = 0; index < AmpacityArray.length; index++) {
         if (current <= AmpacityArray[index]*Ampacityfactor) {
             return index;
