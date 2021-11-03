@@ -148,36 +148,36 @@ function calc_main() {
 
     /*data */
     /*form0 */
-    var decimals = Number.parseInt(document.getElementById("decimals").value);
+    let decimals = Number.parseInt(document.getElementById("decimals").value);
     /*form1 */
-    var system = document.getElementById("system").value;
-    var voltage = Number.parseFloat(document.getElementById("voltage").value);
-    var conductorsPerPhase = Number.parseInt(document.getElementById("conductorsPerPhase").value);
-    var IndexCalibreCustom = Number.parseInt(document.getElementById("listCalibreCustom").value);
+    let system = document.getElementById("system").value;
+    let voltage = Number.parseFloat(document.getElementById("voltage").value);
+    let conductorsPerPhase = Number.parseInt(document.getElementById("conductorsPerPhase").value);
+    let IndexCalibreCustom = Number.parseInt(document.getElementById("listCalibreCustom").value);
 
     /*form2 */
-    var current = Number.parseFloat(document.getElementById("current").value);
-    var realPower = Number.parseFloat(document.getElementById("realPower").value);
-    var pf = Number.parseFloat(document.getElementById("pf").value);
+    let current = Number.parseFloat(document.getElementById("current").value);
+    let realPower = Number.parseFloat(document.getElementById("realPower").value);
+    let pf = Number.parseFloat(document.getElementById("pf").value);
     /*form3 */
-    var length = Number.parseFloat(document.getElementById("length").value);
-    var voltageDropPercent = Number.parseFloat(document.getElementById("voltageDropPercent").value);
-    var voltageDropVolts = Number.parseFloat(document.getElementById("voltageDropVolts").value);
+    let length = Number.parseFloat(document.getElementById("length").value);
+    let voltageDropPercent = Number.parseFloat(document.getElementById("voltageDropPercent").value);
+    let voltageDropVolts = Number.parseFloat(document.getElementById("voltageDropVolts").value);
     /*form4 */
-    var Tambient = Number.parseFloat(document.getElementById("Tambient").value);
-    var Tinsulation = Number.parseInt(document.getElementById("Tinsulation").value);
-    var conductorMaterial = document.getElementById("conductorMaterial").value;
-    var racewayMaterial = document.getElementById("racewayMaterial").value;
+    let Tambient = Number.parseFloat(document.getElementById("Tambient").value);
+    let Tinsulation = Number.parseInt(document.getElementById("Tinsulation").value);
+    let conductorMaterial = document.getElementById("conductorMaterial").value;
+    let racewayMaterial = document.getElementById("racewayMaterial").value;
     /*formA */
-    var conductorsPerConduit = Number.parseInt(document.getElementById("conductorsPerConduit").value);
+    let conductorsPerConduit = Number.parseInt(document.getElementById("conductorsPerConduit").value);
     /*form6 */
-    var Isc = Number.parseFloat(document.getElementById("Isc").value)*1000;
-    var timeIsc = Number.parseFloat(document.getElementById("timeIsc").value);
-    var temperature1 = Number.parseFloat(document.getElementById("temperature1").value);
-    var temperature2 = Number.parseInt(document.getElementById("temperature2").value);
+    let Isc = Number.parseFloat(document.getElementById("Isc").value)*1000;
+    let timeIsc = Number.parseFloat(document.getElementById("timeIsc").value);
+    let temperature1 = Number.parseFloat(document.getElementById("temperature1").value);
+    let temperature2 = Number.parseInt(document.getElementById("temperature2").value);
     /*form7 */
-    var AmpacityTABLE = document.getElementById("AmpacityTABLE").value;
-    var AmpacityFactorTABLE = Number.parseFloat(document.getElementById("AmpacityFactorTABLE").value)/100;
+    let AmpacityTABLE = document.getElementById("AmpacityTABLE").value;
+    let AmpacityFactorTABLE = Number.parseFloat(document.getElementById("AmpacityFactorTABLE").value)/100;
 
     let flag = 0;
     if (voltage <= 0 ) {
@@ -228,28 +228,28 @@ function calc_main() {
     }
 
     /**Data **/
-    var currentFactors = [1, 1];
-    var currentFactorsContinuousLoad = [1, 1];
-    var currentFactorsTemperature = [1, 1];
-    var currentFactorsGrouping = [1, 1];
-    var currentFactorsAdjustment = [1, 1];
-    var currentFactorsVoltageDrop = [1, 1];
-    var currentFactorsShortCircuit = [1, 1];
+    let currentFactors = [1, 1];
+    let currentFactorsContinuousLoad = [1, 1];
+    let currentFactorsTemperature = [1, 1];
+    let currentFactorsGrouping = [1, 1];
+    let currentFactorsAdjustment = [1, 1];
+    let currentFactorsVoltageDrop = [1, 1];
+    let currentFactorsShortCircuit = [1, 1];
     /**Data **/
 
-    var currentFactor = resultFactor(currentFactors);
-    var currentFactorContinuousLoad = resultFactor(currentFactorsContinuousLoad);
-    var currentFactorTemperature = resultFactor(currentFactorsTemperature);
-    var currentFactorGrouping = resultFactor(currentFactorsGrouping);
-    var currentFactorAdjustment = resultFactor(currentFactorsAdjustment);
-    var currentFactorVoltageDrop = resultFactor(currentFactorsVoltageDrop);
-    var currentFactorShortCircuit = resultFactor(currentFactorsShortCircuit);
+    let currentFactor = resultFactor(currentFactors);
+    let currentFactorContinuousLoad = resultFactor(currentFactorsContinuousLoad);
+    let currentFactorTemperature = resultFactor(currentFactorsTemperature);
+    let currentFactorGrouping = resultFactor(currentFactorsGrouping);
+    let currentFactorAdjustment = resultFactor(currentFactorsAdjustment);
+    let currentFactorVoltageDrop = resultFactor(currentFactorsVoltageDrop);
+    let currentFactorShortCircuit = resultFactor(currentFactorsShortCircuit);
 
     /**optionLoadArray **/
-    var optionLoadArray = document.getElementsByName("optionLoad");
+    let optionLoadArray = document.getElementsByName("optionLoad");
     
-    var optionLoadArrayChecked = [];
-    var optionLoadArrayNotChecked = [];
+    let optionLoadArrayChecked = [];
+    let optionLoadArrayNotChecked = [];
     for(i = 0; i < optionLoadArray.length; i++) { 
         if(optionLoadArray[i].checked) {
             optionLoadArrayChecked.push(optionLoadArray[i].value);
@@ -297,7 +297,7 @@ function calc_main() {
         return;
     }
 
-    var electricParameters = {
+    let electricParameters = {
         A: 0,
         S: 0,
         Q: 0,
@@ -305,16 +305,17 @@ function calc_main() {
         I: 0
     };
 
+    let phases;
     if (system === "single") {
-        var phases = 1;
+        phases = 1;
     } else if (system === "three") {
-        var phases = 3;
+        phases = 3;
     } else {
 
     }
-    var V = voltage;
+    let V = voltage;
 
-    var Vars = [];
+    let Vars = [];
     for (let index = 0; index < optionLoadArrayChecked.length; index++) {
         const optionLoad = optionLoadArrayChecked[index];
 
@@ -446,8 +447,8 @@ function calc_main() {
         }
     }
     
-    var Pars = ["A", "S", "Q", "P","I"];
-    var Fors = {
+    let Pars = ["A", "S", "Q", "P","I"];
+    let Fors = {
         /*ForKey*/A: ["PS"/*ForPar*/, "QS", "QP", "PI", "QI"]/*ForPars*/,
         S: ["PQ", "PA", "QA"],
         Q: ["IA"],
@@ -455,7 +456,7 @@ function calc_main() {
         I: ["PA"]
     };
 
-    var ForsMemsUsed = {
+    let ForsMemsUsed = {
         A: [[], [], [], [], []],
         S: [[], [], []],
         Q: [[]],
@@ -463,9 +464,9 @@ function calc_main() {
         I: [[]]
     };
 
-    var Ques = Pars.filter(Que => Vars.indexOf(Que) === -1);
+    let Ques = Pars.filter(Que => Vars.indexOf(Que) === -1);
 
-    var Que = Ques[0];
+    let Que = Ques[0];
     while (Ques.length > 0) {
         let ForKey = Object.keys(Fors).find(ForKey => ForKey === Que);
         let ForsPars = Fors[ForKey];
@@ -521,51 +522,55 @@ function calc_main() {
     pf = Math.cos(electricParameters["A"]);
     apparentPower = electricParameters["S"];
     reactivePower = electricParameters["Q"];
-
-    console.log(JSON.stringify(electricParameters));
     /**optionLoadArray **/
 
     /**optionvoltageDropArray **/
-    var optionvoltageDropArray = document.getElementsByName("optionvoltageDrop");
-        
+    let optionvoltageDropArray = document.getElementsByName("optionvoltageDrop");
+    
+    let optionvoltageDrop;
     for(i = 0; i < optionvoltageDropArray.length; i++) { 
         if(optionvoltageDropArray[i].checked) {
-            var optionvoltageDrop = optionvoltageDropArray[i].value;
+            optionvoltageDrop = optionvoltageDropArray[i].value;
             break;
         }
     }
 
     document.getElementById("voltageDropPercent").className = "data";
     document.getElementById("voltageDropVolts").className = "data";
-    var RArray = searcherTableRFun(racewayMaterial, conductorMaterial);
-    var XArray = searcherTableXFun(racewayMaterial, conductorMaterial);
+    let RArray = searcherTableRFun(racewayMaterial, conductorMaterial);
+    let XArray = searcherTableXFun(racewayMaterial, conductorMaterial);
 
+    let voltageDropIndex;
+    let RTemp;
+    let XL;
+    let Ze;
+    let voltageDropPercentResult;
     if (optionvoltageDrop === "optionvoltageDropPercent") {
-        var voltageDropPercent = Number.parseFloat(document.getElementById("voltageDropPercent").value);
+        voltageDropPercent = Number.parseFloat(document.getElementById("voltageDropPercent").value);
 
-        var voltageDropIndex = voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase, conductorMaterial, voltageDropPercent)
+        voltageDropIndex = voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase, conductorMaterial, voltageDropPercent)
 
-        var RTemp = RTempFun(RArray[voltageDropIndex], Tinsulation);
-        var XL = XArray[voltageDropIndex];
+        RTemp = RTempFun(RArray[voltageDropIndex], Tinsulation);
+        XL = XArray[voltageDropIndex];
 
-        var Ze = ZeFun(RTemp, XL, pf);
-        var voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase);
+        Ze = ZeFun(RTemp, XL, pf);
+        voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase);
 
         voltageDropVolts = voltageDropPercent*voltage/100;
         voltageDropVoltsResult = voltageDropPercentResult*voltage/100;
         document.getElementById("voltageDropVolts").className = "result";
 
     } else if (optionvoltageDrop === "optionvoltageDropVolts") {
-        var voltageDropVolts = Number.parseFloat(document.getElementById("voltageDropVolts").value);
+        voltageDropVolts = Number.parseFloat(document.getElementById("voltageDropVolts").value);
         voltageDropPercent = voltageDropVolts/voltage*100;
 
-        var voltageDropIndex = voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase, conductorMaterial, voltageDropPercent)
+        voltageDropIndex = voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase, conductorMaterial, voltageDropPercent)
 
-        var RTemp = RTempFun(RArray[voltageDropIndex], Tinsulation);
-        var XL = XArray[voltageDropIndex];
+        RTemp = RTempFun(RArray[voltageDropIndex], Tinsulation);
+        XL = XArray[voltageDropIndex];
 
-        var Ze = ZeFun(RTemp, XL, pf);
-        var voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase);
+        Ze = ZeFun(RTemp, XL, pf);
+        voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase);
 
         voltageDropVoltsResult = voltageDropPercentResult*voltage/100;
         document.getElementById("voltageDropPercent").className = "result";
@@ -576,19 +581,20 @@ function calc_main() {
     /**optionvoltageDropArray **/
 
     /**optionIsc **/
-    var AreaCircularMilIsc = AreaCircularMilIscFun(conductorMaterial, temperature2, temperature1, Isc*currentFactorShortCircuit, timeIsc);
-    var mm2Isc = cmilToMm2(AreaCircularMilIsc);
+    let AreaCircularMilIsc = AreaCircularMilIscFun(conductorMaterial, temperature2, temperature1, Isc*currentFactorShortCircuit, timeIsc);
+    let mm2Isc = cmilToMm2(AreaCircularMilIsc);
 
+    let IscIndex;
     for (let index = 0; index < mm2.length; index++) {
         if (mm2Isc <= mm2[index]) {
-            var IscIndex = index;
+            IscIndex = index;
             break;
         }
     }
 
-    var cmilIsc = mm2Tocmil(mm2[IscIndex]);
+    let cmilIsc = mm2Tocmil(mm2[IscIndex]);
 
-    var conductorIsc = conductorIscFun(conductorMaterial, temperature2, temperature1, timeIsc, cmilIsc)/1000;
+    let conductorIsc = conductorIscFun(conductorMaterial, temperature2, temperature1, timeIsc, cmilIsc)/1000;
     /**optionIsc **/
 
     /**optionvoltageDropArrayCustom **/
@@ -605,16 +611,16 @@ function calc_main() {
         document.getElementById("box-container-custom-formBCustom").style.display = "flex";
     }
 
-    var indexCustom = IndexCalibreCustom;
+    let indexCustom = IndexCalibreCustom;
     /**optionvoltageDropArrayCustom **/
 
     /**optionvoltageDropArrayCustom **/
 
-    var RTempCustom;
-    var XLCustom;
-    var ZeCustom;
-    var voltageDropPercentResultCustom;
-    var voltageDropVoltsResultCustom;
+    let RTempCustom;
+    let XLCustom;
+    let ZeCustom;
+    let voltageDropPercentResultCustom;
+    let voltageDropVoltsResultCustom;
 
     if (RArray[indexCustom] === NaN || XArray[indexCustom] === NaN) {
    
@@ -631,32 +637,33 @@ function calc_main() {
 
     /**optionIscCustom **/
 
-    var cmilIscCustom = mm2Tocmil(mm2[indexCustom]);
+    let cmilIscCustom = mm2Tocmil(mm2[indexCustom]);
 
-    var conductorIscCustom = conductorIscFun(conductorMaterial, temperature2, temperature1, timeIsc, cmilIscCustom)/1000;
+    let conductorIscCustom = conductorIscFun(conductorMaterial, temperature2, temperature1, timeIsc, cmilIscCustom)/1000;
     /**optionIscCustom **/
 
     /*computation */
 
-    var currentPerConductor = currentPerConductorFun(current, conductorsPerPhase);
+    let currentPerConductor = currentPerConductorFun(current, conductorsPerPhase);
 
-    /*var apparentPower = apparentPowerFun(system, voltage, current, pf);
-    var reactivePower = reactivePowerFun(system, voltage, current, pf);*/
+    /*let apparentPower = apparentPowerFun(system, voltage, current, pf);
+    let reactivePower = reactivePowerFun(system, voltage, current, pf);*/
 
-    var factorTemperature = factorTemperatureFun(Tinsulation, Tambient);
-    var factorGrouping = factorGroupingFun(tableFactorGrouping, conductorsPerConduit);
-    var factorAdjustment = factorAdjustmentFun(factorTemperature, factorGrouping);
+    let factorTemperature = factorTemperatureFun(Tinsulation, Tambient);
+    let factorGrouping = factorGroupingFun(tableFactorGrouping, conductorsPerConduit);
+    let factorAdjustment = factorAdjustmentFun(factorTemperature, factorGrouping);
 
     /**Data **/
+    let parameters;
     if (AmpacityTABLE === "310.16") {
-        var parameters = {
+        parameters = {
             conductorMaterial: conductorMaterial,
             Tinsulation: Tinsulation,
             Tambient: 30,
             grouping: 3
         }
     } else if (AmpacityTABLE === "310.17") {
-        var parameters = {
+        parameters = {
             conductorMaterial: conductorMaterial,
             Tinsulation: Tinsulation,
             Tambient: 30
@@ -666,67 +673,67 @@ function calc_main() {
     }
     /**Data **/
 
-    var AmpacityArray = searcherAmpacityArrayFun(AmpacityTABLES, parameters);
+    let AmpacityArray = searcherAmpacityArrayFun(AmpacityTABLES, parameters);
     AmpacityArray = AmpacityArray.map(Ampacity =>  AmpacityFactorTABLE*Ampacity);
 
-    var AmpacityIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactor, 1);
-    var AmpacityContinuousLoadIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*1.25*currentFactorContinuousLoad, 1);
-    var AmpacityFactorTemperatureIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactorTemperature, factorTemperature);
-    var AmpacityFactorGroupingIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactorGrouping, factorGrouping);
-    var AmpacityFactorAdjustmentIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactorAdjustment, factorAdjustment);
+    let AmpacityIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactor, 1);
+    let AmpacityContinuousLoadIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*1.25*currentFactorContinuousLoad, 1);
+    let AmpacityFactorTemperatureIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactorTemperature, factorTemperature);
+    let AmpacityFactorGroupingIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactorGrouping, factorGrouping);
+    let AmpacityFactorAdjustmentIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactorAdjustment, factorAdjustment);
 
-    var Ampacity = AmpacityArray[AmpacityIndex];
-    var AmpacityContinuousLoad = AmpacityArray[AmpacityContinuousLoadIndex];
-    var AmpacityFactorTemperature = AmpacityArray[AmpacityFactorTemperatureIndex]*factorTemperature;
-    var AmpacityFactorGrouping = AmpacityArray[AmpacityFactorGroupingIndex]*factorGrouping;
-    var AmpacityFactorAdjustment = AmpacityArray[AmpacityFactorAdjustmentIndex]*factorAdjustment;
+    let Ampacity = AmpacityArray[AmpacityIndex];
+    let AmpacityContinuousLoad = AmpacityArray[AmpacityContinuousLoadIndex];
+    let AmpacityFactorTemperature = AmpacityArray[AmpacityFactorTemperatureIndex]*factorTemperature;
+    let AmpacityFactorGrouping = AmpacityArray[AmpacityFactorGroupingIndex]*factorGrouping;
+    let AmpacityFactorAdjustment = AmpacityArray[AmpacityFactorAdjustmentIndex]*factorAdjustment;
 
-    var sizeAmpacity = AWG[AmpacityIndex];
-    var sizeAmpacityContinuousLoad = AWG[AmpacityContinuousLoadIndex];
-    var sizeAmpacityFactorTemperature = AWG[AmpacityFactorTemperatureIndex];
-    var sizeAmpacityFactorGrouping = AWG[AmpacityFactorGroupingIndex];
-    var sizeAmpacityFactorAdjustment = AWG[AmpacityFactorAdjustmentIndex];
+    let sizeAmpacity = AWG[AmpacityIndex];
+    let sizeAmpacityContinuousLoad = AWG[AmpacityContinuousLoadIndex];
+    let sizeAmpacityFactorTemperature = AWG[AmpacityFactorTemperatureIndex];
+    let sizeAmpacityFactorGrouping = AWG[AmpacityFactorGroupingIndex];
+    let sizeAmpacityFactorAdjustment = AWG[AmpacityFactorAdjustmentIndex];
 
-    var mm2Ampacity = mm2[AmpacityIndex];
-    var mm2AmpacityContinuousLoad = mm2[AmpacityContinuousLoadIndex];
-    var mm2AmpacityFactorTemperature = mm2[AmpacityFactorTemperatureIndex];
-    var mm2AmpacityFactorGrouping = mm2[AmpacityFactorGroupingIndex];
-    var mm2AmpacityFactorAdjustment = mm2[AmpacityFactorAdjustmentIndex];
+    let mm2Ampacity = mm2[AmpacityIndex];
+    let mm2AmpacityContinuousLoad = mm2[AmpacityContinuousLoadIndex];
+    let mm2AmpacityFactorTemperature = mm2[AmpacityFactorTemperatureIndex];
+    let mm2AmpacityFactorGrouping = mm2[AmpacityFactorGroupingIndex];
+    let mm2AmpacityFactorAdjustment = mm2[AmpacityFactorAdjustmentIndex];
 
-    var AmpacityVoltageDrop = AmpacityArray[voltageDropIndex];
-    var sizeAmpacityVoltageDrop = AWG[voltageDropIndex];
-    var mm2AmpacityVoltageDrop = mm2[voltageDropIndex];
+    let AmpacityVoltageDrop = AmpacityArray[voltageDropIndex];
+    let sizeAmpacityVoltageDrop = AWG[voltageDropIndex];
+    let mm2AmpacityVoltageDrop = mm2[voltageDropIndex];
 
-    var AmpacityShortCircuit = AmpacityArray[IscIndex];
-    var sizeAmpacityShortCircuit = AWG[IscIndex];
-    var mm2AmpacityShortCircuit = mm2[IscIndex];
+    let AmpacityShortCircuit = AmpacityArray[IscIndex];
+    let sizeAmpacityShortCircuit = AWG[IscIndex];
+    let mm2AmpacityShortCircuit = mm2[IscIndex];
 
     /*custom*/
-    var AmpacityCustom = AmpacityArray[indexCustom];
-    var AmpacityContinuousLoadCustom = AmpacityArray[indexCustom];
-    var AmpacityFactorTemperatureCustom = AmpacityArray[indexCustom]*factorTemperature;
-    var AmpacityFactorGroupingCustom = AmpacityArray[indexCustom]*factorGrouping;
-    var AmpacityFactorAdjustmentCustom = AmpacityArray[indexCustom]*factorAdjustment;
+    let AmpacityCustom = AmpacityArray[indexCustom];
+    let AmpacityContinuousLoadCustom = AmpacityArray[indexCustom];
+    let AmpacityFactorTemperatureCustom = AmpacityArray[indexCustom]*factorTemperature;
+    let AmpacityFactorGroupingCustom = AmpacityArray[indexCustom]*factorGrouping;
+    let AmpacityFactorAdjustmentCustom = AmpacityArray[indexCustom]*factorAdjustment;
 
-    var sizeAmpacityCustom = AWG[indexCustom];
-    var sizeAmpacityContinuousLoadCustom = AWG[indexCustom];
-    var sizeAmpacityFactorTemperatureCustom = AWG[indexCustom];
-    var sizeAmpacityFactorGroupingCustom = AWG[indexCustom];
-    var sizeAmpacityFactorAdjustmentCustom = AWG[indexCustom];
+    let sizeAmpacityCustom = AWG[indexCustom];
+    let sizeAmpacityContinuousLoadCustom = AWG[indexCustom];
+    let sizeAmpacityFactorTemperatureCustom = AWG[indexCustom];
+    let sizeAmpacityFactorGroupingCustom = AWG[indexCustom];
+    let sizeAmpacityFactorAdjustmentCustom = AWG[indexCustom];
 
-    var mm2AmpacityCustom = mm2[indexCustom];
-    var mm2AmpacityContinuousLoadCustom = mm2[indexCustom];
-    var mm2AmpacityFactorTemperatureCustom = mm2[indexCustom];
-    var mm2AmpacityFactorGroupingCustom = mm2[indexCustom];
-    var mm2AmpacityFactorAdjustmentCustom = mm2[indexCustom];
+    let mm2AmpacityCustom = mm2[indexCustom];
+    let mm2AmpacityContinuousLoadCustom = mm2[indexCustom];
+    let mm2AmpacityFactorTemperatureCustom = mm2[indexCustom];
+    let mm2AmpacityFactorGroupingCustom = mm2[indexCustom];
+    let mm2AmpacityFactorAdjustmentCustom = mm2[indexCustom];
 
-    var AmpacityVoltageDropCustom = AmpacityArray[indexCustom];
-    var sizeAmpacityVoltageDropCustom = AWG[indexCustom];
-    var mm2AmpacityVoltageDropCustom = mm2[indexCustom];
+    let AmpacityVoltageDropCustom = AmpacityArray[indexCustom];
+    let sizeAmpacityVoltageDropCustom = AWG[indexCustom];
+    let mm2AmpacityVoltageDropCustom = mm2[indexCustom];
 
-    var AmpacityShortCircuitCustom = AmpacityArray[indexCustom];
-    var sizeAmpacityShortCircuitCustom = AWG[indexCustom];
-    var mm2AmpacityShortCircuitCustom = mm2[indexCustom];
+    let AmpacityShortCircuitCustom = AmpacityArray[indexCustom];
+    let sizeAmpacityShortCircuitCustom = AWG[indexCustom];
+    let mm2AmpacityShortCircuitCustom = mm2[indexCustom];
     /*custom*/
 
     /*results */
@@ -736,8 +743,8 @@ function calc_main() {
     document.getElementById("apparentPower").value = apparentPower.toFixed(decimals);
     document.getElementById("reactivePower").value = reactivePower.toFixed(decimals);
 
-    var LoadArray = [current, pf, realPower, apparentPower, reactivePower];
-    var LoadArrayId = ["current", "pf", "realPower", "apparentPower", "reactivePower"];
+    let LoadArray = [current, pf, realPower, apparentPower, reactivePower];
+    let LoadArrayId = ["current", "pf", "realPower", "apparentPower", "reactivePower"];
 
     for(i = 0; i < LoadArrayId.length; i++) { 
         if (document.getElementById(LoadArrayId[i]).className === "result") {
@@ -780,9 +787,9 @@ function calc_main() {
     document.getElementById("voltageDropPercentResult").value = voltageDropPercentResult.toFixed(decimals+2);
     document.getElementById("voltageDropVoltsResult").value = voltageDropVoltsResult.toFixed(decimals+2);
 
-    var AmpacityVoltageDrop = AmpacityArray[voltageDropIndex];
-    var sizeAmpacityVoltageDrop = AWG[voltageDropIndex];
-    var mm2AmpacityVoltageDrop = mm2[voltageDropIndex];
+    AmpacityVoltageDrop = AmpacityArray[voltageDropIndex];
+    sizeAmpacityVoltageDrop = AWG[voltageDropIndex];
+    mm2AmpacityVoltageDrop = mm2[voltageDropIndex];
 
     document.getElementById("AmpacityVoltageDrop").value = AmpacityVoltageDrop;
     document.getElementById("sizeAmpacityVoltageDrop").value = sizeAmpacityVoltageDrop;
@@ -828,9 +835,9 @@ function calc_main() {
     document.getElementById("voltageDropPercentResultCustom").value = voltageDropPercentResultCustom.toFixed(decimals+2);
     document.getElementById("voltageDropVoltsResultCustom").value = voltageDropVoltsResultCustom.toFixed(decimals+2);
 
-    var AmpacityVoltageDropCustom = AmpacityArray[indexCustom];
-    var sizeAmpacityVoltageDropCustom = AWG[indexCustom];
-    var mm2AmpacityVoltageDropCustom = mm2[indexCustom];
+    AmpacityVoltageDropCustom = AmpacityArray[indexCustom];
+    sizeAmpacityVoltageDropCustom = AWG[indexCustom];
+    mm2AmpacityVoltageDropCustom = mm2[indexCustom];
 
     document.getElementById("AmpacityVoltageDropCustom").value = AmpacityVoltageDropCustom;
     document.getElementById("sizeAmpacityVoltageDropCustom").value = sizeAmpacityVoltageDropCustom;
@@ -1096,11 +1103,12 @@ function voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, cu
 }
 
 function conductorIscFun(conductorMaterial, temperature2, temperature1, timeIsc, AreaCircularMil) {
+    let conductorIsc;
     if (conductorMaterial == "Cu") {
-        var conductorIsc = AreaCircularMil*Math.sqrt(0.0297*Math.log10((temperature2+234)/(temperature1+234))/timeIsc);
+        conductorIsc = AreaCircularMil*Math.sqrt(0.0297*Math.log10((temperature2+234)/(temperature1+234))/timeIsc);
     }
     else if (conductorMaterial == "Al") {
-        var conductorIsc = AreaCircularMil*Math.sqrt(0.0125*Math.log10((temperature2+228)/(temperature1+228))/timeIsc);
+        conductorIsc = AreaCircularMil*Math.sqrt(0.0125*Math.log10((temperature2+228)/(temperature1+228))/timeIsc);
     } else {
         alert("Error_conductorIsc");
     }
@@ -1109,11 +1117,12 @@ function conductorIscFun(conductorMaterial, temperature2, temperature1, timeIsc,
 }
 
 function AreaCircularMilIscFun(conductorMaterial, temperature2, temperature1, Isc, timeIsc) {
+    let AreaCircularMil;
     if (conductorMaterial == "Cu") {
-        var AreaCircularMil = Isc*Math.sqrt(timeIsc/(0.0297*Math.log10((temperature2+234)/(temperature1+234))));
+        AreaCircularMil = Isc*Math.sqrt(timeIsc/(0.0297*Math.log10((temperature2+234)/(temperature1+234))));
     }
     else if (conductorMaterial == "Al") {
-        var AreaCircularMil = Isc*Math.sqrt(timeIsc/(0.0125*Math.log10((temperature2+228)/(temperature1+228))));
+        AreaCircularMil = Isc*Math.sqrt(timeIsc/(0.0125*Math.log10((temperature2+228)/(temperature1+228))));
     } else {
         alert("Error_AreaCircularMil");
     }
