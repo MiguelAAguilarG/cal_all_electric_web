@@ -259,22 +259,19 @@ function calc_main() {
     }
 
     if (optionLoadArrayChecked.length > 2) {
+        optionLoadArrayNotChecked.map(optionLoad => document.getElementById(optionLoad).disabled = true);
+        
+        optionLoadArrayNotChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "result");
+        optionLoadArrayChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "data");
+
         if (optionLoadArrayChecked.filter(optionLoad => ["optionLoadapparentPower", "optionLoadcurrent", "optionLoadpf"].indexOf(optionLoad) !== -1).length >= 3) {
-            optionLoadArrayNotChecked.map(optionLoad => document.getElementById(optionLoad).disabled = true);
-            optionLoadArrayNotChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "result");
-            optionLoadArrayChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "data");
-
         } else {
-            optionLoadArrayNotChecked.map(optionLoad => document.getElementById(optionLoad).disabled = true);
-
-            optionLoadArrayNotChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "result");
-            optionLoadArrayChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "data");
             return;
         }
 
         
     } else if (optionLoadArrayChecked.length === 2){
-        if (optionLoadArrayChecked.filter(optionLoad => ["optionLoadapparentPower", "optionLoadcurrent"].indexOf(optionLoad) !== -1).length >= 2) {
+        if (optionLoadArrayChecked.filter(optionLoad => ["optionLoadapparentPower", "optionLoadcurrent"].indexOf(optionLoad) !== -1).length == 2) {
             optionLoadArrayChecked.push("optionLoadpf");
             optionLoadArrayNotChecked.splice(optionLoadArrayNotChecked.indexOf("optionLoadpf"),1);
             document.getElementById("optionLoadpf").checked = true;
@@ -353,98 +350,6 @@ function calc_main() {
             
         }
         
-    }
-
-    function searcherElectricParameters(ForKey, ForPar, phases, V, electricParameters) {
-        let A = electricParameters["A"];
-        let S = electricParameters["S"];
-        let Q = electricParameters["Q"];
-        let P = electricParameters["P"];
-        let I = electricParameters["I"];
-
-        if (ForKey === "A") {
-            if (ForPar === "PS" || ForPar === "SP") {
-                function APS(P,S) {
-                    return Math.acos(P/S)
-                };
-                return APS(P,S);
-            } else if (ForPar === "QS" || ForPar === "SQ") {
-                function AQS(Q,S) {
-                    return Math.asin(Q/S)
-                };
-                return AQS(Q,S);
-            } else if (ForPar === "QP" || ForPar === "PQ") {
-                function AQP(Q,P) {
-                    return Math.atan(Q/P)
-                };
-                return AQP(Q,P);
-            } else if (ForPar === "PI" || ForPar === "IP") {
-                function API(P,V,I,phases) {
-                    return Math.acos(P/(V*I*Math.sqrt(phases)))
-                }
-                return API(P,V,I,phases);
-            } else if (ForPar === "QI" || ForPar === "IQ") {
-                function AQI(Q,V,I,phases) {
-                    return Math.asin(Q/(V*I*Math.sqrt(phases)))
-                }
-                return AQI(Q,V,I,phases);
-            } else {
-                
-            }
-        } else if (ForKey === "S") {
-            if (ForPar === "PQ" || ForPar === "QP") {
-                function SPQ(P,Q) {
-                    return S = Math.sqrt(P*P + Q*Q)
-                };
-                return SPQ(P,Q);
-            } else if (ForPar === "PA" || ForPar === "AP") {
-                function SPA(P,A) {
-                    return P/Math.cos(A)
-                };
-                return SPA(P,A);
-            } else if (ForPar === "QA" || ForPar === "AQ") {
-                function SQA(Q,A) {
-                    return Q/Math.sin(A)
-                };
-                return SQA(Q,A);
-            }else {
-                
-            }
-        } else if (ForKey === "Q") {
-            if (ForPar === "IA" || ForPar === "AI") {
-                function QIA(I,A,V,phases) {
-                    return Q = V*I*Math.sin(A)*Math.sqrt(phases)
-                };
-                return QIA(I,A,V,phases);
-            } else {
-                
-            }
-        } else if (ForKey === "P") {
-            if (ForPar === "IA" || ForPar === "AI") {
-                function PIA(I,A,V,phases) {
-                    return P = V*I*Math.cos(A)*Math.sqrt(phases)
-                };
-                return PIA(I,A,V,phases);
-            } else if (ForPar === "AS" || ForPar === "SA") {
-                function PAS(A,S) {
-                    return S*Math.cos(A)
-                };
-                return PAS(A,S);
-            } else {
-                
-            }
-        } else if (ForKey === "I") {
-            if (ForPar === "PA" || ForPar === "AP") {
-                function IPA(P,A,V,phases) {
-                    return I = P/(V*Math.cos(A)*Math.sqrt(phases))
-                };
-                return IPA(P,A,V,phases);
-            } else {
-                
-            }
-        } else {
-            
-        }
     }
     
     let Pars = ["A", "S", "Q", "P","I"];
@@ -1013,6 +918,98 @@ function AmpacityIndexFun(AmpacityArray, current, Ampacityfactor) {
         } else {
             
         }  
+    }
+}
+
+function searcherElectricParameters(ForKey, ForPar, phases, V, electricParameters) {
+    let A = electricParameters["A"];
+    let S = electricParameters["S"];
+    let Q = electricParameters["Q"];
+    let P = electricParameters["P"];
+    let I = electricParameters["I"];
+
+    if (ForKey === "A") {
+        if (ForPar === "PS" || ForPar === "SP") {
+            function APS(P,S) {
+                return Math.acos(P/S)
+            };
+            return APS(P,S);
+        } else if (ForPar === "QS" || ForPar === "SQ") {
+            function AQS(Q,S) {
+                return Math.asin(Q/S)
+            };
+            return AQS(Q,S);
+        } else if (ForPar === "QP" || ForPar === "PQ") {
+            function AQP(Q,P) {
+                return Math.atan(Q/P)
+            };
+            return AQP(Q,P);
+        } else if (ForPar === "PI" || ForPar === "IP") {
+            function API(P,V,I,phases) {
+                return Math.acos(P/(V*I*Math.sqrt(phases)))
+            }
+            return API(P,V,I,phases);
+        } else if (ForPar === "QI" || ForPar === "IQ") {
+            function AQI(Q,V,I,phases) {
+                return Math.asin(Q/(V*I*Math.sqrt(phases)))
+            }
+            return AQI(Q,V,I,phases);
+        } else {
+            
+        }
+    } else if (ForKey === "S") {
+        if (ForPar === "PQ" || ForPar === "QP") {
+            function SPQ(P,Q) {
+                return S = Math.sqrt(P*P + Q*Q)
+            };
+            return SPQ(P,Q);
+        } else if (ForPar === "PA" || ForPar === "AP") {
+            function SPA(P,A) {
+                return P/Math.cos(A)
+            };
+            return SPA(P,A);
+        } else if (ForPar === "QA" || ForPar === "AQ") {
+            function SQA(Q,A) {
+                return Q/Math.sin(A)
+            };
+            return SQA(Q,A);
+        }else {
+            
+        }
+    } else if (ForKey === "Q") {
+        if (ForPar === "IA" || ForPar === "AI") {
+            function QIA(I,A,V,phases) {
+                return Q = V*I*Math.sin(A)*Math.sqrt(phases)
+            };
+            return QIA(I,A,V,phases);
+        } else {
+            
+        }
+    } else if (ForKey === "P") {
+        if (ForPar === "IA" || ForPar === "AI") {
+            function PIA(I,A,V,phases) {
+                return P = V*I*Math.cos(A)*Math.sqrt(phases)
+            };
+            return PIA(I,A,V,phases);
+        } else if (ForPar === "AS" || ForPar === "SA") {
+            function PAS(A,S) {
+                return S*Math.cos(A)
+            };
+            return PAS(A,S);
+        } else {
+            
+        }
+    } else if (ForKey === "I") {
+        if (ForPar === "PA" || ForPar === "AP") {
+            function IPA(P,A,V,phases) {
+                return I = P/(V*Math.cos(A)*Math.sqrt(phases))
+            };
+            return IPA(P,A,V,phases);
+        } else {
+            
+        }
+    } else {
+        
     }
 }
 
