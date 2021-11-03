@@ -446,6 +446,7 @@ function calc_main() {
     let XL;
     let Ze;
     let voltageDropPercentResult;
+    let voltageDropVoltsResult;
     if (optionvoltageDrop === "optionvoltageDropPercent") {
         voltageDropPercent = Number.parseFloat(document.getElementById("voltageDropPercent").value);
 
@@ -454,9 +455,8 @@ function calc_main() {
 
     } else if (optionvoltageDrop === "optionvoltageDropVolts") {
         voltageDropVolts = Number.parseFloat(document.getElementById("voltageDropVolts").value);
-        
-        voltageDropPercent = voltageDropVolts/voltage*100;
 
+        voltageDropPercent = voltageDropVolts/voltage*100;
         document.getElementById("voltageDropPercent").className = "result";
         
     } else {
@@ -538,9 +538,6 @@ function calc_main() {
     /*computation */
 
     let currentPerConductor = currentPerConductorFun(current, conductorsPerPhase);
-
-    /*let apparentPower = apparentPowerFun(system, voltage, current, pf);
-    let reactivePower = reactivePowerFun(system, voltage, current, pf);*/
 
     let factorTemperature = factorTemperatureFun(Tinsulation, Tambient);
     let factorGrouping = factorGroupingFun(tableFactorGrouping, conductorsPerConduit);
@@ -899,7 +896,7 @@ function searcherAmpacityArrayFun(AmpacityTABLES, parameters) {
 }
 
 function AmpacityIndexFun(AmpacityArray, current, Ampacityfactor) {
-
+    //findIndex()
     for (let index = 0; index < AmpacityArray.length; index++) {
         if (current <= AmpacityArray[index]*Ampacityfactor) {
             return index;
