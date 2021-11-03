@@ -257,11 +257,9 @@ function calc_main() {
             optionLoadArrayNotChecked.push(optionLoadArray[i].value);
         }
     }
-    console.log(optionLoadArrayChecked);
-    console.log(optionLoadArrayNotChecked);
+
     if (optionLoadArrayChecked.length > 2) {
         if (optionLoadArrayChecked.filter(optionLoad => ["optionLoadapparentPower", "optionLoadcurrent", "optionLoadpf"].indexOf(optionLoad) !== -1).length >= 3) {
-            console.log("dddddddddddddddd");
             optionLoadArrayNotChecked.map(optionLoad => document.getElementById(optionLoad).disabled = true);
             optionLoadArrayNotChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "result");
             optionLoadArrayChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "data");
@@ -277,7 +275,6 @@ function calc_main() {
         
     } else if (optionLoadArrayChecked.length === 2){
         if (optionLoadArrayChecked.filter(optionLoad => ["optionLoadapparentPower", "optionLoadcurrent"].indexOf(optionLoad) !== -1).length >= 2) {
-            console.log("ffffffffffffffffff");
             optionLoadArrayChecked.push("optionLoadpf");
             optionLoadArrayNotChecked.splice(optionLoadArrayNotChecked.indexOf("optionLoadpf"),1);
             document.getElementById("optionLoadpf").checked = true;
@@ -286,6 +283,7 @@ function calc_main() {
         } else {
             
         }
+
         optionLoadArrayNotChecked.map(optionLoad => document.getElementById(optionLoad).disabled = true);
 
         optionLoadArrayNotChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "result");
@@ -298,29 +296,6 @@ function calc_main() {
         optionLoadArrayChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "data");
         return;
     }
-    console.log(optionLoadArrayNotChecked);
-    console.log(optionLoadArrayChecked);
-
-    /*document.getElementById("realPower").className = "data";
-    document.getElementById("current").className = "data";
-    if (optionLoad === "optionLoadcurrent") {
-        current = Number.parseFloat(document.getElementById("current").value);
-
-        realPower = realPowerFun(system, voltage, current, pf);
-
-        
-    } else if (optionLoad === "optionLoadrealPower") {
-        realPower = Number.parseFloat(document.getElementById("realPower").value);
-
-        current = currentFun(system, voltage, realPower, pf);
-
-        document.getElementById("current").className = "result";
-
-    } else {
-        
-    }**/
-
-
 
     var electricParameters = {
         A: 0,
