@@ -449,36 +449,28 @@ function calc_main() {
     if (optionvoltageDrop === "optionvoltageDropPercent") {
         voltageDropPercent = Number.parseFloat(document.getElementById("voltageDropPercent").value);
 
-        voltageDropIndex = voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase, conductorMaterial, voltageDropPercent)
-
-        RTemp = RTempFun(RArray[voltageDropIndex], Tinsulation);
-        XL = XArray[voltageDropIndex];
-
-        Ze = ZeFun(RTemp, XL, pf);
-        voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase);
-
         voltageDropVolts = voltageDropPercent*voltage/100;
-        voltageDropVoltsResult = voltageDropPercentResult*voltage/100;
         document.getElementById("voltageDropVolts").className = "result";
 
     } else if (optionvoltageDrop === "optionvoltageDropVolts") {
         voltageDropVolts = Number.parseFloat(document.getElementById("voltageDropVolts").value);
+        
         voltageDropPercent = voltageDropVolts/voltage*100;
 
-        voltageDropIndex = voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase, conductorMaterial, voltageDropPercent)
-
-        RTemp = RTempFun(RArray[voltageDropIndex], Tinsulation);
-        XL = XArray[voltageDropIndex];
-
-        Ze = ZeFun(RTemp, XL, pf);
-        voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase);
-
-        voltageDropVoltsResult = voltageDropPercentResult*voltage/100;
         document.getElementById("voltageDropPercent").className = "result";
-
+        
     } else {
         
     }
+    voltageDropIndex = voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase, conductorMaterial, voltageDropPercent)
+
+    RTemp = RTempFun(RArray[voltageDropIndex], Tinsulation);
+    XL = XArray[voltageDropIndex];
+
+    Ze = ZeFun(RTemp, XL, pf);
+    voltageDropPercentResult = voltageDropPercentFun(system, Ze, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase);
+    voltageDropVoltsResult = voltageDropPercentResult*voltage/100;
+
     /**optionvoltageDropArray **/
 
     /**optionIsc **/
