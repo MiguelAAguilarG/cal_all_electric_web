@@ -43,8 +43,9 @@ footer{
 
 .result, .result-small{
     background-color: #a6d5ff;
-    pointer-events: none;
     border: solid 1px;
+
+    pointer-events: none;
 }
 
 .box-container, .box-container-custom{
@@ -137,3 +138,17 @@ footer{
 .box-container-custom, .box-data-custom{
     background-color: lightsteelblue;
 }
+
+/* Remove Arrows/Spinners */
+/* https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp */
+/* Chrome, Safari, Edge, Opera */
+.result::-webkit-outer-spin-button,
+.result::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* Firefox */
+.result{
+    -moz-appearance:textfield;
+}
+/* Remove Arrows/Spinners */
