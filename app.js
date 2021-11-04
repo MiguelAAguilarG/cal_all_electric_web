@@ -142,6 +142,7 @@ document.getElementById("form4").addEventListener("change", calc_main);
 document.getElementById("formA").addEventListener("change", calc_main);
 document.getElementById("form6").addEventListener("change", calc_main);
 document.getElementById("formTA").addEventListener("change", calc_main);
+document.getElementById("formF").addEventListener("change", calc_main);
 
 function calc_main() {
     console.log("cambio");
@@ -154,7 +155,6 @@ function calc_main() {
     let voltage = Number.parseFloat(document.getElementById("voltage").value);
     let conductorsPerPhase = Number.parseInt(document.getElementById("conductorsPerPhase").value);
     let IndexCalibreCustom = Number.parseInt(document.getElementById("listCalibreCustom").value);
-
     /*form2 */
     let current = Number.parseFloat(document.getElementById("current").value);
     let realPower = Number.parseFloat(document.getElementById("realPower").value);
@@ -175,10 +175,70 @@ function calc_main() {
     let timeIsc = Number.parseFloat(document.getElementById("timeIsc").value);
     let temperature1 = Number.parseFloat(document.getElementById("temperature1").value);
     let temperature2 = Number.parseInt(document.getElementById("temperature2").value);
-    /*form7 */
+    /*formTA */
     let AmpacityTABLE = document.getElementById("AmpacityTABLE").value;
     let AmpacityFactorTABLE = Number.parseFloat(document.getElementById("AmpacityFactorTABLE").value)/100;
+    /*formF */
+    let optioncurrentFactor = document.getElementsByName("optioncurrentFactor");
+    
+    let optioncurrentFactorArrayChecked = [];
+    for(i = 0; i < optioncurrentFactor.length; i++) { 
+        if(optioncurrentFactor[i].checked) {
+            optioncurrentFactorArrayChecked.push(true);
+        } else {
+            optioncurrentFactorArrayChecked.push(false);
+        }
+    }
 
+    let currentArray = ["current", "currentContinuousLoad", "currentVoltageDrop", "currentShortCircuit", "currentFactorTemperature", "currentFactorGrouping","currentFactorAdjustment"];
+
+    let currentFactors = {};
+    for (const current of currentArray) {
+        currentFactors[current] = [[]]; // [[currentFactors], currentFactor]
+        for (let index = 1; index <= 4; index++) {
+            let currentFactor = Number.parseFloat(document.getElementById(current + "Factor" + index).value);
+            if (currentFactor <= 0 ) {
+                currentFactor = 0.05;
+            }
+            currentFactors[current][0].push(currentFactor);
+        }
+
+        currentFactors[current][1] = resultFactor(currentFactors[current][0]);
+    }
+
+    let currentFactorsGroup = [];
+    for (let index = 0; index < optioncurrentFactorArrayChecked.length; index++) {
+        currentFactorsGroup.push(Number.parseFloat(document.getElementById("currentFactorGroup" + (index+1)).value));
+        if (currentFactorsGroup[index] <= 0 ) {
+            currentFactorsGroup[index] = 0.05;
+        }
+
+        for (const current of currentArray) {
+            if (optioncurrentFactorArrayChecked[index]) {
+                currentFactors[current][0][index] = currentFactorsGroup[index];
+                document.getElementById(current + "Factor" + (index+1)).className = "result";
+            } else {
+                document.getElementById(current + "Factor" + (index+1)).className = "data";
+            }
+            document.getElementById(current + "Factor" + (index+1)).value = currentFactors[current][0][index].toFixed(decimals+2);
+        }
+        
+    }
+
+    for (const current of currentArray) {
+        currentFactors[current][1] = resultFactor(currentFactors[current][0]);
+        document.getElementById(current + "Factor").value = currentFactors[current][1].toFixed(decimals+2);
+    }
+
+    let currentFactor = currentFactors["current"][1];
+    let currentFactorContinuousLoad = currentFactors["currentContinuousLoad"][1];
+    let currentFactorVoltageDrop = currentFactors["currentVoltageDrop"][1];
+    let currentFactorShortCircuit = currentFactors["currentShortCircuit"][1];
+    let currentFactorTemperature = currentFactors["currentFactorTemperature"][1];
+    let currentFactorGrouping = currentFactors["currentFactorGrouping"][1];
+    let currentFactorAdjustment = currentFactors["currentFactorAdjustment"][1];
+
+    /*flag */
     let flag = 0;
     if (voltage <= 0 ) {
         voltage = 0.5;
@@ -226,24 +286,6 @@ function calc_main() {
     } else {
         
     }
-
-    /**Data **/
-    let currentFactors = [1, 1];
-    let currentFactorsContinuousLoad = [1, 1];
-    let currentFactorsTemperature = [1, 1];
-    let currentFactorsGrouping = [1, 1];
-    let currentFactorsAdjustment = [1, 1];
-    let currentFactorsVoltageDrop = [1, 1];
-    let currentFactorsShortCircuit = [1, 1];
-    /**Data **/
-
-    let currentFactor = resultFactor(currentFactors);
-    let currentFactorContinuousLoad = resultFactor(currentFactorsContinuousLoad);
-    let currentFactorTemperature = resultFactor(currentFactorsTemperature);
-    let currentFactorGrouping = resultFactor(currentFactorsGrouping);
-    let currentFactorAdjustment = resultFactor(currentFactorsAdjustment);
-    let currentFactorVoltageDrop = resultFactor(currentFactorsVoltageDrop);
-    let currentFactorShortCircuit = resultFactor(currentFactorsShortCircuit);
 
     /**optionLoadArray **/
     let optionLoadArray = document.getElementsByName("optionLoad");
@@ -744,7 +786,6 @@ function calc_main() {
 
     document.getElementById("mm2AmpacityShortCircuitRatioCustom").value = (mm2AmpacityShortCircuitCustom/mm2Ampacity).toFixed(decimals+2);
     /** IscCustom **/
-
 }
 
 function currentFun(system, voltage, realPower, pf) {
