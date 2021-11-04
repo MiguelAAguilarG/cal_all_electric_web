@@ -82,7 +82,7 @@
                 <label for="current" class="text-right">I</label>
                 <input type="number" min="0" value="16" step="1" name="current" id="current" class="data">
                 <span class="text-left">[A]</span>
-                <input type="checkbox" id="optionLoadcurrent" name="optionLoad" value="optionLoadcurrent" checked>
+                <input type="checkbox" id="optionLoadcurrent" name="optionLoad" value="optionLoadcurrent" class="item-right" checked>
             </div>
 
             <div class="box-data">
@@ -101,28 +101,28 @@
                 <label for="realPower" class="text-right">P</label>
                 <input type="number" min="0" step="10" value="1000" name="realPower" id="realPower" class="data">
                 <span class="text-left">[W]</span>
-                <input type="checkbox" id="optionLoadrealPower" name="optionLoad" value="optionLoadrealPower">
+                <input type="checkbox" id="optionLoadrealPower" name="optionLoad" value="optionLoadrealPower" class="item-right">
             </div>
 
             <div class="box-data">
                 <label for="pf" class="text-right">FP</label>
                 <input type="number" min="0" max="1" step="0.1" value="0.90" name="pf" id="pf" class="data">
                 <span> </span>
-                <input type="checkbox" id="optionLoadpf" name="optionLoad" value="optionLoadpf" checked>
+                <input type="checkbox" id="optionLoadpf" name="optionLoad" value="optionLoadpf" class="item-right" checked>
             </div>
 
             <div class="box-data">
                 <label for="apparentPower" class="text-right">S</label>
                 <input type="number" min="0" step="10" value="1000" name="apparentPower" id="apparentPower" class="result" >
                 <span class="text-left">[VA]</span>
-                <input type="checkbox" id="optionLoadapparentPower" name="optionLoad" value="optionLoadapparentPower">
+                <input type="checkbox" id="optionLoadapparentPower" name="optionLoad" value="optionLoadapparentPower" class="item-right">
             </div>
 
             <div class="box-data">
                 <label for="reactivePower" class="text-right">Q</label>
                 <input type="number" min="0" step="10" value="1000" name="reactivePower" id="reactivePower" class="result" >
                 <span class="text-left">[VAR]</span>
-                <input type="checkbox" id="optionLoadreactivePower" name="optionLoad" value="optionLoadreactivePower">
+                <input type="checkbox" id="optionLoadreactivePower" name="optionLoad" value="optionLoadreactivePower" class="item-right">
             </div>
 
         </form>
@@ -152,14 +152,14 @@
                 <label for="voltageDropPercent" class="text-right">%e</label>
                 <input type="number" min="0" step="0.5" max="100" value="3" name="voltageDropPercent" id="voltageDropPercent" class="data">
                 <span class="text-left">[%]</span>
-                <input type="radio" id="optionvoltageDropPercent" name="optionvoltageDrop" value="optionvoltageDropPercent" checked>
+                <input type="radio" id="optionvoltageDropPercent" name="optionvoltageDrop" value="optionvoltageDropPercent" class="item-right" checked>
             </div>
 
             <div class="box-data">
                 <label for="voltageDropVolts" class="text-right">e</label>
                 <input type="number" min="0" step="1" value="5" name="voltageDropVolts" id="voltageDropVolts" class="data">
                 <span class="text-left">[V]</span>
-                <input type="radio" id="optionvoltageDropVolts" name="optionvoltageDrop" value="optionvoltageDropVolts">
+                <input type="radio" id="optionvoltageDropVolts" name="optionvoltageDrop" value="optionvoltageDropVolts" class="item-right">
             </div>
 
             <div class="box-data">
@@ -488,7 +488,7 @@
     </div>
 
     <div class="box-container-custom">
-        <form id="form7">
+        <form id="formTA">
             <div class="box-data2">
                 <span></span>
                 <label class="text-center">Ampacity</label>
@@ -502,29 +502,99 @@
                     <option value="310.16">310.16</option>
                     <option value="310.17">310.17</option>
                 </select>
-                <input type="number" min="0" max="100" value="100" step="5" name="AmpacityFactor" id="AmpacityFactorTABLE" class="data">
+                <input type="number" min="0" max="100" value="100" step="5" name="AmpacityFactorTABLE" id="AmpacityFactorTABLE" class="data">
                 <label for="AmpacityFactorTABLE" class="text-left">[%]</label>
             </div>
         </form>
     </div>
-    
-    <div class="box-container" style="display: none;">
-        <form id="formC">
 
-            <div class="box-data-current-factors">
-                <label class="text-right">Current</label>
-                <input type="number" value="1" name="currentFactor_GROUP1" id="currentFactor_GROUP1" class="data">
-                <input type="number" value="1" name="currentFactor_GROUP2" id="currentFactor_GROUP2" class="data">
-                <span></span>
-                <span></span>
+    <div class="box-container">
+        <form id="formF">
+            <div class="box-current-factors">
+                <label class="text-center" style="font-weight: bold;">Current</label>
+                <label class="text-center" style="grid-column-start: 2; grid-column-end: 6; font-weight: bold;">Factors</label>
+                <label class="text-center" style="font-weight: bold;">Result</label>
             </div>
 
-            <div class="box-data-current-factors">
-                <label class="text-right">I</label>
-                <input type="checkbox" id="check_currentFactor_INDIVIDUAL1" class="text-center">
-                <input type="checkbox" id="check_currentFactor_INDIVIDUAL2" class="text-center">
-                <input type="number" value="1" name="currentFactor_INDIVIDUAL1" id="currentFactor_INDIVIDUAL1" class="data">
-                <input type="number" value="1" name="currentFactor_INDIVIDUAL2" id="currentFactor_INDIVIDUAL2" class="data">
+            <div class="box-current-factors">
+                <label class="text-center">I</label>
+                <input type="number" value="1" min="0" id="currentFactor1" class="data">
+                <input type="number" value="1" min="0" id="currentFactor2" class="data">
+                <input type="number" value="1" min="0" id="currentFactor3" class="data">
+                <input type="number" value="1" min="0" id="currentFactor4" class="data">
+                <input type="number" value="1" min="0" id="currentFactor" class="result">
+            </div>
+
+            <div class="box-current-factors">
+                <label class="text-center">Icont</label>
+                <input type="number" value="1" min="0" id="currentContinuousLoad_Factor1" class="data">
+                <input type="number" value="1" min="0" id="currentContinuousLoad_Factor2" class="data">
+                <input type="number" value="1" min="0" id="currentContinuousLoad_Factor3" class="data">
+                <input type="number" value="1" min="0" id="currentContinuousLoad_Factor4" class="data">
+                <input type="number" value="1" min="0" id="currentContinuousLoad_Factor" class="result">
+            </div>
+
+            <div class="box-current-factors">
+                <label class="text-center">e%</label>
+                <input type="number" value="1" min="0" id="currentVoltageDropFactor1" class="data">
+                <input type="number" value="1" min="0" id="currentVoltageDropFactor2" class="data">
+                <input type="number" value="1" min="0" id="currentVoltageDropFactor3" class="data">
+                <input type="number" value="1" min="0" id="currentVoltageDropFactor4" class="data">
+                <input type="number" value="1" min="0" id="currentVoltageDropFactor" class="result">
+            </div>
+
+            <div class="box-current-factors">
+                <label class="text-center">Isc</label>
+                <input type="number" value="1" min="0" id="currentShortCircuitFactor1" class="data">
+                <input type="number" value="1" min="0" id="currentShortCircuitFactor2" class="data">
+                <input type="number" value="1" min="0" id="currentShortCircuitFactor3" class="data">
+                <input type="number" value="1" min="0" id="currentShortCircuitFactor4" class="data">
+                <input type="number" value="1" min="0" id="currentShortCircuitFactor" class="result">
+            </div>
+
+            <div class="box-current-factors">
+                <label class="text-center">FT</label>
+                <input type="number" value="1" min="0" id="currentFactorTemperatureFactor1" class="data">
+                <input type="number" value="1" min="0" id="currentFactorTemperatureFactor2" class="data">
+                <input type="number" value="1" min="0" id="currentFactorTemperatureFactor3" class="data">
+                <input type="number" value="1" min="0" id="currentFactorTemperatureFactor4" class="data">
+                <input type="number" value="1" min="0" id="currentFactorTemperatureFactor" class="result">
+            </div>
+
+            <div class="box-current-factors">
+                <label class="text-center">FG</label>
+                <input type="number" value="1" min="0" id="currentFactorGroupingFactor1" class="data">
+                <input type="number" value="1" min="0" id="currentFactorGroupingFactor2" class="data">
+                <input type="number" value="1" min="0" id="currentFactorGroupingFactor3" class="data">
+                <input type="number" value="1" min="0" id="currentFactorGroupingFactor4" class="data">
+                <input type="number" value="1" min="0" id="currentFactorGroupingFactor" class="result">
+            </div>
+
+            <div class="box-current-factors">
+                <label class="text-center">FT*FG</label>
+                <input type="number" value="1" min="0" id="currentFactorAdjustmentFactor1" class="data">
+                <input type="number" value="1" min="0" id="currentFactorAdjustmentFactor2" class="data">
+                <input type="number" value="1" min="0" id="currentFactorAdjustmentFactor3" class="data">
+                <input type="number" value="1" min="0" id="currentFactorAdjustmentFactor4" class="data">
+                <input type="number" value="1" min="0" id="currentFactorAdjustmentFactor" class="result">
+            </div>
+
+            <div class="box-current-factors">
+                <label class="text-right" style="font-style: italic; font-weight: bold;">Group</label>
+                <input type="number" value="1" min="0" id="currentFactorGroup1" class="data">
+                <input type="number" value="1" min="0" id="currentFactorGroup2" class="data">
+                <input type="number" value="1" min="0" id="currentFactorGroup3" class="data">
+                <input type="number" value="1" min="0" id="currentFactorGroup4" class="data">
+                <span></span>
+            </div>
+            
+            <div class="box-current-factors">
+                <label class="text-right" style="font-style: italic; font-weight: bold;" >Apply</label>
+                <input type="checkbox" id="optioncurrentFactorGroup1" name="optioncurrentFactor" class="item-center" checked>
+                <input type="checkbox" id="optioncurrentFactorGroup2" name="optioncurrentFactor" class="item-center" checked>
+                <input type="checkbox" id="optioncurrentFactorGroup3" name="optioncurrentFactor" class="item-center" checked>
+                <input type="checkbox" id="optioncurrentFactorGroup4" name="optioncurrentFactor" class="item-center" checked>
+                <span></span>
             </div>
 
 

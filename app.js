@@ -141,7 +141,7 @@ document.getElementById("form3").addEventListener("change", calc_main);
 document.getElementById("form4").addEventListener("change", calc_main);
 document.getElementById("formA").addEventListener("change", calc_main);
 document.getElementById("form6").addEventListener("change", calc_main);
-document.getElementById("form7").addEventListener("change", calc_main);
+document.getElementById("formTA").addEventListener("change", calc_main);
 
 function calc_main() {
     console.log("cambio");
