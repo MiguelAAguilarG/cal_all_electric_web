@@ -512,8 +512,9 @@
         <form id="formF">
             <div class="box-current-factors">
                 <label class="text-center" style="font-weight: bold;">Current</label>
-                <label class="text-center" style="grid-column-start: 2; grid-column-end: 6; font-weight: bold;">Factors</label>
+                <label class="text-center" style="grid-column-start: 2; grid-column-end: 5; font-weight: bold;">Factors</label>
                 <label class="text-center" style="font-weight: bold;">Result</label>
+                <label class="text-center" style="font-weight: bold;">[A]*[F]</label>
             </div>
 
             <div class="box-current-factors">
@@ -521,17 +522,17 @@
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactor1" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactor2" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactor3" class="data">
-                <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactor4" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactor" class="result">
+                <input type="number" inputmode="decimal" name="currentXCurrentFactor" id="currentXCurrentFactor" class="result">
             </div>
 
             <div class="box-current-factors">
                 <label class="text-center">Icont</label>
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentContinuousLoadFactor1" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentContinuousLoadFactor2" class="data">
-                <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentContinuousLoadFactor3" class="data">
-                <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentContinuousLoadFactor4" class="data">
+                <input type="number" inputmode="decimal" value="1.25" min="0.05" step="0.05" id="currentContinuousLoadFactor3" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentContinuousLoadFactor" class="result">
+                <input type="number" inputmode="decimal" name="currentXCurrentFactorContinuousLoad" id="currentXCurrentFactorContinuousLoad" class="result">
             </div>
 
             <div class="box-current-factors">
@@ -539,8 +540,8 @@
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentVoltageDropFactor1" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentVoltageDropFactor2" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentVoltageDropFactor3" class="data">
-                <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentVoltageDropFactor4" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentVoltageDropFactor" class="result">
+                <input type="number" inputmode="decimal" name="currentXCurrentFactorVoltageDrop" id="currentXCurrentFactorVoltageDrop" class="result">
             </div>
 
             <div class="box-current-factors">
@@ -548,8 +549,8 @@
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentShortCircuitFactor1" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentShortCircuitFactor2" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentShortCircuitFactor3" class="data">
-                <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentShortCircuitFactor4" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentShortCircuitFactor" class="result">
+                <input type="number" inputmode="decimal" name="currentXCurrentFactorShortCircuit" id="currentXCurrentFactorShortCircuit" class="result">
             </div>
 
             <div class="box-current-factors">
@@ -557,8 +558,8 @@
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorTemperatureFactor1" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorTemperatureFactor2" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorTemperatureFactor3" class="data">
-                <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorTemperatureFactor4" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorTemperatureFactor" class="result">
+                <input type="number" inputmode="decimal" name="currentXCurrentFactorTemperature" id="currentXCurrentFactorTemperature" class="result">
             </div>
 
             <div class="box-current-factors">
@@ -566,8 +567,8 @@
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorGroupingFactor1" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorGroupingFactor2" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorGroupingFactor3" class="data">
-                <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorGroupingFactor4" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorGroupingFactor" class="result">
+                <input type="number" inputmode="decimal" name="currentXCurrentFactorGrouping" id="currentXCurrentFactorGrouping" class="result">
             </div>
 
             <div class="box-current-factors">
@@ -575,8 +576,8 @@
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorAdjustmentFactor1" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorAdjustmentFactor2" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorAdjustmentFactor3" class="data">
-                <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorAdjustmentFactor4" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorAdjustmentFactor" class="result">
+                <input type="number" inputmode="decimal" name="currentXCurrentFactorAdjustment" id="currentXCurrentFactorAdjustment" class="result">
             </div>
 
             <div class="box-current-factors">
@@ -584,7 +585,7 @@
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorGroup1" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorGroup2" class="data">
                 <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorGroup3" class="data">
-                <input type="number" inputmode="decimal" value="1" min="0.05" step="0.05" id="currentFactorGroup4" class="data">
+                <span></span>
                 <span></span>
             </div>
             
@@ -593,7 +594,7 @@
                 <input type="checkbox" id="optioncurrentFactorGroup1" name="optioncurrentFactor" class="item-center">
                 <input type="checkbox" id="optioncurrentFactorGroup2" name="optioncurrentFactor" class="item-center">
                 <input type="checkbox" id="optioncurrentFactorGroup3" name="optioncurrentFactor" class="item-center">
-                <input type="checkbox" id="optioncurrentFactorGroup4" name="optioncurrentFactor" class="item-center">
+                <span></span>
                 <span></span>
             </div>
 

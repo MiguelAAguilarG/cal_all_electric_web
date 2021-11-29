@@ -195,7 +195,7 @@ function calc_main() {
     let currentFactors = {};
     for (const current of currentArray) {
         currentFactors[current] = [[]]; // [[currentFactors], currentFactor]
-        for (let index = 1; index <= 4; index++) {
+        for (let index = 1; index <= 3; index++) {
             let currentFactor = Number.parseFloat(document.getElementById(current + "Factor" + index).value);
             if (currentFactor <= 0 ) {
                 currentFactor = 0.05;
@@ -521,6 +521,19 @@ function calc_main() {
             IscIndex = index;
             break;
         }
+
+        if (index == mm2.length - 1) {
+            window.alert(`mm2Isc out of range; 
+            DATA = {
+            \"mm2Isc\" = ${mm2Isc},
+            \"MAXmm2Isc\" = ${mm2[index]},
+            \"mm2Isc >= mm2[index]\" = ${mm2Isc} >= ${mm2[index]}}`);
+
+            return index;
+            
+        } else {
+            
+        }
     }
 
     let cmilIsc = mm2Tocmil(mm2[IscIndex]);
@@ -604,11 +617,11 @@ function calc_main() {
     let AmpacityArray = searcherAmpacityArrayFun(AmpacityTABLES, parameters);
     AmpacityArray = AmpacityArray.map(Ampacity =>  AmpacityFactorTABLE*Ampacity);
 
-    let AmpacityIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactor, 1);
-    let AmpacityContinuousLoadIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*1.25*currentFactorContinuousLoad, 1);
-    let AmpacityFactorTemperatureIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactorTemperature, factorTemperature);
-    let AmpacityFactorGroupingIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactorGrouping, factorGrouping);
-    let AmpacityFactorAdjustmentIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor*currentFactorAdjustment, factorAdjustment);
+    let AmpacityIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, currentFactor, 1);
+    let AmpacityContinuousLoadIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, currentFactorContinuousLoad, 1);
+    let AmpacityFactorTemperatureIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, currentFactorTemperature, factorTemperature);
+    let AmpacityFactorGroupingIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, currentFactorGrouping, factorGrouping);
+    let AmpacityFactorAdjustmentIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, currentFactorAdjustment, factorAdjustment);
 
     let Ampacity = AmpacityArray[AmpacityIndex];
     let AmpacityContinuousLoad = AmpacityArray[AmpacityContinuousLoadIndex];
@@ -786,6 +799,26 @@ function calc_main() {
 
     document.getElementById("mm2AmpacityShortCircuitRatioCustom").value = (mm2AmpacityShortCircuitCustom/mm2Ampacity).toFixed(decimals+2);
     /** IscCustom **/
+
+    /** Factors **/
+    let currentXCurrentFactor = current*currentFactor;
+    let currentXCurrentFactorContinuousLoad = current*currentFactorContinuousLoad;
+    let currentXCurrentFactorVoltageDrop = current*currentFactorVoltageDrop;
+    let currentXCurrentFactorShortCircuit = current*currentFactorShortCircuit;
+    let currentXCurrentFactorTemperature = current*currentFactorTemperature;
+    let currentXCurrentFactorGrouping = current*currentFactorGrouping;
+    let currentXCurrentFactorAdjustment = current*currentFactorAdjustment;
+
+    document.getElementById("currentXCurrentFactor").value = currentXCurrentFactor.toFixed(decimals);
+    document.getElementById("currentXCurrentFactorContinuousLoad").value = currentXCurrentFactorContinuousLoad.toFixed(decimals);
+    document.getElementById("currentXCurrentFactorVoltageDrop").value = currentXCurrentFactorVoltageDrop.toFixed(decimals);
+    document.getElementById("currentXCurrentFactorShortCircuit").value = currentXCurrentFactorShortCircuit.toFixed(decimals);
+    document.getElementById("currentXCurrentFactorTemperature").value = currentXCurrentFactorTemperature.toFixed(decimals);
+    document.getElementById("currentXCurrentFactorGrouping").value = currentXCurrentFactorGrouping.toFixed(decimals);
+    document.getElementById("currentXCurrentFactorAdjustment").value = currentXCurrentFactorAdjustment.toFixed(decimals);
+    /** Factors **/
+
+
 }
 
 function currentFun(system, voltage, realPower, pf) {
@@ -932,14 +965,29 @@ function searcherAmpacityArrayFun(AmpacityTABLES, parameters) {
 
 }
 
-function AmpacityIndexFun(AmpacityArray, current, Ampacityfactor) {
+function AmpacityIndexFun(AmpacityArray, current, currentFactor, Ampacityfactor) {
     //Array.prototype.findIndex()
     for (let index = 0; index < AmpacityArray.length; index++) {
-        if (current <= AmpacityArray[index]*Ampacityfactor) {
+        if (current*currentFactor <= AmpacityArray[index]*Ampacityfactor) {
             return index;
         } else {
             
-        }  
+        }
+
+        if (index == AmpacityArray.length - 1) {
+            window.alert(`CURRENT out of range; 
+            DATA = {
+            \"current\" = ${current}, 
+            \"currentFactor\" = ${currentFactor},
+            \"maxAmpacity\" = ${AmpacityArray[index]},
+            \"Ampacityfactor\" = ${Ampacityfactor},
+            \"current*currentFactor >= maxAmpacity*Ampacityfactor\" = ${current*currentFactor} >= ${AmpacityArray[index]*Ampacityfactor}}`);
+
+            return index;
+
+        } else {
+            
+        }
     }
 }
 
@@ -1114,6 +1162,18 @@ function voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, cu
         } else if (voltageDropPercentResult <= voltageDropPercent) {
             return index;
             //break;
+        } else {
+            
+        }
+
+        if (index == RArray.length - 1) {
+            window.alert(`voltageDrop out of range; 
+            DATA = {
+            \"current\" = ${current},
+            \"voltageDropPercentResult >= voltageDropPercent\" = ${voltageDropPercentResult} >= ${voltageDropPercent}}`);
+
+            return index;
+            
         } else {
             
         }

@@ -86,7 +86,7 @@ footer{
 }
 
 .box-current-factors{
-    grid-template-columns: minmax(3.4em, 3.4em) repeat(5, minmax(3.05em, 3.05em));
+    grid-template-columns: minmax(3.2em, 3.2em) repeat(4, minmax(3.05em, 3.05em)) minmax(3.6em, 3.6em);
 }
 
 .text-center{
