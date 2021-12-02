@@ -78,7 +78,7 @@
 
     <div class="box-container">
         <form id="form2">
-            <div class="box-data">
+            <div class="box-data" name="current-box" id="current-box">
                 <label for="current" class="text-right">I</label>
                 <input type="number" inputmode="decimal" min="0" value="16" step="1" name="current" id="current" class="data">
                 <span class="text-left">[A]</span>
@@ -97,28 +97,28 @@
                 <span class="text-left">I*1.25</span>
             </div>
 
-            <div class="box-data">
+            <div class="box-data" name="realPower-box" id="realPower-box">
                 <label for="realPower" class="text-right">P</label>
                 <input type="number" inputmode="decimal" min="0" step="10" value="1000" name="realPower" id="realPower" class="data">
                 <span class="text-left">[W]</span>
                 <input type="checkbox" id="optionLoadrealPower" name="optionLoad" value="optionLoadrealPower" class="item-right">
             </div>
 
-            <div class="box-data">
+            <div class="box-data" name="pf-box" id="pf-box">
                 <label for="pf" class="text-right">FP</label>
                 <input type="number" inputmode="decimal" min="0" max="1" step="0.1" value="0.90" name="pf" id="pf" class="data">
                 <span> </span>
                 <input type="checkbox" id="optionLoadpf" name="optionLoad" value="optionLoadpf" class="item-right" checked>
             </div>
 
-            <div class="box-data">
+            <div class="box-data" name="apparentPower-box" id="apparentPower-box">
                 <label for="apparentPower" class="text-right">S</label>
                 <input type="number" inputmode="decimal" min="0" step="10" value="1000" name="apparentPower" id="apparentPower" class="result" >
                 <span class="text-left">[VA]</span>
                 <input type="checkbox" id="optionLoadapparentPower" name="optionLoad" value="optionLoadapparentPower" class="item-right">
             </div>
 
-            <div class="box-data">
+            <div class="box-data" name="reactivePower-box" id="reactivePower-box">
                 <label for="reactivePower" class="text-right">Q</label>
                 <input type="number" inputmode="decimal" min="0" step="10" value="1000" name="reactivePower" id="reactivePower" class="result" >
                 <span class="text-left">[VAR]</span>
@@ -487,7 +487,7 @@
         </form>
     </div>
 
-    <div class="box-container-custom">
+    <div class="box-container">
         <form id="formTA">
             <div class="box-data2">
                 <span></span>

@@ -300,6 +300,9 @@ function calc_main() {
         }
     }
 
+    boxBG = "#ff9a3c";
+    optionLoadArrayChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad + "-box").style.background = "transparent");
+    optionLoadArrayNotChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad + "-box").style.background = "transparent");
     if (optionLoadArrayChecked.length > 2) {
         optionLoadArrayNotChecked.map(optionLoad => document.getElementById(optionLoad).disabled = true);
         
@@ -333,6 +336,8 @@ function calc_main() {
 
         optionLoadArrayNotChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "result");
         optionLoadArrayChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad).className = "data");
+
+        optionLoadArrayNotChecked.map(optionLoad => optionLoad.slice(10)).map(optionLoad => document.getElementById(optionLoad + "-box").style.background = boxBG);
         return;
     }
 
@@ -389,7 +394,7 @@ function calc_main() {
             Vars.push("Q");
 
         } else {
-            
+
         }
         
     }
