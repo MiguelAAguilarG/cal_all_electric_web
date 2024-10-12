@@ -4,7 +4,7 @@ const mm2 = [2.08, 3.31, 5.26, 8.37, 13.3, 21.2, 26.7, 33.6, 42.4, 53.49, 67.43,
 const tableFactorGrouping = {3:1, 6:0.8, 9:0.7, 20:0.5, 30:0.45, 40:0.4, 50:0.35};
 
 const AmpacityTABLES = {
-    310.16: [
+    "310.16": [
         {
         conductorMaterial: "Cu",
         Tinsulation: 60,
@@ -54,7 +54,7 @@ const AmpacityTABLES = {
         AmpacityVALUES : [NaN, 25, 35, 45, 55, 75, 85, 100, 115, 135, 150, 175, 205, 230, 260, 280, 305, 350, 385, 425, 435, 445, 480, 500, 545, 585, 615, 630]
         }
     ],
-    310.17: [
+    "310.17": [
         {
         conductorMaterial: "Cu",
         Tinsulation: 60,
@@ -98,7 +98,7 @@ const AmpacityTABLES = {
         AmpacityVALUES : [35, 45, 60, 85, 115, 130, 150, 175, 205, 235, 270, 315, 355, 395, 445, 480, 545, 615, 670, 700, 725, 790, 845, 965, 1070, 1185, 1295]
         }
     ],
-    310.20: [
+    "310.20": [
         {
         conductorMaterial: "Cu",
         Tinsulation: 75,
@@ -960,7 +960,7 @@ function factorAdjustmentFun(factorTemperature, factorGrouping) {
 }
 
 function searcherAmpacityArrayFun(AmpacityTABLE, parameters) {
-
+    
     for (const TABLE of AmpacityTABLE) {
         let aux = 0;
         for (const parameter of Object.keys(parameters)) {
