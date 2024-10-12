@@ -200,6 +200,7 @@ function calc_main() {
 
     /**Data **/
     let parameters = {};
+    document.getElementById("Tinsulation").options[0].disabled = false;
     if (AmpacityTABLE === "310.16") {
         parameters = {
             conductorMaterial: conductorMaterial,
@@ -214,12 +215,19 @@ function calc_main() {
             Tambient: 30
         }
     } else if (AmpacityTABLE === "310.20") {
+        document.getElementById("Tinsulation").options[0].disabled = true;
+        if (Tinsulation === 60) {
+            document.getElementById("Tinsulation").value = 75;
+            Tinsulation = 75;
+        }
+
         parameters = {
             conductorMaterial: conductorMaterial,
             Tinsulation: Tinsulation,
             Tambient: 40,
             grouping: 3
         }
+        
     } else{
         
     }
