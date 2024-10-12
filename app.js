@@ -4,100 +4,134 @@ const mm2 = [2.08, 3.31, 5.26, 8.37, 13.3, 21.2, 26.7, 33.6, 42.4, 53.49, 67.43,
 const tableFactorGrouping = {3:1, 6:0.8, 9:0.7, 20:0.5, 30:0.45, 40:0.4, 50:0.35};
 
 const AmpacityTABLES = {
-    310.16: {
-        cooper60: {
-            conductorMaterial: "Cu",
-            Tinsulation: 60,
-            Tambient: 30,
-            grouping: 3,
-            voltage: [0, 2000],
-            AmpacityVALUES : [15, 20, 30, 40, 55, 70, 85, 95, 110, 125, 145, 165, 195, 215, 240, 260, 280, 320, 350, 385, 400, 410, 435, 455, 495, 525, 545, 555]
+    310.16: [
+        {
+        conductorMaterial: "Cu",
+        Tinsulation: 60,
+        Tambient: 30,
+        grouping: 3,
+        voltage: [0, 2000],
+        AmpacityVALUES : [15, 20, 30, 40, 55, 70, 85, 95, 110, 125, 145, 165, 195, 215, 240, 260, 280, 320, 350, 385, 400, 410, 435, 455, 495, 525, 545, 555]
         },
-        cooper75: {
-            conductorMaterial: "Cu",
-            Tinsulation: 75,
-            Tambient: 30,
-            grouping: 3,
-            voltage: [0, 2000],
-            AmpacityVALUES : [20, 25, 35, 50, 65, 85, 100, 115, 130, 150, 175, 200, 230, 255, 285, 310, 335, 380, 420, 460, 475, 490, 520, 545, 590, 625, 650, 665]
+        {
+        conductorMaterial: "Cu",
+        Tinsulation: 75,
+        Tambient: 30,
+        grouping: 3,
+        voltage: [0, 2000],
+        AmpacityVALUES : [20, 25, 35, 50, 65, 85, 100, 115, 130, 150, 175, 200, 230, 255, 285, 310, 335, 380, 420, 460, 475, 490, 520, 545, 590, 625, 650, 665]
         },
-        cooper90: {
-            conductorMaterial: "Cu",
-            Tinsulation: 90,
-            Tambient: 30,
-            grouping: 3,
-            voltage: [0, 2000],
-            AmpacityVALUES : [25, 30, 40, 55, 75, 95, 115, 130, 145, 170, 195, 225, 260, 290, 320, 350, 380, 430, 475, 520, 535, 555, 585, 615, 665, 705, 735, 750]
+        {
+        conductorMaterial: "Cu",
+        Tinsulation: 90,
+        Tambient: 30,
+        grouping: 3,
+        voltage: [0, 2000],
+        AmpacityVALUES : [25, 30, 40, 55, 75, 95, 115, 130, 145, 170, 195, 225, 260, 290, 320, 350, 380, 430, 475, 520, 535, 555, 585, 615, 665, 705, 735, 750]
         },
-        aluminium60: {
-            conductorMaterial: "Al",
-            Tinsulation: 60,
-            Tambient: 30,
-            grouping: 3,
-            voltage: [0, 2000],
-            AmpacityVALUES : [NaN, 15, 25, 35, 40, 55, 65, 75, 85, 100, 115, 130, 150, 170, 195, 210, 225, 260, 285, 315, 320, 330, 355, 375, 405, 435, 455, 470]
+        {
+        conductorMaterial: "Al",
+        Tinsulation: 60,
+        Tambient: 30,
+        grouping: 3,
+        voltage: [0, 2000],
+        AmpacityVALUES : [NaN, 15, 25, 35, 40, 55, 65, 75, 85, 100, 115, 130, 150, 170, 195, 210, 225, 260, 285, 315, 320, 330, 355, 375, 405, 435, 455, 470]
         },
-        aluminium75: {
-            conductorMaterial: "Al",
-            Tinsulation: 75,
-            Tambient: 30,
-            grouping: 3,
-            voltage: [0, 2000],
-            AmpacityVALUES : [NaN, 20, 30, 49, 50, 65, 75, 90, 100, 120, 135, 155, 180, 205, 230, 250, 270, 310, 340, 375, 385, 395, 425, 445, 485, 520, 545, 560]
+        {
+        conductorMaterial: "Al",
+        Tinsulation: 75,
+        Tambient: 30,
+        grouping: 3,
+        voltage: [0, 2000],
+        AmpacityVALUES : [NaN, 20, 30, 49, 50, 65, 75, 90, 100, 120, 135, 155, 180, 205, 230, 250, 270, 310, 340, 375, 385, 395, 425, 445, 485, 520, 545, 560]
         },
-        aluminium90: {
-            conductorMaterial: "Al",
-            Tinsulation: 90,
-            Tambient: 30,
-            grouping: 3,
-            voltage: [0, 2000],
-            AmpacityVALUES : [NaN, 25, 35, 45, 55, 75, 85, 100, 115, 135, 150, 175, 205, 230, 260, 280, 305, 350, 385, 425, 435, 445, 480, 500, 545, 585, 615, 630]
+        {
+        conductorMaterial: "Al",
+        Tinsulation: 90,
+        Tambient: 30,
+        grouping: 3,
+        voltage: [0, 2000],
+        AmpacityVALUES : [NaN, 25, 35, 45, 55, 75, 85, 100, 115, 135, 150, 175, 205, 230, 260, 280, 305, 350, 385, 425, 435, 445, 480, 500, 545, 585, 615, 630]
         }
-    },
-    310.17: {
-        cooper60: {
-            conductorMaterial: "Cu",
-            Tinsulation: 60,
-            Tambient: 30,
-            voltage: [0, 2000],
-            AmpacityVALUES : [25, 30, 40, 60, 80, 105, 120, 140, 165, 195, 225, 260, 300, 340, 375, 420, 455, 515, 575, 630, 655, 680, 730, 780, 890, 980, 1070, 1155]
+    ],
+    310.17: [
+        {
+        conductorMaterial: "Cu",
+        Tinsulation: 60,
+        Tambient: 30,
+        voltage: [0, 2000],
+        AmpacityVALUES : [25, 30, 40, 60, 80, 105, 120, 140, 165, 195, 225, 260, 300, 340, 375, 420, 455, 515, 575, 630, 655, 680, 730, 780, 890, 980, 1070, 1155]
         },
-        cooper75: {
-            conductorMaterial: "Cu",
-            Tinsulation: 75,
-            Tambient: 30,
-            voltage: [0, 2000],
-            AmpacityVALUES : [30, 35, 60, 70, 95, 125, 145, 170, 195, 230, 265, 310, 360, 405, 445, 505, 545, 620, 690, 755, 785, 815, 870, 935, 1065, 1175, 1280, 1385]
+        {
+        conductorMaterial: "Cu",
+        Tinsulation: 75,
+        Tambient: 30,
+        voltage: [0, 2000],
+        AmpacityVALUES : [30, 35, 60, 70, 95, 125, 145, 170, 195, 230, 265, 310, 360, 405, 445, 505, 545, 620, 690, 755, 785, 815, 870, 935, 1065, 1175, 1280, 1385]
         },
-        cooper90: {
-            conductorMaterial: "Cu",
-            Tinsulation: 90,
-            Tambient: 30,
-            voltage: [0, 2000],
-            AmpacityVALUES : [35, 40, 55, 80, 105, 140, 165, 190, 220, 260, 300, 350, 405, 455, 500, 570, 615, 700, 780, 850, 885, 920, 980, 1055, 1200, 1325, 1445, 1560]
+        {
+        conductorMaterial: "Cu",
+        Tinsulation: 90,
+        Tambient: 30,
+        voltage: [0, 2000],
+        AmpacityVALUES : [35, 40, 55, 80, 105, 140, 165, 190, 220, 260, 300, 350, 405, 455, 500, 570, 615, 700, 780, 850, 885, 920, 980, 1055, 1200, 1325, 1445, 1560]
         },
-        aluminium60: {
-            conductorMaterial: "Al",
-            Tinsulation: 60,
-            Tambient: 30,
-            voltage: [0, 2000],
-            AmpacityVALUES : [25, 35, 45, 60, 80, 95, 110, 130, 150, 175, 200, 235, 265, 290, 330, 355, 405, 455, 500, 515, 535, 580, 625, 710, 795, 875, 960]
+        {
+        conductorMaterial: "Al",
+        Tinsulation: 60,
+        Tambient: 30,
+        voltage: [0, 2000],
+        AmpacityVALUES : [25, 35, 45, 60, 80, 95, 110, 130, 150, 175, 200, 235, 265, 290, 330, 355, 405, 455, 500, 515, 535, 580, 625, 710, 795, 875, 960]
         },
-        aluminium75: {
-            conductorMaterial: "Al",
-            Tinsulation: 75,
-            Tambient: 30,
-            voltage: [0, 2000],
-            AmpacityVALUES : [30, 40, 55, 75, 100, 115, 135, 155, 180, 210, 240, 280, 315, 350, 395, 425, 485, 545, 595, 595, 620, 645, 700, 750, 855, 950, 1050, 1150]
+        {
+        conductorMaterial: "Al",
+        Tinsulation: 75,
+        Tambient: 30,
+        voltage: [0, 2000],
+        AmpacityVALUES : [30, 40, 55, 75, 100, 115, 135, 155, 180, 210, 240, 280, 315, 350, 395, 425, 485, 545, 595, 595, 620, 645, 700, 750, 855, 950, 1050, 1150]
         },
-        aluminium90: {
-            conductorMaterial: "Al",
-            Tinsulation: 90,
-            Tambient: 30,
-            voltage: [0, 2000],
-            AmpacityVALUES : [35, 45, 60, 85, 115, 130, 150, 175, 205, 235, 270, 315, 355, 395, 445, 480, 545, 615, 670, 700, 725, 790, 845, 965, 1070, 1185, 1295]
+        {
+        conductorMaterial: "Al",
+        Tinsulation: 90,
+        Tambient: 30,
+        voltage: [0, 2000],
+        AmpacityVALUES : [35, 45, 60, 85, 115, 130, 150, 175, 205, 235, 270, 315, 355, 395, 445, 480, 545, 615, 670, 700, 725, 790, 845, 965, 1070, 1185, 1295]
         }
-    }
+    ],
+    310.20: [
+        {
+        conductorMaterial: "Cu",
+        Tinsulation: 75,
+        Tambient: 40,
+        grouping: 3,
+        voltage: [0, 2000],
+        AmpacityVALUES : [30, 35, 60, 70, 95, 125, 145, 170, 195, 230, 265, 310, 360, 405, 445, 505, 545, 620, 690, 755, 785, 815, 870, 935, 1065, 1175, 1280, 1385]
+        },
+        {
+        conductorMaterial: "Cu",
+        Tinsulation: 90,
+        Tambient: 40,
+        grouping: 3,
+        voltage: [0, 2000],
+        AmpacityVALUES : [35, 40, 55, 80, 105, 140, 165, 190, 220, 260, 300, 350, 405, 455, 500, 570, 615, 700, 780, 850, 885, 920, 980, 1055, 1200, 1325, 1445, 1560]
+        },
+        {
+        conductorMaterial: "Al",
+        Tinsulation: 75,
+        Tambient: 40,
+        grouping: 3,
+        voltage: [0, 2000],
+        AmpacityVALUES : [30, 40, 55, 75, 100, 115, 135, 155, 180, 210, 240, 280, 315, 350, 395, 425, 485, 545, 595, 595, 620, 645, 700, 750, 855, 950, 1050, 1150]
+        },
+        {
+        conductorMaterial: "Al",
+        Tinsulation: 90,
+        Tambient: 40,
+        grouping: 3,
+        voltage: [0, 2000],
+        AmpacityVALUES : [35, 45, 60, 85, 115, 130, 150, 175, 205, 235, 270, 315, 355, 395, 445, 480, 545, 615, 670, 700, 725, 790, 845, 965, 1070, 1185, 1295]
+        }
+    ]
 };
 
 const XCuPVC = [0.19, 0.177, 0.164, 0.171, 0.167, 0.157, 0.154, 0.148, 0.151, 0.144, 0.141, 0.138, 0.135, 0.135, 0.135, 0.131, 0.131, 0.128, 0.128, NaN, 0.125, NaN, NaN, 0.121, NaN, NaN, NaN, NaN];
@@ -163,7 +197,36 @@ function calc_main() {
     let AmpacityFactorTABLE = Number.parseFloat(document.getElementById("AmpacityFactorTABLE").value)/100;
     /*formF */
     let optioncurrentFactor = document.getElementsByName("optioncurrentFactor");
-    
+
+    /**Data **/
+    let parameters = {};
+    if (AmpacityTABLE === "310.16") {
+        parameters = {
+            conductorMaterial: conductorMaterial,
+            Tinsulation: Tinsulation,
+            Tambient: 30,
+            grouping: 3
+        }
+    } else if (AmpacityTABLE === "310.17") {
+        parameters = {
+            conductorMaterial: conductorMaterial,
+            Tinsulation: Tinsulation,
+            Tambient: 30
+        }
+    } else if (AmpacityTABLE === "310.20") {
+        parameters = {
+            conductorMaterial: conductorMaterial,
+            Tinsulation: Tinsulation,
+            Tambient: 40,
+            grouping: 3
+        }
+    } else{
+        
+    }
+    let TambientTable = parameters.Tambient;
+    /**Data **/
+
+    /*formF */
     let optioncurrentFactorArrayChecked = [];
     for(i = 0; i < optioncurrentFactor.length; i++) { 
         if(optioncurrentFactor[i].checked) {
@@ -212,6 +275,7 @@ function calc_main() {
         currentFactors[current][1] = resultFactor(currentFactors[current][0]);
         document.getElementById(current + "Factor").value = currentFactors[current][1].toFixed(decimals+2);
     }
+    /*formF */
 
     let currentFactor = currentFactors["current"][1];
     let currentFactorContinuousLoad = currentFactors["currentContinuousLoad"][1];
@@ -555,8 +619,8 @@ function calc_main() {
     let voltageDropVoltsResultCustom;
 
     if (RArray[indexCustom] === NaN || XArray[indexCustom] === NaN) {
-   
-    }else {
+    }
+    else {
         RTempCustom = RTempFun(RArray[indexCustom], Tinsulation);
         XLCustom = XArray[indexCustom];
     
@@ -578,31 +642,10 @@ function calc_main() {
 
     let currentPerConductor = currentPerConductorFun(current, conductorsPerPhase);
 
-    let factorTemperature = factorTemperatureFun(Tinsulation, Tambient);
+    let factorTemperature = factorTemperatureFun(Tinsulation, Tambient, TambientTable);
     let factorGrouping = factorGroupingFun(tableFactorGrouping, conductorsPerConduit);
     let factorAdjustment = factorAdjustmentFun(factorTemperature, factorGrouping);
-
-    /**Data **/
-    let parameters = {};
-    if (AmpacityTABLE === "310.16") {
-        parameters = {
-            conductorMaterial: conductorMaterial,
-            Tinsulation: Tinsulation,
-            Tambient: 30,
-            grouping: 3
-        }
-    } else if (AmpacityTABLE === "310.17") {
-        parameters = {
-            conductorMaterial: conductorMaterial,
-            Tinsulation: Tinsulation,
-            Tambient: 30
-        }
-    } else{
-        
-    }
-    /**Data **/
-
-    let AmpacityArray = searcherAmpacityArrayFun(AmpacityTABLES, parameters);
+    let AmpacityArray = searcherAmpacityArrayFun(AmpacityTABLES[AmpacityTABLE], parameters);
     AmpacityArray = AmpacityArray.map(Ampacity =>  AmpacityFactorTABLE*Ampacity);
 
     let AmpacityIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, currentFactor, 1);
@@ -893,9 +936,9 @@ function voltageDropPercentFun(system, Ze, length, current, voltage, conductorsP
     return voltageDropPercent;
 }
 
-function factorTemperatureFun(Tinsulation, Tambient) {
+function factorTemperatureFun(Tinsulation, Tambient, TambientTable) {
 
-    let factorTemperature = Math.sqrt((Tinsulation - Tambient)/(Tinsulation - 30));
+    let factorTemperature = Math.sqrt((Tinsulation - Tambient)/(Tinsulation - TambientTable));
 
     return factorTemperature;
 }
@@ -916,41 +959,24 @@ function factorAdjustmentFun(factorTemperature, factorGrouping) {
     return factorAdjustment = factorTemperature*factorGrouping;
 }
 
-function searcherAmpacityArrayFun(AmpacityTABLES, parameters) {
+function searcherAmpacityArrayFun(AmpacityTABLE, parameters) {
 
-    for (const TABLE in AmpacityTABLES) {
-        for (const element in AmpacityTABLES[TABLE]) {
-            let elementParametersDelete = ["voltage", "AmpacityVALUES"];
-
-            let elementParameters = Object.keys(AmpacityTABLES[TABLE][element]);
-            
-            for (const parameterDelete of elementParametersDelete) {
-                let parameterDeleteIndex = elementParameters.indexOf(parameterDelete);
-                elementParameters.splice(parameterDeleteIndex, 1);
-            }
-
-            let parametersLength = 0;
-            for (const parameter of elementParameters) {
-
-                if (Object.keys(parameters).indexOf(parameter) !== -1) {
-                    if (AmpacityTABLES[TABLE][element][parameter] === parameters[parameter]) {
-                        parametersLength ++;
-                    } else {
-                        
-                    }
-                } else {
-                    
-                }
-            }
-
-            if (parametersLength === Object.keys(parameters).length && elementParameters.length === Object.keys(parameters).length) {
-                return AmpacityTABLES[TABLE][element]["AmpacityVALUES"];
+    for (const TABLE of AmpacityTABLE) {
+        let aux = 0;
+        for (const parameter of Object.keys(parameters)) {
+            if (TABLE[parameter] === parameters[parameter]) {
+                aux++;
             } else {
-
+                
             }
+        } 
+
+        if (aux === Object.keys(parameters).length) {
+            return TABLE["AmpacityVALUES"];
+        } else {
+
         }
     }
-
 }
 
 function AmpacityIndexFun(AmpacityArray, current, currentFactor, Ampacityfactor) {
