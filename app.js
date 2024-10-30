@@ -295,7 +295,12 @@ function calc_main() {
 
     /*flag */
     let flag = 0;
-    if (voltage <= 0 ) {
+    if (system === "DC" ) {
+        pf = 1;
+        reactivePower = 0;
+        apparentPower = 0;
+        flag = 1;
+    } if (voltage <= 0 ) {
         voltage = 0.5;
         flag = 1;
     } if (current <= 0) {
@@ -409,8 +414,9 @@ function calc_main() {
         phases = 1;
     } else if (system === "three") {
         phases = 3;
-    } else {
-
+    } else if (system === "DC") {
+        phases = 1;
+        pf = 1;
     }
     let V = voltage;
 
@@ -516,10 +522,16 @@ function calc_main() {
     }
 
     current = electricParameters["I"];
-    realPower = electricParameters["P"];
-    pf = Math.cos(electricParameters["A"]);
-    apparentPower = electricParameters["S"];
-    reactivePower = electricParameters["Q"];
+    if (system === "DC") {
+
+    } else {
+        
+        realPower = electricParameters["P"];
+        pf = Math.cos(electricParameters["A"]);
+        apparentPower = electricParameters["S"];
+        reactivePower = electricParameters["Q"];
+    }
+
     /**optionLoadArray **/
 
     /**optionvoltageDropArray **/
@@ -869,6 +881,9 @@ function currentFun(system, voltage, realPower, pf) {
     else if (system === 'three') {
         current = realPower/(Math.sqrt(3)*voltage*pf);
     }
+    else if (system === 'DC') {
+        current = realPower/voltage;
+    }
 
     return current;
 }
@@ -881,6 +896,9 @@ function realPowerFun(system, voltage, current, pf) {
     }
     else if (system === 'three') {
         realPower = current*Math.sqrt(3)*voltage*pf;
+    }
+    else if (system === 'DC') {
+        realPower = current*voltage;
     }
 
     return realPower;
@@ -895,6 +913,9 @@ function apparentPowerFun(system, voltage, current, pf) {
     else if (system === 'three') {
         apparentPower = current*Math.sqrt(3)*voltage;
     }
+    else if (system === 'DC') {
+        apparentPower = 0;
+    }
 
     return apparentPower;
 }
@@ -907,6 +928,9 @@ function reactivePowerFun(system, voltage, current, pf) {
     }
     else if (system === 'three') {
         reactivePower = current*Math.sqrt(3)*voltage*Math.sin(Math.acos(pf));
+    }
+    else if (system === 'DC') {
+        reactivePower = 0;
     }
 
     return reactivePower;
@@ -940,6 +964,10 @@ function voltageDropPercentFun(system, Ze, length, current, voltage, conductorsP
     else if (system === 'three') {
         voltageDropPercent = Math.sqrt(3)*Ze*length*current*100/(voltage*conductorsPerPhase);
     }
+    else if (system === 'DC') {
+        voltageDropPercent = 2*Ze*length*current*100/(voltage*conductorsPerPhase);
+    }
+    
 
     return voltageDropPercent;
 }
