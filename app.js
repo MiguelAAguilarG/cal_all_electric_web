@@ -98,6 +98,70 @@ const AmpacityTABLES = {
         AmpacityVALUES : [35, 45, 60, 85, 115, 130, 150, 175, 205, 235, 270, 315, 355, 395, 445, 480, 545, 615, 670, 700, 725, 790, 845, 965, 1070, 1185, 1295]
         }
     ],
+    "310.18": [
+        {
+        conductorMaterial: "Cu",
+        Tinsulation: 150,
+        Tambient: 40,
+        grouping: 3,
+        voltage: [0, 2000],
+        AmpacityVALUES : [34, 43, 55, 76, 96, 120, 143, 160, 186, 215, 251, 288, 332, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN]
+        },
+        {
+        conductorMaterial: "Cu",
+        Tinsulation: 200,
+        Tambient: 40,
+        grouping: 3,
+        voltage: [0, 2000],
+        AmpacityVALUES : [36, 45, 60, 83, 110, 125, 152, 171, 197, 229, 260, 297, 346, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN]
+        },
+        {
+        conductorMaterial: "Cu",
+        Tinsulation: 250,
+        Tambient: 40,
+        grouping: 3,
+        voltage: [0, 2000],
+        AmpacityVALUES : [39, 54, 73, 93, 117, 148, 166, 191, 215, 244, 273, 308, 361, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN]
+        },
+        {
+        conductorMaterial: "Al",
+        Tinsulation: 150,
+        Tambient: 40,
+        grouping: 3,
+        voltage: [0, 2000],
+        AmpacityVALUES : [NaN, 30, 44, 57, 75, 94, 109, 124, 145, 169, 198, 227, 260, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN]
+        }
+    ],
+    "310.19": [
+        {
+        conductorMaterial: "Cu",
+        Tinsulation: 150,
+        Tambient: 40,
+        voltage: [0, 2000],
+        AmpacityVALUES : [46, 60, 80, 106, 155, 190, 214, 255, 293, 339, 390, 451, 529, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN]
+        },
+        {
+        conductorMaterial: "Cu",
+        Tinsulation: 200,
+        Tambient: 40,
+        voltage: [0, 2000],
+        AmpacityVALUES : [54, 68, 90, 124, 165, 220, 252, 293, 344, 399, 467, 546, 629, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN]
+        },
+        {
+        conductorMaterial: "Cu",
+        Tinsulation: 250,
+        Tambient: 40,
+        voltage: [0, 2000],
+        AmpacityVALUES : [59, 78, 107, 142, 205, 278, 327, 381, 440, 532, 591, 708, 830, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN]
+        },
+        {
+        conductorMaterial: "Al",
+        Tinsulation: 150,
+        Tambient: 40,
+        voltage: [0, 2000],
+        AmpacityVALUES : [NaN, 47, 63, 83, 112, 148, 170, 198, 228, 263, 305, 351, 411, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN]
+        }
+    ],
     "310.20": [
         {
         conductorMaterial: "Cu",
@@ -105,7 +169,7 @@ const AmpacityTABLES = {
         Tambient: 40,
         grouping: 3,
         voltage: [0, 2000],
-        AmpacityVALUES : [0, 0, 0, 57, 75, 101, 118, 135, 158, 183, 212, 245, 287, 320, 359, 397, 430, 496, 553, 610, 638, 660, 704, 748, 0, 0, 0]
+        AmpacityVALUES : [NaN, NaN, NaN, 57, 75, 101, 118, 135, 158, 183, 212, 245, 287, 320, 359, 397, 430, 496, 553, 610, 638, 660, 704, 748, NaN, NaN, NaN, NaN]
         },
         {
         conductorMaterial: "Cu",
@@ -113,7 +177,7 @@ const AmpacityTABLES = {
         Tambient: 40,
         grouping: 3,
         voltage: [0, 2000],
-        AmpacityVALUES : [0, 0, 0, 66, 89, 117, 138, 158, 185, 214, 247, 287, 335, 374, 419, 464, 503, 580, 647, 714, 747, 773, 826, 879, 0, 0, 0]
+        AmpacityVALUES : [NaN, NaN, NaN, 66, 89, 117, 138, 158, 185, 214, 247, 287, 335, 374, 419, 464, 503, 580, 647, 714, 747, 773, 826, 879, NaN, NaN, NaN, NaN]
         },
         {
         conductorMaterial: "Al",
@@ -121,7 +185,7 @@ const AmpacityTABLES = {
         Tambient: 40,
         grouping: 3,
         voltage: [0, 2000],
-        AmpacityVALUES : [0, 0, 0, 44, 59, 78, 92, 106, 123, 143, 165, 192, 224, 251, 282, 312, 339, 392, 440, 488, 512, 532, 572, 612, 0, 0, 0, 0]
+        AmpacityVALUES : [NaN, NaN, NaN, 44, 59, 78, 92, 106, 123, 143, 165, 192, 224, 251, 282, 312, 339, 392, 440, 488, 512, 532, 572, 612, NaN, NaN, NaN, NaN]
         },
         {
         conductorMaterial: "Al",
@@ -129,7 +193,7 @@ const AmpacityTABLES = {
         Tambient: 40,
         grouping: 3,
         voltage: [0, 2000],
-        AmpacityVALUES : [0, 0, 0, 51, 69, 91, 107, 123, 144, 167, 193, 224, 262, 292, 328, 364, 395, 458, 514, 570, 598, 622, 669, 716, 0, 0, 0, 0]
+        AmpacityVALUES : [NaN, NaN, NaN, 51, 69, 91, 107, 123, 144, 167, 193, 224, 262, 292, 328, 364, 395, 458, 514, 570, 598, 622, 669, 716, NaN, NaN, NaN, NaN]
         }
     ]
 };
@@ -199,23 +263,126 @@ function calc_main() {
     let optioncurrentFactor = document.getElementsByName("optioncurrentFactor");
 
     /**Data **/
+    document.getElementById("Tinsulation").options[0].style.display = "none";
+    document.getElementById("Tinsulation").options[1].style.display = "none";
+    document.getElementById("Tinsulation").options[2].style.display = "none";
+    document.getElementById("Tinsulation").options[3].style.display = "none";
+    document.getElementById("Tinsulation").options[4].style.display = "none";
+    document.getElementById("Tinsulation").options[5].style.display = "none";
+
+    document.getElementById("conductorMaterial").options[0].disabled = false;
+    document.getElementById("conductorMaterial").options[1].disabled = false;
+
     let parameters = {};
-    document.getElementById("Tinsulation").options[0].disabled = false;
     if (AmpacityTABLE === "310.16") {
+        document.getElementById("Tinsulation").options[0].style.display = "initial";
+        document.getElementById("Tinsulation").options[1].style.display = "initial";
+        document.getElementById("Tinsulation").options[2].style.display = "initial";
+
+        if (Tinsulation === 150 || Tinsulation === 200 || Tinsulation === 250) {
+            document.getElementById("Tinsulation").value = 75;
+            Tinsulation = 75;
+        }
+
         parameters = {
             conductorMaterial: conductorMaterial,
             Tinsulation: Tinsulation,
             Tambient: 30,
             grouping: 3
         }
+
     } else if (AmpacityTABLE === "310.17") {
+        document.getElementById("Tinsulation").options[0].style.display = "initial";
+        document.getElementById("Tinsulation").options[1].style.display = "initial";
+        document.getElementById("Tinsulation").options[2].style.display = "initial";
+
+        if (Tinsulation === 150 || Tinsulation === 200 || Tinsulation === 250) {
+            document.getElementById("Tinsulation").value = 75;
+            Tinsulation = 75;
+        }
+
         parameters = {
             conductorMaterial: conductorMaterial,
             Tinsulation: Tinsulation,
             Tambient: 30
         }
+        
+    } else if (AmpacityTABLE === "310.18") {
+        document.getElementById("Tinsulation").options[3].style.display = "initial";
+        document.getElementById("Tinsulation").options[4].style.display = "initial";
+        document.getElementById("Tinsulation").options[5].style.display = "initial";
+
+        document.getElementById("conductorMaterial").options[0].disabled = false;
+        document.getElementById("conductorMaterial").options[1].disabled = false;
+
+        if (Tinsulation === 60 || Tinsulation === 75 || Tinsulation === 90 ) {
+            document.getElementById("Tinsulation").value = 150;
+            document.getElementById("conductorMaterial").value = "Cu";
+            conductorMaterial = "Cu";
+            Tinsulation = 150;
+        }
+
+        if (Tinsulation === 200) {
+            document.getElementById("conductorMaterial").value = "Cu";
+            conductorMaterial = "Cu";
+            document.getElementById("conductorMaterial").options[1].disabled = true;
+        }
+
+        if (Tinsulation === 250) {
+            document.getElementById("conductorMaterial").value = "Cu";
+            conductorMaterial = "Cu";
+            document.getElementById("conductorMaterial").options[1].disabled = true;
+        }
+
+        parameters = {
+            conductorMaterial: conductorMaterial,
+            Tinsulation: Tinsulation,
+            Tambient: 40,
+            grouping: 3
+        }
+        
+    } else if (AmpacityTABLE === "310.19") {
+        document.getElementById("Tinsulation").options[3].style.display = "initial";
+        document.getElementById("Tinsulation").options[4].style.display = "initial";
+        document.getElementById("Tinsulation").options[5].style.display = "initial";
+
+        document.getElementById("conductorMaterial").options[0].disabled = false;
+        document.getElementById("conductorMaterial").options[1].disabled = false;
+
+        if (Tinsulation === 60 || Tinsulation === 75 || Tinsulation === 90 ) {
+            document.getElementById("Tinsulation").value = 150;
+            document.getElementById("conductorMaterial").value = "Cu";
+            conductorMaterial = "Cu";
+            Tinsulation = 150;
+        }
+
+        if (Tinsulation === 200) {
+            document.getElementById("conductorMaterial").value = "Cu";
+            conductorMaterial = "Cu";
+            document.getElementById("conductorMaterial").options[1].disabled = true;
+        }
+
+        if (Tinsulation === 250) {
+            document.getElementById("conductorMaterial").value = "Cu";
+            conductorMaterial = "Cu";
+            document.getElementById("conductorMaterial").options[1].disabled = true;
+        }
+
+        parameters = {
+            conductorMaterial: conductorMaterial,
+            Tinsulation: Tinsulation,
+            Tambient: 40,
+        }
+        
     } else if (AmpacityTABLE === "310.20") {
-        document.getElementById("Tinsulation").options[0].disabled = true;
+        document.getElementById("Tinsulation").options[1].style.display = "initial";
+        document.getElementById("Tinsulation").options[2].style.display = "initial";
+
+        if (Tinsulation === 150 || Tinsulation === 200 || Tinsulation === 250) {
+            document.getElementById("Tinsulation").value = 75;
+            Tinsulation = 75;
+        }
+
         if (Tinsulation === 60) {
             document.getElementById("Tinsulation").value = 75;
             Tinsulation = 75;
