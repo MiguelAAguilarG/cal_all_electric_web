@@ -259,10 +259,140 @@ function calc_main() {
     /*formTA */
     let AmpacityTABLE = document.getElementById("AmpacityTABLE").value;
     let AmpacityFactorTABLE = Number.parseFloat(document.getElementById("AmpacityFactorTABLE").value)/100;
+
+    let CasesTABLE_Ampacity = document.getElementById("CasesTABLE_Ampacity").value;
+    let CasesTABLE_Ampacity_MONO_MULT = document.getElementById("CasesTABLE_Ampacity_MONO_MULT").value;
+    let CasesTABLE_Ampacity_CableTray_Cable_Config = document.getElementById("CasesTABLE_Ampacity_CableTray_Cable_Config").value;
+    let CasesTABLE_Ampacity_CableTray_Cover = document.getElementById("CasesTABLE_Ampacity_CableTray_Cover").value;
+
     /*formF */
     let optioncurrentFactor = document.getElementsByName("optioncurrentFactor");
 
-    /**Data **/
+    /*+*/
+    document.getElementById("CasesTABLE_Ampacity_MONO_MULT").style.display = "none";
+    document.getElementById("CasesTABLE_Ampacity_CableTray_Cable_Config").style.display = "none";
+    document.getElementById("CasesTABLE_Ampacity_CableTray_Cover").style.display = "none";
+
+    document.getElementById("AmpacityTABLE").options[0].disabled = false;
+    document.getElementById("AmpacityTABLE").options[1].disabled = false;
+    document.getElementById("AmpacityTABLE").options[2].disabled = false;
+    document.getElementById("AmpacityTABLE").options[3].disabled = false;
+    document.getElementById("AmpacityTABLE").options[4].disabled = false;
+
+    let CableTrayFLAGAmpacityFactorTABLE = false;
+    if (CasesTABLE_Ampacity === "Custom") {
+
+    } else if (CasesTABLE_Ampacity === "Terminals") {
+        AmpacityTABLE = "310.16";
+
+        document.getElementById("AmpacityTABLE").options[1].disabled = true;
+        document.getElementById("AmpacityTABLE").options[2].disabled = true;
+        document.getElementById("AmpacityTABLE").options[3].disabled = true;
+        document.getElementById("AmpacityTABLE").options[4].disabled = true;
+        
+    } else if (CasesTABLE_Ampacity === "CableTrays") {
+        document.getElementById("CasesTABLE_Ampacity_MONO_MULT").style.display = "initial";
+        document.getElementById("CasesTABLE_Ampacity_CableTray_Cable_Config").style.display = "initial";
+        document.getElementById("CasesTABLE_Ampacity_CableTray_Cover").style.display = "initial";
+
+        document.getElementById("AmpacityTABLE").options[0].disabled = true;
+
+        document.getElementById("CasesTABLE_Ampacity_CableTray_Cover").options[0].disabled = false;
+        document.getElementById("CasesTABLE_Ampacity_CableTray_Cover").options[1].disabled = false;
+
+        if (CasesTABLE_Ampacity_MONO_MULT === "MONOCONDUCTOR") {
+            document.getElementById("AmpacityTABLE").value = "310.17";
+            AmpacityTABLE = "310.17";
+    
+            document.getElementById("AmpacityTABLE").options[0].disabled = true;
+            document.getElementById("AmpacityTABLE").options[2].disabled = true;
+            document.getElementById("AmpacityTABLE").options[3].disabled = true;
+            document.getElementById("AmpacityTABLE").options[4].disabled = true;
+
+            if (CasesTABLE_Ampacity_CableTray_Cable_Config === "SingleLayer") {
+                if (CasesTABLE_Ampacity_CableTray_Cover === "WithCover") {
+                    AmpacityFactorTABLE = 0.60;
+                    CableTrayFLAGAmpacityFactorTABLE = true;
+                } else if (CasesTABLE_Ampacity_CableTray_Cover === "WithoutCover") {
+                    AmpacityFactorTABLE = 0.65;
+                    CableTrayFLAGAmpacityFactorTABLE = true;
+                } else {
+                    
+                }
+            } else if (CasesTABLE_Ampacity_CableTray_Cable_Config === "Spacing1conductor") {
+                document.getElementById("CasesTABLE_Ampacity_CableTray_Cover").options[1].disabled = true;
+                document.getElementById("CasesTABLE_Ampacity_CableTray_Cover").value = "WithoutCover";
+                CasesTABLE_Ampacity_CableTray_Cover = "WithoutCover";
+
+                if (CasesTABLE_Ampacity_CableTray_Cover === "WithCover") {
+
+                } else if (CasesTABLE_Ampacity_CableTray_Cover === "WithoutCover") {
+                    AmpacityFactorTABLE = 1;
+                } else {
+                    
+                }
+            } else if (CasesTABLE_Ampacity_CableTray_Cable_Config === "Spacing2.15conductor") {
+                document.getElementById("AmpacityTABLE").value = "310.20";
+                AmpacityTABLE = "310.20";
+
+                document.getElementById("AmpacityTABLE").options[0].disabled = true;
+                document.getElementById("AmpacityTABLE").options[1].disabled = true;
+                document.getElementById("AmpacityTABLE").options[2].disabled = true;
+                document.getElementById("AmpacityTABLE").options[3].disabled = true;
+
+                document.getElementById("CasesTABLE_Ampacity_CableTray_Cover").options[1].disabled = true;
+                document.getElementById("CasesTABLE_Ampacity_CableTray_Cover").value = "WithoutCover";
+                CasesTABLE_Ampacity_CableTray_Cover = "WithoutCover";
+
+                if (CasesTABLE_Ampacity_CableTray_Cover === "WithCover") {
+
+                } else if (CasesTABLE_Ampacity_CableTray_Cover === "WithoutCover") {
+                    AmpacityFactorTABLE = 1;
+                } else {
+                    
+                }
+            } else {
+                
+            }
+        } else if (CasesTABLE_Ampacity_MONO_MULT === "MULTICONDUCTOR") {
+            if (CasesTABLE_Ampacity_CableTray_Cable_Config === "SingleLayer") {
+                if (CasesTABLE_Ampacity_CableTray_Cover === "WithCover") {
+
+                } else if (CasesTABLE_Ampacity_CableTray_Cover === "WithoutCover") {
+                    
+                } else {
+                    
+                }
+            } else if (CasesTABLE_Ampacity_CableTray_Cable_Config === "Spacing1conductor") {
+                if (CasesTABLE_Ampacity_CableTray_Cover === "WithCover") {
+
+                } else if (CasesTABLE_Ampacity_CableTray_Cover === "WithoutCover") {
+                    
+                } else {
+                    
+                }
+            } else if (CasesTABLE_Ampacity_CableTray_Cable_Config === "Spacing2.15conductor") {
+                if (CasesTABLE_Ampacity_CableTray_Cover === "WithCover") {
+
+                } else if (CasesTABLE_Ampacity_CableTray_Cover === "WithoutCover") {
+                    
+                } else {
+                    
+                }
+            } else {
+                
+            }
+        } else {
+            
+        }
+    } else {
+        
+    }
+    document.getElementById("AmpacityTABLE").value = AmpacityTABLE;
+    /*+*/
+
+
+    /*++*/
     document.getElementById("Tinsulation").options[0].style.display = "none";
     document.getElementById("Tinsulation").options[1].style.display = "none";
     document.getElementById("Tinsulation").options[2].style.display = "none";
@@ -399,6 +529,7 @@ function calc_main() {
         
     }
     let TambientTable = parameters.Tambient;
+    /*++*/
     /**Data **/
 
     /*formF */
@@ -469,6 +600,9 @@ function calc_main() {
         flag = 1;
     } if (voltage <= 0 ) {
         voltage = 0.5;
+        flag = 1;
+    } if (voltage > 2000) {
+        voltage = 2000;
         flag = 1;
     } if (current <= 0) {
         current = 0.5;
@@ -833,13 +967,37 @@ function calc_main() {
     let factorGrouping = factorGroupingFun(tableFactorGrouping, conductorsPerConduit);
     let factorAdjustment = factorAdjustmentFun(factorTemperature, factorGrouping);
     let AmpacityArray = searcherAmpacityArrayFun(AmpacityTABLES[AmpacityTABLE], parameters);
-    AmpacityArray = AmpacityArray.map(Ampacity =>  AmpacityFactorTABLE*Ampacity);
+
+    let ArrayAmpacityFactorTABLE = [];
+    if (CableTrayFLAGAmpacityFactorTABLE === true) {
+        for (let index = 0; index < AmpacityArray.length; index++) {
+            if (index <= 17 ) {
+                ArrayAmpacityFactorTABLE[index] = AmpacityFactorTABLE;
+            } else if (index >= 18 ){
+                ArrayAmpacityFactorTABLE[index] = AmpacityFactorTABLE + 0.1; 
+            } else {
+
+            }
+        }
+    }  else {
+        for (let index = 0; index < AmpacityArray.length; index++) {
+            ArrayAmpacityFactorTABLE[index] = AmpacityFactorTABLE;
+        }
+    }
+    AuxAmpacityArray = [];
+    for (let index = 0; index < AmpacityArray.length; index++) {
+        AuxAmpacityArray[index] = ArrayAmpacityFactorTABLE[index]*AmpacityArray[index];
+    }
+
+    AmpacityArray = AuxAmpacityArray
 
     let AmpacityIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, currentFactor, 1);
     let AmpacityContinuousLoadIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, currentFactorContinuousLoad, 1);
     let AmpacityFactorTemperatureIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, currentFactorTemperature, factorTemperature);
     let AmpacityFactorGroupingIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, currentFactorGrouping, factorGrouping);
     let AmpacityFactorAdjustmentIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, currentFactorAdjustment, factorAdjustment);
+
+    document.getElementById("AmpacityFactorTABLE").value = ArrayAmpacityFactorTABLE[AmpacityIndex]*100;
 
     let Ampacity = AmpacityArray[AmpacityIndex];
     let AmpacityContinuousLoad = AmpacityArray[AmpacityContinuousLoadIndex];

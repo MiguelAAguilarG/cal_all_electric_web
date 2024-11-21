@@ -513,20 +513,51 @@
                 <label for="AmpacityFactorTABLE" class="text-left">[%]</label>
             </div>
 
-            <!--
+            <div class="text-left">
+                Cases Table Ampacity
+            </div>
             <div class="box-data2">
-                <label for="CasesTABLE" class="text-right">Tables CASES</label>
-                <select name="CasesTABLE" id="CasesTABLE" class="data">
-                    <option value="310.16">310.16</option>
-                    <option value="310.17">310.17</option>
-                    <option value="310.20">310.20</option>
+                <label for="CasesTABLE_Ampacity" class="text-right"></label>
+                <select name="CasesTABLE_Ampacity" id="CasesTABLE_Ampacity" class="data">
+                    <option value="Custom">Custom</option>
+                    <option value="Terminals">Terminals</option>
+                    <option value="CableTrays">Cable trays</option>
                 </select>
             </div>
-            <div>
-                <p> a. </p>
+
+            <div class="text-left">
+                MONOCONDUCTOR/MULTICONDUCTOR
             </div>
-            -->
-            
+            <div class="box-data2">
+                <label for="CasesTABLE_Ampacity_MONO_MULT" class="text-right"></label>
+                <select name="CasesTABLE_Ampacity_MONO_MULT" id="CasesTABLE_Ampacity_MONO_MULT" class="data">
+                    <option value="MONOCONDUCTOR">MONOCONDUCTOR</option>
+                    <option value="MULTICONDUCTOR" hidden>MULTICONDUCTOR</option>
+                </select>
+            </div>
+
+            <div class="text-left">
+                Cable configuration
+            </div>
+            <div class="box-data2">
+                <label for="CasesTABLE_Ampacity_CableTray_Cable_Config" class="text-right"></label>
+                <select name="CasesTABLE_Ampacity_CableTray_Cable_Config" id="CasesTABLE_Ampacity_CableTray_Cable_Config" class="data">
+                    <option value="SingleLayer">Single Layer</option>
+                    <option value="Spacing1conductor">Spacing 1 Conductor</option>
+                    <option value="Spacing2.15conductor">Spacing 2.15 Conductor</option>
+                </select>
+            </div>
+
+            <div class="text-left">
+                Covers Cable Trays
+            </div>
+            <div class="box-data2">
+                <label for="CasesTABLE_Ampacity_CableTray_Cover" class="text-right"></label>
+                <select name="CasesTABLE_Ampacity_CableTray_Cover" id="CasesTABLE_Ampacity_CableTray_Cover" class="data">
+                    <option value="WithoutCover">Without Cover</option>
+                    <option value="WithCover">With Cover</option>
+                </select>
+            </div>  
         </form>
     </div>
 
