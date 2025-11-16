@@ -1178,6 +1178,7 @@ function calc_main() {
 
     /** AmpacityTABLEShow **/
     let AmpacityTABLE_Show = AmpacityTABLE_GeneratorShow(AmpacityTABLE, AmpacityTABLES[AmpacityTABLE], AWG);
+    document.getElementById('formTAShow').innerHTML = AmpacityTABLE_Show;
     /** AmpacityTABLEShow **/
     
     /** Factors **/
@@ -1659,9 +1660,8 @@ function AmpacityTABLE_GeneratorShow(AmpacityTABLEName, AmpacityTABLE, AWG) {
             `;
     }
 
-
     let auxCOMPLETED = auxSTART + aux + auxEND;
 
-    document.getElementById('formTAShow').innerHTML = auxCOMPLETED;
+    return auxCOMPLETED
     
 }
