@@ -152,3 +152,19 @@ footer{
     -moz-appearance:textfield;
 }
 /* Remove Arrows/Spinners */
+
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+}
+
+tr:nth-child(even) {
+    Background-color: #dddddd;
+}
+
+td {
+    border: solid 1px;
+    text-align: center;
+    padding: 1px;
+}

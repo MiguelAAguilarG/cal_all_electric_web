@@ -81,21 +81,21 @@ const AmpacityTABLES = {
         Tinsulation: 60,
         Tambient: 30,
         voltage: [0, 2000],
-        AmpacityVALUES : [25, 35, 45, 60, 80, 95, 110, 130, 150, 175, 200, 235, 265, 290, 330, 355, 405, 455, 500, 515, 535, 580, 625, 710, 795, 875, 960]
+        AmpacityVALUES : [NaN, 25, 35, 45, 60, 80, 95, 110, 130, 150, 175, 200, 235, 265, 290, 330, 355, 405, 455, 500, 515, 535, 580, 625, 710, 795, 875, 960]
         },
         {
         conductorMaterial: "Al",
         Tinsulation: 75,
         Tambient: 30,
         voltage: [0, 2000],
-        AmpacityVALUES : [30, 40, 55, 75, 100, 115, 135, 155, 180, 210, 240, 280, 315, 350, 395, 425, 485, 545, 595, 595, 620, 645, 700, 750, 855, 950, 1050, 1150]
+        AmpacityVALUES : [NaN, 30, 40, 55, 75, 100, 115, 135, 155, 180, 210, 240, 280, 315, 350, 395, 425, 485, 545, 595, 595, 620, 645, 700, 750, 855, 950, 1050, 1150]
         },
         {
         conductorMaterial: "Al",
         Tinsulation: 90,
         Tambient: 30,
         voltage: [0, 2000],
-        AmpacityVALUES : [35, 45, 60, 85, 115, 130, 150, 175, 205, 235, 270, 315, 355, 395, 445, 480, 545, 615, 670, 700, 725, 790, 845, 965, 1070, 1185, 1295]
+        AmpacityVALUES : [NaN, 35, 45, 60, 85, 115, 130, 150, 175, 205, 235, 270, 315, 355, 395, 445, 480, 545, 615, 670, 700, 725, 790, 845, 965, 1070, 1185, 1295]
         }
     ],
     "310.18": [
@@ -1176,6 +1176,10 @@ function calc_main() {
     document.getElementById("mm2AmpacityShortCircuitRatioCustom").value = (mm2AmpacityShortCircuitCustom/mm2Ampacity).toFixed(decimals+2);
     /** IscCustom **/
 
+    /** AmpacityTABLEShow **/
+    let AmpacityTABLE_Show = AmpacityTABLE_GeneratorShow(AmpacityTABLE, AmpacityTABLES[AmpacityTABLE], AWG);
+    /** AmpacityTABLEShow **/
+    
     /** Factors **/
     let currentXCurrentFactor = current*currentFactor;
     let currentXCurrentFactorContinuousLoad = current*currentFactorContinuousLoad;
@@ -1599,4 +1603,65 @@ function resultFactor(currentFactors) {
     }
 
     return Factor
+}
+
+function AmpacityTABLE_GeneratorShow(AmpacityTABLEName, AmpacityTABLE, AWG) {
+
+    let auxSTART = `
+    <table>
+        <caption>Table ${AmpacityTABLEName}</caption>
+        <tbody>
+        <colgroup>
+            <col span="1" style="background-color: #D6EEEE">
+        </colgroup>
+            <tr>
+                <td rowspan="4">Size AWG or kcmil</td>
+                <td colspan="${AmpacityTABLE.length}">Temperature Rating of Conductor</td>
+            </tr>
+    `;
+
+    let auxEND = `
+        </tbody>
+    </table>
+    `;
+
+    let aux = ``;
+    aux += `    <tr>
+            `;
+
+    for (const TABLE of AmpacityTABLE) {
+        aux += `<td> ${TABLE["Tinsulation"]}°C </td>
+            `;
+    }
+
+    aux += `
+        </tr>`;
+    aux += `
+        <tr>
+        </tr>`;
+    aux += `
+        <tr>
+        <td colspan="${AmpacityTABLE.length/2}">COPPER</td>
+        <td colspan="${AmpacityTABLE.length/2}">ALUMINUM</td>
+        </tr>
+        `;
+
+    for (let i = 0; i < AmpacityTABLE[0]["AmpacityVALUES"].length; i++) {
+        aux += `<tr>
+            `;
+        aux += `<td> ${AWG[i]} </td>
+            `;
+        for (const TABLE of AmpacityTABLE) {
+            aux += `<td> ${TABLE["AmpacityVALUES"][i]} </td>
+            `;
+        }
+        aux += `</tr>
+            `;
+    }
+
+
+    let auxCOMPLETED = auxSTART + aux + auxEND;
+
+    document.getElementById('formTAShow').innerHTML = auxCOMPLETED;
+    
 }
