@@ -3,6 +3,22 @@ const mm2 = [2.08, 3.31, 5.26, 8.37, 13.3, 21.2, 26.7, 33.6, 42.4, 53.49, 67.43,
 
 const tableFactorGrouping = {3:1, 6:0.8, 9:0.7, 20:0.5, 30:0.45, 40:0.4, 50:0.35};
 
+const groundingTABLES = {
+    "250.122": [
+        {
+        Amperes : [15, 20, 60, 100, 200, 300, 400, 500, 600, 800, 1000, 1200, 1600, 2000, 2500, 3000, 4000, 5000, 6000]
+        },
+        {
+        conductorMaterial: "Cu",
+        AWG : ['14', '12', '10', '8', '6', '4', '3', '2', '1', '1/0', '2/0', '3/0', '4/0', '250', '350', '400', '500', '700', '800']
+        },
+        {
+        conductorMaterial: "Al",
+        AWG : ['12', '10', '8', '6', '4', '2', '1', '1/0', '2/0', '3/0', '4/0', '250', '350', '400', '600', '600', '750', '1250', '1250']
+        }
+    ]
+};
+
 const AmpacityTABLES = {
     "310.16": [
         {
@@ -1180,6 +1196,11 @@ function calc_main() {
     let AmpacityTABLE_Show = AmpacityTABLE_GeneratorShow(AmpacityTABLE, AmpacityTABLES[AmpacityTABLE], AWG);
     document.getElementById('formTAShow').innerHTML = AmpacityTABLE_Show;
     /** AmpacityTABLEShow **/
+
+    /** TABLE_250_122_GeneratorShow **/
+    let TABLE_250_122_Show = TABLE_250_122_GeneratorShow("250.122", groundingTABLES);
+    document.getElementById('formTgrounding122').innerHTML = TABLE_250_122_Show;
+    /** TABLE_250_122_GeneratorShow **/
     
     /** Factors **/
     let currentXCurrentFactor = current*currentFactor;
@@ -1663,5 +1684,55 @@ function AmpacityTABLE_GeneratorShow(AmpacityTABLEName, AmpacityTABLE, AWG) {
     let auxCOMPLETED = auxSTART + aux + auxEND;
 
     return auxCOMPLETED
+    
+}
+
+function TABLE_250_122_GeneratorShow(groundingTABLESName, groundingTABLES) {
+
+    if (groundingTABLESName == "250.122") {
+        
+    let auxSTART = `
+    <table>
+        <caption>Table ${groundingTABLESName}</caption>
+        <tbody>
+            <tr>
+                <td rowspan="2">Amperes</td>
+                <td colspan="2">Size AWG or kcmil</td>
+            </tr>
+            <tr>
+                <td>COPPER</td>
+                <td>ALUMINUM</td>
+            </tr>
+    `;
+
+    let auxEND = `
+        </tbody>
+    </table>
+    `;
+
+    let aux = ``;
+
+    for (let ii = 0; ii < groundingTABLES[groundingTABLESName][0]["Amperes"].length; ii++) {
+        aux += `<tr>
+        `;
+        aux += `<td> ${groundingTABLES[groundingTABLESName][0]["Amperes"][ii]} </td>
+        `;
+        aux += `<td> ${groundingTABLES[groundingTABLESName][1]["AWG"][ii]} </td>
+        `;
+        aux += `<td> ${groundingTABLES[groundingTABLESName][2]["AWG"][ii]} </td>
+        `;
+        aux += `</tr>
+        `;
+    }
+
+    let auxCOMPLETED = auxSTART + aux + auxEND;
+
+    return auxCOMPLETED
+
+    } else {
+        
+    }
+
+
     
 }
