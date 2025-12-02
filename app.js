@@ -1690,13 +1690,13 @@ function AmpacityTABLE_GeneratorShow(AmpacityTABLEName, AmpacityTABLE, AWG) {
 function TABLE_250_122_GeneratorShow(groundingTABLESName, groundingTABLES) {
 
     if (groundingTABLESName == "250.122") {
-        
+
     let auxSTART = `
     <table>
         <caption>Table ${groundingTABLESName}</caption>
         <tbody>
             <tr>
-                <td rowspan="2">Amperes</td>
+                <td rowspan="2">Breaker, Not Exceeding (Amperes)</td>
                 <td colspan="2">Size AWG or kcmil</td>
             </tr>
             <tr>
@@ -1733,6 +1733,4 @@ function TABLE_250_122_GeneratorShow(groundingTABLESName, groundingTABLES) {
         
     }
 
-
-    
 }
