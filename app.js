@@ -889,7 +889,14 @@ function calc_main() {
     } else {
         
     }
+
     voltageDropIndex = voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, current*currentFactorVoltageDrop, voltage, conductorsPerPhase, conductorMaterial, voltageDropPercent)
+
+    if (voltageDropIndex == RArray.length) {
+        conductorsPerPhase++;
+        document.getElementById("conductorsPerPhase").value = conductorsPerPhase;
+        return calc_main();
+    }
 
     RTemp = RTempFun(RArray[voltageDropIndex], Tinsulation);
     XL = XArray[voltageDropIndex];
@@ -909,19 +916,6 @@ function calc_main() {
         if (mm2Isc <= mm2[index]) {
             IscIndex = index;
             break;
-        }
-
-        if (index == mm2.length - 1) {
-            window.alert(`mm2Isc out of range; 
-            DATA = {
-            \"mm2Isc\" = ${mm2Isc},
-            \"MAXmm2Isc\" = ${mm2[index]},
-            \"mm2Isc >= mm2[index]\" = ${mm2Isc} >= ${mm2[index]}}`);
-
-            return index;
-            
-        } else {
-            
         }
     }
 
@@ -1012,6 +1006,12 @@ function calc_main() {
     let AmpacityFactorTemperatureIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, currentFactorTemperature, factorTemperature);
     let AmpacityFactorGroupingIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, currentFactorGrouping, factorGrouping);
     let AmpacityFactorAdjustmentIndex = AmpacityIndexFun(AmpacityArray, currentPerConductor, currentFactorAdjustment, factorAdjustment);
+
+    if (AmpacityIndex == AmpacityArray.length || AmpacityContinuousLoadIndex == AmpacityArray.length || AmpacityFactorTemperatureIndex == AmpacityArray.length || AmpacityFactorGroupingIndex == AmpacityArray.length || AmpacityFactorAdjustmentIndex == AmpacityArray.length) {
+        conductorsPerPhase++;
+        document.getElementById("conductorsPerPhase").value = conductorsPerPhase;
+        return calc_main();
+    }
 
     document.getElementById("AmpacityFactorTABLE").value = ArrayAmpacityFactorTABLE[AmpacityIndex]*100;
 
@@ -1376,14 +1376,7 @@ function AmpacityIndexFun(AmpacityArray, current, currentFactor, Ampacityfactor)
         }
 
         if (index == AmpacityArray.length - 1) {
-            window.alert(`CURRENT out of range; 
-            DATA = {
-            \"current\" = ${current}, 
-            \"currentFactor\" = ${currentFactor},
-            \"maxAmpacity\" = ${AmpacityArray[index]},
-            \"Ampacityfactor\" = ${Ampacityfactor},
-            \"current*currentFactor >= maxAmpacity*Ampacityfactor\" = ${current*currentFactor} >= ${AmpacityArray[index]*Ampacityfactor}}`);
-
+            index++
             return index;
 
         } else {
@@ -1568,11 +1561,7 @@ function voltageDropIndexFun(RArray, XArray, Tinsulation, pf, system, length, cu
         }
 
         if (index == RArray.length - 1) {
-            window.alert(`voltageDrop out of range; 
-            DATA = {
-            \"current\" = ${current},
-            \"voltageDropPercentResult >= voltageDropPercent\" = ${voltageDropPercentResult} >= ${voltageDropPercent}}`);
-
+            index++
             return index;
             
         } else {

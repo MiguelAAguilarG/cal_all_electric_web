@@ -29,7 +29,7 @@ footer{
     text-align: center;
 }
 
-.data, .result, .result-small, .text-right, .text-center, .data-fake{
+.data, .result, .result-small, .text-right, .text-center, .text-center-tiny, .data-fake{
     padding-left: 4px;
     padding-right: 2px;
     
@@ -89,11 +89,16 @@ footer{
     grid-template-columns: minmax(3.2em, 3.2em) repeat(4, minmax(3.05em, 3.05em)) minmax(3.6em, 3.6em);
 }
 
-.text-center{
+.text-center, .text-center-tiny{
     display: flex;
 
     justify-content: center;
     text-align: center;
+    align-self: baseline;
+}
+
+.text-center-tiny{
+    font-size: x-small;
 }
 
 .item-center{
